@@ -74,7 +74,8 @@
 .selections-info__profile {
     flex-shrink: 0;
     aspect-ratio: 1 / 1;
-    max-width: 38px;
+    width: 38px;
+    height: 38px;
     object-fit: cover;
     cursor: pointer;
     border-radius: 50%;
@@ -96,6 +97,99 @@
     font-family: var(--font-dana-demibold);
 }
 
+/* Main */
+
+.main {
+    margin-block: 10rem;
+}
+
+/* Article */
+
+.post {
+    font-family: var(--font-byekan-v4-semibold);
+    background-color: rgba(169, 169, 169, 0.23);
+    padding: 2rem;
+}
+
+.post-header {
+}
+
+.post-author {
+    gap: 1rem;
+}
+
+.post-author__profile {
+    flex-shrink: 0;
+    aspect-ratio: 1 / 1;
+    width: 4.2rem;
+    height: 4.2rem;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.post-author__details {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.25rem;
+}
+
+.post-author__name {
+    line-height: 1.6;
+}
+
+.post-author__data {
+    color: #a2a2a2;
+    line-height: 1;
+    font-size: 1.2rem;
+}
+
+.post-category {
+    color: #5e5e5e;
+    font-family: var(--font-byekan-v4-semibold);
+}
+
+.post-category--header {
+    display: none;
+}
+
+.post-main {
+    margin-block: 2.5rem;
+}
+
+.post-main__title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    width: min(90%, 450px);
+}
+
+.post-main__image {
+    width: 100%;
+}
+
+.post-main__description {
+    margin-top: 1.5rem;
+    color: #a2a2a2;
+    font-size: 1.4rem;
+    font-family: var(--font-byekan-v4-regular);
+    width: min(90%, 450px);
+    max-height: 4.5rem;
+    overflow-y: hidden;
+}
+
+.post-footer__actions {
+    gap: 2rem;
+}
+
+.post-footer__like {
+    gap: 0.5rem;
+}
+
+.post__icon-like, .post__icon-bookmark {
+    cursor: pointer;
+}
+
 @media (min-width: 576px) {
     .selections-item {
         flex-direction: row;
@@ -113,6 +207,14 @@
         flex-direction: column;
         justify-content: space-between;
         padding-block: 2.5rem;
+    }
+
+    .post-category--header {
+        display: block;
+    }
+
+    .post-category--footer {
+        display: none;
     }
 }
 
@@ -135,5 +237,11 @@
 @media (min-width: 1440px) {
     .selections-wrapper {
         column-gap: 7.5rem;
+    }
+}
+
+@media all and (pointer: coarse) {
+    .post-author__profile, .post__icon-like, .post__icon-bookmark {
+        cursor: default;
     }
 }

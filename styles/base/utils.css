@@ -11,6 +11,7 @@
 .d-flex-between {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
 }
 
 .d-flex-align-center {
