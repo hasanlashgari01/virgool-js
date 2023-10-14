@@ -1,0 +1,36 @@
+.d-flex {
+    display: flex;
+}
+
+.d-flex-center {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.d-flex-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.d-flex-align-center {
+    display: flex;
+    align-items: center;
+}
+
+.item-my {
+    margin-block: 1rem;
+}
+
+.item--mt {
+    margin-top: 1rem;
+}
+
+.item-mb {
+    margin-bottom: 1rem;
+}
+
+.show {
+    opacity: 1 !important;
+    visibility:visible !important;
+}

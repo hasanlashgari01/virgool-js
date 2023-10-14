@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles/base/index.css">
+    <link rel="stylesheet" href="styles/base/base.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+    <link rel="icon" href="https://virgool.io/images/icon.svg?v=v2.14.21">
+    <title>ویرگول</title>
+</head>
+<body>
+
+<svg class="icons">
+    <symbol id="magnifying-glass" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round"
+              d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
+    </symbol>
+    <symbol id="bell" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round"
+              d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"/>
+    </symbol>
+</svg>
+
+<div class="overlay"></div>
+
+<header class="header">
+    <div class="container d-flex-center">
+        <div class="header__right d-flex-center">
+            <a href="index.html" class="header__logo">
+                <img src="https://virgool.io/images/icon.svg?v=v2.14.21" alt="آیکون ویرگول">
+            </a>
+            <a href="pages/about-us.html" class="header__right-help">ویرگول چیست؟</a>
+        </div>
+        <div class="header__left d-flex-center">
+            <div class="header__icon d-flex-align-center">
+                <svg class="icon header__icon-search">
+                    <use href="#magnifying-glass"></use>
+                </svg>
+                <svg class="icon header__icon-bell">
+                    <use href="#bell"></use>
+                </svg>
+            </div>
+            <div class="header__access">
+                <div class="header__link d-flex-center">
+                    <a href="pages/login.html" class="header__link-login">ورود</a>
+                    <a href="pages/register.html" class="header__link-register">ثبت نام</a>
+                </div>
+                <div class="header__panel">
+                    <div class="header__panel-profile">
+                        <img src="public/images/Ana-de-Armas-300x400.jpg" alt="عکس پروفایل">
+                    </div>
+                    <ul class="header__menu">
+                        <li class="header__menu-item item-mb">
+                            <a href="" class="header__menu-link header__menu-profile">
+                                <span>آنا د آرماس</span>
+                            </a>
+                        </li>
+                        <hr/>
+                        <div class="item-my">
+                            <li class="header__menu-item">
+                                <a href="#" class="header__menu-link">نوشتن پست جدید</a>
+                            </li>
+                            <li class="header__menu-item"><a href="#" class="header__menu-link">تنظیمات حساب کاربری</a>
+                            </li>
+                            <li class="header__menu-item"><a href="#" class="header__menu-link">پست‌ها و پیش‌نویس‌ها</a>
+                            </li>
+                            <li class="header__menu-item"><a href="#" class="header__menu-link">مشاهده آمار</a></li>
+                            <li class="header__menu-item"><a href="#" class="header__menu-link">علاقه‌مندی های من</a>
+                            </li>
+                            <li class="header__menu-item"><a href="#" class="header__menu-link">پست‌های مورد علاقه</a>
+                            </li>
+                            <li class="header__menu-item"><a href="#" class="header__menu-link">لیست‌ها</a></li>
+                        </div>
+                        <hr/>
+                        <li class="header__menu-item item-my"><a href="#" class="header__menu-link">انتشارات</a>
+                        </li>
+                        <hr/>
+                        <li class="header__menu-item item-my header__switch-theme">حالت شب</li>
+                        <hr/>
+                        <li class="header__menu-item item--mt"><a href="#" class="header__menu-link">خروج</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<nav class="nav">
+    <div class="container nav--container">
+        <div class="swiper nav__items d-flex">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><a href="#" class="nav__link">صفحه اصلی</a></div>
+                <div class="swiper-slide"><a href="#" class="nav__link">جدیدترین پست‌ها</a></div>
+                <div class="swiper-slide"><a href="#" class="nav__link">پست‌های دوستان</a></div>
+                <div class="swiper-slide"><a href="#" class="nav__link">دلنوشته</a></div>
+                <div class="swiper-slide"><a href="#" class="nav__link">برنامه نویسی</a></div>
+                <div class="swiper-slide"><a href="#" class="nav__link">پول رمزی</a></div>
+                <div class="swiper-slide"><a href="#" class="nav__link">روانشناسی</a></div>
+                <div class="swiper-slide"><a href="#" class="nav__link">خودشناسی</a></div>
+                <div class="swiper-slide"><a href="#" class="nav__link">رابطه</a></div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<main class="main">
+
+    <section class="selections container">
+        <h2 class="selections-title">منتخب‌های ویرگول</h2>
+        <div class="selections-wrapper">
+            <a href="#" class="selections-item">
+                <img class="selections-item__cover"
+                     src="https://files.virgool.io/upload/users/66095/posts/dtmvotm9kcl8/qwvnckn43nsx.jpg"
+                     alt="مثل آلیس باشید | درس‌هایی که یک شخصیت خیالی برای ما دارد">
+                <div class="selections-details-wrapper">
+                    <h4 class="selections-info__title">مثل آلیس باشید | درس‌هایی که یک شخصیت خیالی برای ما دارد</h4>
+                    <div class="selections-info d-flex-align-center">
+                        <img src="public/images/Ana-de-Armas-300x400.jpg" alt="" class="selections-info__profile">
+                        <div class="selections-details">
+                            <h5 class="selections-details__name">علی امیری‌فر</h5>
+                            <h6 class="selections-details__time">۱۲ ماه پیش</h6>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="#" class="selections-item">
+                <img class="selections-item__cover"
+                     src="https://files.virgool.io/upload/users/2878764/posts/xi9kofjhatzl/yjoeqtoewipy.jpg"
+                     alt="نرم افزار سی آر ام (CRM) چیست؟">
+                <div class="selections-details-wrapper">
+                    <h4 class="selections-info__title">نرم افزار سی آر ام (CRM) چیست؟</h4>
+                    <div class="selections-info d-flex">
+                        <img src="public/images/Ana-de-Armas-300x400.jpg" alt="" class="selections-info__profile">
+                        <div class="selections-details">
+                            <h5 class="selections-details__name">حامد چناری</h5>
+                            <h6 class="selections-details__time">۶ روز پیش</h6>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="#" class="selections-item">
+                <img class="selections-item__cover"
+                     src="https://files.virgool.io/upload/users/27491/posts/sdlnubljqtia/6riake4vi2b9.jpeg"
+                     alt="بیش از یک سال در کافه‌بازار">
+                <div class="selections-details-wrapper">
+                    <h4 class="selections-info__title">بیش از یک سال در کافه‌بازار</h4>
+                    <div class="selections-info d-flex">
+                        <img src="public/images/Ana-de-Armas-300x400.jpg" alt="" class="selections-info__profile">
+                        <div class="selections-details">
+                            <h5 class="selections-details__name">آرش شاکری</h5>
+                            <h6 class="selections-details__time">۴ سال پیش</h6>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="#" class="selections-item">
+                <img class="selections-item__cover"
+                     src="https://files.virgool.io/upload/users/2403/posts/lddteurhr5gq/exy755gulock.jpeg"
+                     alt="مسیریابی حمل‌ونقل همگانی #نشان در تمام ایران">
+                <div class="selections-details-wrapper">
+                    <h4 class="selections-info__title">مسیریابی حمل‌ونقل همگانی #نشان در تمام ایران</h4>
+                    <div class="selections-info d-flex">
+                        <img src="public/images/Ana-de-Armas-300x400.jpg" alt="" class="selections-info__profile">
+                        <div class="selections-details">
+                            <h5 class="selections-details__name">بهزاد کاظمی</h5>
+                            <h6 class="selections-details__time">۴ سال پیش</h6>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+</main>
+
+<script src="scripts/index.js" type="module"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script>
+
+</script>
+
+</body>
+</html>

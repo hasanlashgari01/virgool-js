@@ -1,0 +1,62 @@
+/* BYekan v3 */
+@font-face {
+    font-family: "BYekan-v3-regular"; /* 400 */
+    src: local('BYekan'), url("/public/fonts/BYekan/v3/yekan bakh en 04 regular.woff2") format("woff2");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "BYekan-v3-medium"; /* 500 */
+    src: local('BYekan'), url("/public/fonts/BYekan/v3/yekan bakh en 05 medium.woff2") format("woff2");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "BYekan-v3-bold"; /* 700 */
+    src: local('BYekan'), url("/public/fonts/BYekan/v3/yekan bakh en 06 bold.woff2") format("woff2");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "BYekan-v3-fat"; /* 900 */
+    src: local('BYekan'), url("/public/fonts/BYekan/v3/yekan bakh en 08 fat.woff2") format("woff2");
+    font-display: swap;
+}
+
+/* BYekan v4 */
+@font-face {
+    font-family: "BYekan-v4-regular"; /* 500 */
+    src: local('BYekan'), url("/public/fonts/BYekan/v4/YekanBakh-Regular.woff2") format("woff2");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "BYekan-v4-semibold"; /* 600 */
+    src: local('BYekan'), url("/public/fonts/BYekan/v4/YekanBakh-SemiBold.woff2") format("woff2");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "BYekan-v4-bold"; /* 700 */
+    src: local('BYekan'), url("/public/fonts/BYekan/v4/YekanBakh-Bold.woff2") format("woff2");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "BYekan-v4-black"; /* 800 */
+    src: local('BYekan'), url("/public/fonts/BYekan/v4/YekanBakh-Black.woff2") format("woff2");
+    font-display: swap;
+}
+
+/* Dana */
+@font-face {
+    font-family: "dana-bold"; /* 800 */
+    src: local('dana-bold'), url("/public/fonts/dana/Dana-Bold.woff2") format("woff2");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "dana-demibold"; /* 800 */
+    src: local('dana-demibold'), url("/public/fonts/dana/Dana-DemiBold.woff2") format("woff2");
+    font-display: swap;
+}
