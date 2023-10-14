@@ -101,24 +101,33 @@
 
 .main {
     margin-block: 10rem;
+    display: flex;
+    gap: 2rem;
 }
 
 /* Article */
+.article {
+    width: 100%;
+}
+
+.posts {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 3rem;
+}
 
 .post {
     font-family: var(--font-byekan-v4-semibold);
     background-color: rgba(169, 169, 169, 0.23);
     padding: 2rem;
+    border-radius: 1.5rem;
 }
 
-.post-header {
-}
-
-.post-author {
+.post-author, .popular-author {
     gap: 1rem;
 }
 
-.post-author__profile {
+.post-author__profile, .popular-author__profile {
     flex-shrink: 0;
     aspect-ratio: 1 / 1;
     width: 4.2rem;
@@ -129,13 +138,13 @@
     overflow: hidden;
 }
 
-.post-author__details {
+.post-author__details, .popular-author__details {
     flex-direction: column;
     justify-content: flex-start;
     gap: 0.25rem;
 }
 
-.post-author__name {
+.post-author__name, .popular-author__name {
     line-height: 1.6;
 }
 
@@ -190,6 +199,54 @@
     cursor: pointer;
 }
 
+/* Aside */
+
+.aside {
+    width: max(50rem, 60%);
+    flex-direction: column;
+    gap: 2.5rem;
+    display: none;
+}
+
+.popular, .friends-news, .saved-posts {
+    height: fit-content;
+    padding-inline: 2.5rem;
+}
+
+.login-access {
+    height: fit-content;
+    position: sticky;
+    top: 1.5rem;
+}
+
+.popular-title {
+    font-family: var(--font-dana-demibold);
+}
+
+.popular-author__title {
+    width: 20rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+
+.popular-lists {
+    margin-block: 1.6rem;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.popular-author__details {
+    font-family: var(--font-dana-demibold);
+}
+
+.popular-author__name {
+    font-family: var(--font-byekan-v4-semibold);
+    color: #a2a2a2;
+    line-height: 1;
+}
+
 @media (min-width: 576px) {
     .selections-item {
         flex-direction: row;
@@ -231,6 +288,24 @@
 
     .selections-wrapper {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .aside {
+        display: flex;
+    }
+}
+
+@media (min-width: 1200px) {
+    .main {
+        gap: 10rem;
+    }
+
+    .post {
+        width: fit-content;
+    }
+
+    .post-main__image {
+        height: 30rem;
     }
 }
 
