@@ -2,19 +2,26 @@
     display: flex;
 }
 
-.d-flex-center {
+.d-flex__center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.d-flex__between-center {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.d-flex-between {
+
+.d-flex__between-start {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
 }
 
-.d-flex-align-center {
+.d-flex__align-center {
     display: flex;
     align-items: center;
 }

@@ -35,17 +35,30 @@
         <path stroke-linecap="round" stroke-linejoin="round"
               d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z"/>
     </symbol>
+    <symbol id="bookmark-solid" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+            class="w-6 h-6">
+        <path fill-rule="evenodd"
+              d="M6.32 2.577a49.255 49.255 0 0111.36 0c1.497.174 2.57 1.46 2.57 2.93V21a.75.75 0 01-1.085.67L12 18.089l-7.165 3.583A.75.75 0 013.75 21V5.507c0-1.47 1.073-2.756 2.57-2.93z"
+              clip-rule="evenodd"/>
+    </symbol>
+    <symbol id="newspaper" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+        <path fill-rule="evenodd" d="M4.125 3C3.089 3 2.25 3.84 2.25 4.875V18a3 3 0 003 3h15a3 3 0 01-3-3V4.875C17.25 3.839 16.41 3 15.375 3H4.125zM12 9.75a.75.75 0 000 1.5h1.5a.75.75 0 000-1.5H12zm-.75-2.25a.75.75 0 01.75-.75h1.5a.75.75 0 010 1.5H12a.75.75 0 01-.75-.75zM6 12.75a.75.75 0 000 1.5h7.5a.75.75 0 000-1.5H6zm-.75 3.75a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5H6a.75.75 0 01-.75-.75zM6 6.75a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h3a.75.75 0 00.75-.75v-3A.75.75 0 009 6.75H6z" clip-rule="evenodd" />
+        <path d="M18.75 6.75h1.875c.621 0 1.125.504 1.125 1.125V18a1.5 1.5 0 01-3 0V6.75z" />
+    </symbol>
+    <symbol id="hand-thumb-up" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+        <path d="M7.493 18.75c-.425 0-.82-.236-.975-.632A7.48 7.48 0 016 15.375c0-1.75.599-3.358 1.602-4.634.151-.192.373-.309.6-.397.473-.183.89-.514 1.212-.924a9.042 9.042 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75 2.25 2.25 0 012.25 2.25c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H14.23c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23h-.777zM2.331 10.977a11.969 11.969 0 00-.831 4.398 12 12 0 00.52 3.507c.26.85 1.084 1.368 1.973 1.368H4.9c.445 0 .72-.498.523-.898a8.963 8.963 0 01-.924-3.977c0-1.708.476-3.305 1.302-4.666.245-.403-.028-.959-.5-.959H4.25c-.832 0-1.612.453-1.918 1.227z" />
+    </symbol>
 </svg>
 <div class="overlay"></div>
 <header class="header">
-    <div class="container d-flex-center">
-        <div class="header__right d-flex-center">
+    <div class="container d-flex__between-center">
+        <div class="header__right d-flex__between-center">
             <a href="index.html" class="header__logo">
                 <img src="https://virgool.io/images/icon.svg?v=v2.14.21" alt="آیکون ویرگول">
             </a>
             <a href="pages/about-us.html" class="header__right-help">ویرگول چیست؟</a>
         </div>
-        <div class="header__left d-flex-center">
+        <div class="header__left d-flex__between-center">
             <div class="header__icon d-flex-align-center">
                 <svg class="icon header__icon-search">
                     <use href="#magnifying-glass"></use>
@@ -55,7 +68,7 @@
                 </svg>
             </div>
             <div class="header__access">
-                <div class="header__link d-flex-center">
+                <div class="header__link d-flex__between-center">
                     <a href="pages/login.html" class="header__link-login">ورود</a>
                     <a href="pages/register.html" class="header__link-register">ثبت نام</a>
                 </div>
@@ -188,10 +201,11 @@
         <section class="posts">
             <div class="post">
                 <div class="post-header d-flex-between">
-                    <div class="post-author d-flex">
-                        <img src="public/images/Ana-de-Armas-300x400.jpg" alt="" class="post-author__profile">
-                        <div class="post-author__details d-flex">
-                            <h4 class="post-author__name">مصطفی جلیلی سنجرانی</h4>
+                    <div class="post-author author">
+                        <img src="public/images/Ana-de-Armas-300x400.jpg" alt=""
+                             class="post-author__profile author__profile">
+                        <div class="post-author__details author__details">
+                            <h4 class="post-author__name author__name">مصطفی جلیلی سنجرانی</h4>
                             <h5 class="post-author__data">
                                 <span class="post-author__date">۱۶ دقیقه پیش</span>
                                 -
@@ -211,7 +225,7 @@
                 </div>
                 <div class="post-footer d-flex-between">
                     <div class="post-footer__actions d-flex">
-                        <div class="post-footer__like d-flex-center">
+                        <div class="post-footer__like d-flex__between-center">
                             <svg class="icon post__icon-like">
                                 <use href="#heart"></use>
                             </svg>
@@ -226,10 +240,11 @@
             </div>
             <div class="post">
                 <div class="post-header d-flex-between">
-                    <div class="post-author d-flex">
-                        <img src="public/images/Ana-de-Armas-300x400.jpg" alt="" class="post-author__profile">
-                        <div class="post-author__details d-flex">
-                            <h4 class="post-author__name">مصطفی جلیلی سنجرانی</h4>
+                    <div class="post-author author">
+                        <img src="public/images/Ana-de-Armas-300x400.jpg" alt=""
+                             class="post-author__profile author__profile">
+                        <div class="post-author__details author__details">
+                            <h4 class="post-author__name author__name">مصطفی جلیلی سنجرانی</h4>
                             <h5 class="post-author__data">
                                 <span class="post-author__date">۱۶ دقیقه پیش</span>
                                 -
@@ -249,7 +264,7 @@
                 </div>
                 <div class="post-footer d-flex-between">
                     <div class="post-footer__actions d-flex">
-                        <div class="post-footer__like d-flex-center">
+                        <div class="post-footer__like d-flex__between-center">
                             <svg class="icon post__icon-like">
                                 <use href="#heart"></use>
                             </svg>
@@ -264,10 +279,11 @@
             </div>
             <div class="post">
                 <div class="post-header d-flex-between">
-                    <div class="post-author d-flex">
-                        <img src="public/images/Ana-de-Armas-300x400.jpg" alt="" class="post-author__profile">
-                        <div class="post-author__details d-flex">
-                            <h4 class="post-author__name">مصطفی جلیلی سنجرانی</h4>
+                    <div class="post-author author">
+                        <img src="public/images/Ana-de-Armas-300x400.jpg" alt=""
+                             class="post-author__profile author__profile">
+                        <div class="post-author__details author__details">
+                            <h4 class="post-author__name author__name">مصطفی جلیلی سنجرانی</h4>
                             <h5 class="post-author__data">
                                 <span class="post-author__date">۱۶ دقیقه پیش</span>
                                 -
@@ -287,7 +303,7 @@
                 </div>
                 <div class="post-footer d-flex-between">
                     <div class="post-footer__actions d-flex">
-                        <div class="post-footer__like d-flex-center">
+                        <div class="post-footer__like d-flex__between-center">
                             <svg class="icon post__icon-like">
                                 <use href="#heart"></use>
                             </svg>
@@ -302,10 +318,11 @@
             </div>
             <div class="post">
                 <div class="post-header d-flex-between">
-                    <div class="post-author d-flex">
-                        <img src="public/images/Ana-de-Armas-300x400.jpg" alt="" class="post-author__profile">
-                        <div class="post-author__details d-flex">
-                            <h4 class="post-author__name">مصطفی جلیلی سنجرانی</h4>
+                    <div class="post-author author">
+                        <img src="public/images/Ana-de-Armas-300x400.jpg" alt=""
+                             class="post-author__profile author__profile">
+                        <div class="post-author__details author__details">
+                            <h4 class="post-author__name author__name">مصطفی جلیلی سنجرانی</h4>
                             <h5 class="post-author__data">
                                 <span class="post-author__date">۱۶ دقیقه پیش</span>
                                 -
@@ -325,7 +342,7 @@
                 </div>
                 <div class="post-footer d-flex-between">
                     <div class="post-footer__actions d-flex">
-                        <div class="post-footer__like d-flex-center">
+                        <div class="post-footer__like d-flex__between-center">
                             <svg class="icon post__icon-like">
                                 <use href="#heart"></use>
                             </svg>
@@ -340,10 +357,11 @@
             </div>
             <div class="post">
                 <div class="post-header d-flex-between">
-                    <div class="post-author d-flex">
-                        <img src="public/images/Ana-de-Armas-300x400.jpg" alt="" class="post-author__profile">
-                        <div class="post-author__details d-flex">
-                            <h4 class="post-author__name">مصطفی جلیلی سنجرانی</h4>
+                    <div class="post-author author">
+                        <img src="public/images/Ana-de-Armas-300x400.jpg" alt=""
+                             class="post-author__profile author__profile">
+                        <div class="post-author__details author__details">
+                            <h4 class="post-author__name author__name">مصطفی جلیلی سنجرانی</h4>
                             <h5 class="post-author__data">
                                 <span class="post-author__date">۱۶ دقیقه پیش</span>
                                 -
@@ -363,7 +381,7 @@
                 </div>
                 <div class="post-footer d-flex-between">
                     <div class="post-footer__actions d-flex">
-                        <div class="post-footer__like d-flex-center">
+                        <div class="post-footer__like d-flex__between-center">
                             <svg class="icon post__icon-like">
                                 <use href="#heart"></use>
                             </svg>
@@ -376,128 +394,152 @@
                     <a href="#" class="post-category--footer post-category">بلاک چین</a>
                 </div>
             </div>
-
         </section>
     </article>
-
     <aside class="aside">
         <div class="popular">
-            <h3 class="popular-title">محبوب‌ترین‌های ویرگول</h3>
-            <ul class="popular-lists d-flex">
-                <a href="#" class="popular-author d-flex">
-                    <img src="public/images/Ana-de-Armas-300x400.jpg" alt="" class="popular-author__profile">
-                    <div class="popular-author__details d-flex">
-                        <h5 class="popular-author__title">مواظب بدهی فنی تیم یا محصول‌تون باشین</h5>
-                        <h5 class="popular-author__name">جادی میرمیرانی</h5>
+            <h3 class="popular-title d-flex__align-center">
+                <svg class="icon">
+                    <use href="#hand-thumb-up"></use>
+                </svg>
+                محبوب‌ترین‌های ویرگول
+            </h3>
+            <ul class="popular lists">
+                <a href="#" class="popular-author author">
+                    <img src="public/images/Ana-de-Armas-300x400.jpg" alt=""
+                         class="popular-author__profile author__profile">
+                    <div class="popular-author__details author__details">
+                        <h5 class="popular-author__title author-title">مواظب بدهی فنی تیم یا محصول‌تون باشین</h5>
+                        <h5 class="popular-author__name author__name">جادی میرمیرانی</h5>
                     </div>
                 </a>
-                <a href="#" class="popular-author d-flex">
-                    <img src="public/images/Ana-de-Armas-300x400.jpg" alt="" class="popular-author__profile">
-                    <div class="popular-author__details d-flex">
-                        <h5 class="popular-author__title">تبلیغ کردن گرونه و پولمون نمیرسه. پس چطوری رشد کنیم؟</h5>
-                        <h5 class="popular-author__name">میلاد چراغعلی خانی</h5>
+                <a href="#" class="popular-author author">
+                    <img src="public/images/Ana-de-Armas-300x400.jpg" alt=""
+                         class="popular-author__profile author__profile">
+                    <div class="popular-author__details author__details">
+                        <h5 class="popular-author__title author-title">تبلیغ کردن گرونه و پولمون نمیرسه. پس چطوری رشد کنیم؟</h5>
+                        <h5 class="popular-author__name author__name">میلاد چراغعلی خانی</h5>
                     </div>
                 </a>
-                <a href="#" class="popular-author d-flex">
-                    <img src="public/images/Ana-de-Armas-300x400.jpg" alt="" class="popular-author__profile">
-                    <div class="popular-author__details d-flex">
-                        <h5 class="popular-author__title">پیاده روی و سکوت در زمانه‌ی هیاهو</h5>
-                        <h5 class="popular-author__name">مجتبی شکوری</h5>
+                <a href="#" class="popular-author author">
+                    <img src="public/images/Ana-de-Armas-300x400.jpg" alt=""
+                         class="popular-author__profile author__profile">
+                    <div class="popular-author__details author__details">
+                        <h5 class="popular-author__title author-title">پیاده روی و سکوت در زمانه‌ی هیاهو</h5>
+                        <h5 class="popular-author__name author__name">مجتبی شکوری</h5>
                     </div>
                 </a>
-                <a href="#" class="popular-author d-flex">
-                    <img src="public/images/Ana-de-Armas-300x400.jpg" alt="" class="popular-author__profile">
-                    <div class="popular-author__details d-flex">
-                        <h5 class="popular-author__title">واکسن کرونای فایزر چطور کار می‌کند؟</h5>
-                        <h5 class="popular-author__name">هادی عبدی خجسته</h5>
+                <a href="#" class="popular-author author">
+                    <img src="public/images/Ana-de-Armas-300x400.jpg" alt=""
+                         class="popular-author__profile author__profile">
+                    <div class="popular-author__details author__details">
+                        <h5 class="popular-author__title author-title">واکسن کرونای فایزر چطور کار می‌کند؟</h5>
+                        <h5 class="popular-author__name author__name">هادی عبدی خجسته</h5>
                     </div>
                 </a>
-                <a href="#" class="popular-author d-flex">
-                    <img src="public/images/Ana-de-Armas-300x400.jpg" alt="" class="popular-author__profile">
-                    <div class="popular-author__details d-flex">
-                        <h5 class="popular-author__title">چگونه یک شمشیر تیز صد درصد سامورایی بسازیم؟!</h5>
-                        <h5 class="popular-author__name">دست انداز</h5>
+                <a href="#" class="popular-author author">
+                    <img src="public/images/Ana-de-Armas-300x400.jpg" alt=""
+                         class="popular-author__profile author__profile">
+                    <div class="popular-author__details author__details">
+                        <h5 class="popular-author__title author-title">چگونه یک شمشیر تیز صد درصد سامورایی بسازیم؟!</h5>
+                        <h5 class="popular-author__name author__name">دست انداز</h5>
                     </div>
                 </a>
             </ul>
         </div>
         <div class="login-access">
-            <div class="friends-news">
-                <h3 class="popular-title">جدیدترین پست‌های دوستان</h3>
-                <ul class="popular-lists d-flex">
-                    <a href="#" class="popular-author d-flex">
-                        <img src="public/images/Ana-de-Armas-300x400.jpg" alt="" class="popular-author__profile">
-                        <div class="popular-author__details d-flex">
-                            <h5 class="popular-author__title">مواظب بدهی فنی تیم یا محصول‌تون باشین</h5>
-                            <h5 class="popular-author__name">جادی میرمیرانی</h5>
+            <div class="friends">
+                <h3 class="friends-title d-flex__align-center">
+                    <svg class="icon">
+                        <use href="#newspaper"></use>
+                    </svg>
+                    جدیدترین پست‌های دوستان
+                </h3>
+                <ul class="friends lists">
+                    <a href="#" class="friends-author author">
+                        <img src="public/images/Ana-de-Armas-300x400.jpg" alt=""
+                             class="friends-author__profile author__profile">
+                        <div class="friends-author__details author__details">
+                            <h5 class="friends-author__title author-title">بحث جذاب دسترسی پذیری (Accessibility) - خصوصا در وب</h5>
+                            <h5 class="friends-author__name author__name">حسان امینی لو</h5>
                         </div>
                     </a>
-                    <a href="#" class="popular-author d-flex">
-                        <img src="public/images/Ana-de-Armas-300x400.jpg" alt="" class="popular-author__profile">
-                        <div class="popular-author__details d-flex">
-                            <h5 class="popular-author__title">تبلیغ کردن گرونه و پولمون نمیرسه. پس چطوری رشد کنیم؟</h5>
-                            <h5 class="popular-author__name">میلاد چراغعلی خانی</h5>
+                    <a href="#" class="friends-author author">
+                        <img src="public/images/Ana-de-Armas-300x400.jpg" alt=""
+                             class="friends-author__profile author__profile">
+                        <div class="friends-author__details author__details">
+                            <h5 class="friends-author__title author-title">توسعه T شکل</h5>
+                            <h5 class="friends-author__name author__name">حسان امینی لو</h5>
                         </div>
                     </a>
-                    <a href="#" class="popular-author d-flex">
-                        <img src="public/images/Ana-de-Armas-300x400.jpg" alt="" class="popular-author__profile">
-                        <div class="popular-author__details d-flex">
-                            <h5 class="popular-author__title">پیاده روی و سکوت در زمانه‌ی هیاهو</h5>
-                            <h5 class="popular-author__name">مجتبی شکوری</h5>
+                    <a href="#" class="friends-author author">
+                        <img src="public/images/Ana-de-Armas-300x400.jpg" alt=""
+                             class="friends-author__profile author__profile">
+                        <div class="friends-author__details author__details">
+                            <h5 class="friends-author__title author-title">چیزهایی که از یک سال فریلنسری یاد گرفتم</h5>
+                            <h5 class="friends-author__name author__name">آرمان</h5>
                         </div>
                     </a>
-                    <a href="#" class="popular-author d-flex">
-                        <img src="public/images/Ana-de-Armas-300x400.jpg" alt="" class="popular-author__profile">
-                        <div class="popular-author__details d-flex">
-                            <h5 class="popular-author__title">واکسن کرونای فایزر چطور کار می‌کند؟</h5>
-                            <h5 class="popular-author__name">هادی عبدی خجسته</h5>
-                        </div>
-                    </a>
-                    <a href="#" class="popular-author d-flex">
-                        <img src="public/images/Ana-de-Armas-300x400.jpg" alt="" class="popular-author__profile">
-                        <div class="popular-author__details d-flex">
-                            <h5 class="popular-author__title">چگونه یک شمشیر تیز صد درصد سامورایی بسازیم؟!</h5>
-                            <h5 class="popular-author__name">دست انداز</h5>
+                    <a href="#" class="friends-author author">
+                        <img src="public/images/Ana-de-Armas-300x400.jpg" alt=""
+                             class="friends-author__profile author__profile">
+                        <div class="friends-author__details author__details">
+                            <h5 class="friends-author__title author-title">اختراع چرخ؟ چرا که نه؟</h5>
+                            <h5 class="friends-author__name author__name">آرمان</h5>
                         </div>
                     </a>
                 </ul>
             </div>
-            <div class="saved-posts">
-                <h3 class="popular-title">پست‌های ذخیره شده</h3>
-                <ul class="popular-lists d-flex">
-                    <a href="#" class="popular-author d-flex">
-                        <img src="public/images/Ana-de-Armas-300x400.jpg" alt="" class="popular-author__profile">
-                        <div class="popular-author__details d-flex">
-                            <h5 class="popular-author__title">مواظب بدهی فنی تیم یا محصول‌تون باشین</h5>
-                            <h5 class="popular-author__name">جادی میرمیرانی</h5>
+            <div class="saved">
+                <h3 class="saved-title d-flex__align-center">
+                    <svg class="icon">
+                        <use href="#bookmark-solid"></use>
+                    </svg>
+                    پست‌های ذخیره شده
+                </h3>
+                <ul class="saved lists">
+                    <a href="#" class="saved-author author">
+                        <span class="save-icon__bookmark d-flex__center">
+                            <svg class="icon">
+                                <use href="#bookmark-solid"></use>
+                            </svg>
+                        </span>
+                        <div class="saved-author__details author__details">
+                            <h5 class="saved-author__title author-title">روشهای بالا بردن تمرکز</h5>
+                            <h5 class="saved-author__name author__name">مــتـیـن</h5>
                         </div>
                     </a>
-                    <a href="#" class="popular-author d-flex">
-                        <img src="public/images/Ana-de-Armas-300x400.jpg" alt="" class="popular-author__profile">
-                        <div class="popular-author__details d-flex">
-                            <h5 class="popular-author__title">تبلیغ کردن گرونه و پولمون نمیرسه. پس چطوری رشد کنیم؟</h5>
-                            <h5 class="popular-author__name">میلاد چراغعلی خانی</h5>
+                    <a href="#" class="saved-author author">
+                        <span class="save-icon__bookmark d-flex__center">
+                            <svg class="icon">
+                                <use href="#bookmark-solid"></use>
+                            </svg>
+                        </span>
+                        <div class="saved-author__details author__details">
+                            <h5 class="saved-author__title author-title">فهرست جامع ربات‌های کاربردی تلگرام</h5>
+                            <h5 class="saved-author__name author__name">ام‌سی سعید</h5>
                         </div>
                     </a>
-                    <a href="#" class="popular-author d-flex">
-                        <img src="public/images/Ana-de-Armas-300x400.jpg" alt="" class="popular-author__profile">
-                        <div class="popular-author__details d-flex">
-                            <h5 class="popular-author__title">پیاده روی و سکوت در زمانه‌ی هیاهو</h5>
-                            <h5 class="popular-author__name">مجتبی شکوری</h5>
+                    <a href="#" class="saved-author author">
+                        <span class="save-icon__bookmark d-flex__center">
+                            <svg class="icon">
+                                <use href="#bookmark-solid"></use>
+                            </svg>
+                        </span>
+                        <div class="saved-author__details author__details">
+                            <h5 class="saved-author__title author-title">نصب فلاتر در مانجارو</h5>
+                            <h5 class="saved-author__name author__name">علیرضا باشی</h5>
                         </div>
                     </a>
-                    <a href="#" class="popular-author d-flex">
-                        <img src="public/images/Ana-de-Armas-300x400.jpg" alt="" class="popular-author__profile">
-                        <div class="popular-author__details d-flex">
-                            <h5 class="popular-author__title">واکسن کرونای فایزر چطور کار می‌کند؟</h5>
-                            <h5 class="popular-author__name">هادی عبدی خجسته</h5>
-                        </div>
-                    </a>
-                    <a href="#" class="popular-author d-flex">
-                        <img src="public/images/Ana-de-Armas-300x400.jpg" alt="" class="popular-author__profile">
-                        <div class="popular-author__details d-flex">
-                            <h5 class="popular-author__title">چگونه یک شمشیر تیز صد درصد سامورایی بسازیم؟!</h5>
-                            <h5 class="popular-author__name">دست انداز</h5>
+                    <a href="#" class="saved-author author">
+                        <span class="save-icon__bookmark d-flex__center">
+                            <svg class="icon">
+                                <use href="#bookmark-solid"></use>
+                            </svg>
+                        </span>
+                        <div class="saved-author__details author__details">
+                            <h5 class="saved-author__title author-title">ساختار فولدر در اپ های ریکتی</h5>
+                            <h5 class="saved-author__name author__name">حسن لشگری</h5>
                         </div>
                     </a>
                 </ul>
