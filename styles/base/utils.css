@@ -42,3 +42,55 @@
     opacity: 1 !important;
     visibility:visible !important;
 }
+
+.section-title {
+    font-family: var(--font-dana-bold);
+}
+
+.author {
+    display: flex;
+    gap: 1rem;
+}
+
+.author__profile {
+    flex-shrink: 0;
+    aspect-ratio: 1 / 1;
+    width: 4.2rem;
+    height: 4.2rem;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.author__details {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.25rem;
+}
+
+.author__name {
+    line-height: 1.6;
+    font-family: var(--font-byekan-v4-semibold);
+    color: #a2a2a2;
+}
+
+.post {
+    font-family: var(--font-byekan-v4-regular) !important;
+}
+
+.post__data {
+    color: #a2a2a2;
+    line-height: 1;
+    font-size: 1.2rem;
+    font-family: var(--font-byekan-v4-semibold);
+}
+
+.post-footer__actions {
+    gap: 1rem;
+}
+
+.post-footer__like {
+    gap: 0.5rem;
+}

@@ -1,0 +1,26 @@
+.nav {
+    position: sticky;
+    top: 0;
+    background-color: var(--secondary-color);
+    padding-block: 1.6rem;
+    height: fit-content;
+    overflow-x: hidden;
+    z-index: 7000;
+}
+
+.nav__items .swiper-slide {
+    max-width: fit-content;
+}
+
+.nav__link {
+    font-size: 1.4rem;
+    color: white;
+    transition: all 300ms ease-in-out;
+    user-select: none;
+}
+
+@media (min-width: 992px) {
+    .nav__link:hover {
+        padding-inline: 2rem;
+    }
+}
