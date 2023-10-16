@@ -1,1 +1,81 @@
 @import '../components/header.css';
+
+.account-header, .account-info {
+    flex-direction: column;
+}
+
+.account-profile {
+    width: 9rem;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.account-profile img {
+    width: 100%;
+    aspect-ratio: inherit;
+    object-fit: cover;
+}
+
+.account-name {
+    margin-top: 1rem;
+    font-family: var(--font-dana-bold);
+}
+
+.account-follower {
+    margin-top: 5px;
+    gap: 5rem;
+    font-family: var(--font-dana-bold);
+}
+
+.account-follower h5 {
+    cursor: pointer;
+}
+
+.account-action {
+    margin-top: 2rem;
+}
+
+.account-action__settings, .account-action__follow {
+    padding-block: 7.5px;
+    width: 22rem;
+    text-align: center;
+    border-radius: 20px;
+    font-family: var(--font-byekan-v4-semibold);
+}
+
+.account-action__settings {
+    border: 2px solid rgb(63, 63, 70);
+}
+
+.account-action__follow {
+    display: none;
+    background-color: var(--secondary-color);
+    color: white;
+    cursor: pointer;
+}
+
+.account-social {
+    margin-top: 1.6rem;
+    gap: 2rem;
+}
+
+.acoount-tab {
+    margin-top: 1rem;
+    gap: 3rem;
+}
+
+.account-tab__item.account-tab__item--active {
+    position: relative;
+}
+
+.account-tab__item.account-tab__item--active::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -2.5px;
+    width: 80%;
+    height: 2px;
+    transform: translateX(-10%);
+    background: #000;
+}

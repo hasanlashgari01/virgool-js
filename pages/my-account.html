@@ -12,7 +12,7 @@
 <body>
 <svg class="icons">
     <symbol id="twitter" viewBox="0 0 18 18" width="14px" height="14px" xmlns="http://www.w3.org/2000/svg"
-         xmlns:xlink="http://www.w3.org/1999/xlink" fill="var(--color-gray-700)">
+            xmlns:xlink="http://www.w3.org/1999/xlink" fill="var(--color-gray-700)">
         <path d="M10.712 7.789 17.413 0h-1.588l-5.818 6.763L5.36 0H0l7.027 10.227L0 18.395h1.588l6.145 -7.142 4.907 7.142H18L10.712 7.789Zm-2.175 2.528 -0.712 -1.019 -5.665 -8.103h2.439l4.572 6.54 0.712 1.019 5.943 8.501h-2.44l-4.849 -6.937Z"></path>
     </symbol>
 </svg>
@@ -75,35 +75,42 @@
 </header>
 
 <div>
-    <div>
-        <div class="account-profile">
-            <img src="../public/images/Ana-de-Armas-300x400.jpg" alt="عکس پروفایل">
+    <div class="account-header d-flex__align-center">
+        <div class="account-info d-flex__align-center">
+            <div class="account-profile">
+                <img src="../public/images/Ana-de-Armas-300x400.jpg" alt="عکس پروفایل">
+            </div>
+            <h2 class="account-name">حسن لشگری</h2>
+            <div class="account-follower d-flex__align-center">
+                <h5> توسط <span>۰</span> نفر دنبال می‌شود</h5>
+                <h5><span>۵</span> نفر را دنبال می‌کند</h5>
+            </div>
         </div>
-        <h2 class="account-name">حسن لشگری</h2>
-        <div class="account-follower">
-            <h5> توسط <span>۰</span> نفر دنبال می‌شود</h5>
-            <h5><span>۵</span> نفر را دنبال می‌کند</h5>
-        </div>
-        <div class="account-action">
+        <div class="account-action d-flex">
             <a href="" class="account-action__settings">تنظیمات حساب کاربری</a>
             <span class="account-action__follow">دنبال کنید</span>
         </div>
-        <div class="account-social">
-            <a href="#" class="account-social__telegram">
+        <div class="account-social d-flex">
+            <a href="#" class="account-social__telegram account-social__item">
                 <svg class="icon">
                     <use href="#twitter"></use>
                 </svg>
             </a>
-            <a href="#" class="account-social__twitter">
+            <a href="#" class="account-social__twitter account-social__item">
                 <svg class="icon">
                     <use href="#twitter"></use>
                 </svg>
             </a>
-            <a href="#" class="account-social__instagram">
+            <a href="#" class="account-social__instagram account-social__item">
                 <svg class="icon">
                     <use href="#twitter"></use>
                 </svg>
             </a>
+        </div>
+        <div class="acoount-tab d-flex">
+            <a href="#" class="account-tab__item account-tab__item--active">پست‌ها</a>
+            <a href="#" class="account-tab__item">لیست‌ها</a>
+            <a href="#" class="account-tab__item">انتشارات</a>
         </div>
     </div>
 </div>
