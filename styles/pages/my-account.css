@@ -1,5 +1,10 @@
 @import '../components/header.css';
 
+.account-header {
+    padding-bottom: 9px;
+    border-bottom: 1px solid #a2a2a2;
+}
+
 .account-header, .account-info {
     flex-direction: column;
 }
@@ -65,17 +70,35 @@
     gap: 3rem;
 }
 
+.account-tab__item {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
 .account-tab__item.account-tab__item--active {
     position: relative;
+    color: var(--secondary-color);
 }
 
 .account-tab__item.account-tab__item--active::after {
     content: '';
     position: absolute;
     right: 0;
-    bottom: -2.5px;
+    bottom: -1rem;
     width: 80%;
     height: 2px;
     transform: translateX(-10%);
-    background: #000;
+    background: var(--secondary-color);
+}
+
+.tabs {
+    margin-top: 4rem;
+}
+
+.tab-item {
+    display: none;
+}
+
+.tab-item.tab-item--active {
+    display: flex;
 }
