@@ -94,3 +94,17 @@
 .post-footer__like {
     gap: 0.5rem;
 }
+
+.modal {
+    position: fixed;
+    /*inset: 50%;*/
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    width: 60rem;
+    height: 50rem;
+    background-color: rgb(255, 255, 255);
+    border-radius: 1rem;
+    z-index: 9999;
+    overflow: hidden;
+}
