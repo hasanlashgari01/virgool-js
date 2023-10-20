@@ -102,7 +102,7 @@
     box-shadow: 0 1.6rem 1.4rem rgba(117, 142, 254, 0.1);
     transform: translateY(3rem);
     opacity: 0;
-    visibility:hidden;
+    visibility: hidden;
     z-index: 9000;
     transition: 300ms ease-in;
 }
@@ -128,8 +128,12 @@
     height: 100%;
 }
 
-.header__switch-theme {
+.header__switch-theme, .header__logout {
     cursor: pointer;
+}
+
+.header__logout {
+    color: red !important;
 }
 
 @media (min-width: 576px) {
@@ -142,10 +146,11 @@
     }
 }
 
-@media (min-width: 992px) {}
+@media (min-width: 992px) {
+}
 
 @media all and (pointer: coarse) {
-    .header__panel-profile, .header__switch-theme {
+    .header__panel-profile, .header__switch-theme, .header__logout {
         cursor: default;
     }
 

@@ -1,0 +1,37 @@
+@import "../components/header.css";
+
+
+.header__panel {
+    display: block;
+}
+
+/* Main */
+
+.main {
+    margin-top: 2rem;
+}
+
+/* Aside */
+
+.aside {
+    display: none;
+    position: sticky;
+    top: 0;
+}
+
+.settings {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.settings__link {
+    font-size: 2rem;
+}
+
+@media (min-width: 768px) {
+    .aside {
+        display: block;
+    }
+}
