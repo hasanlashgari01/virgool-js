@@ -60,6 +60,12 @@
 	}
 
 	body {
-		@apply font-IRYekanMedium;
+		@apply font-IRYekanRegular;
+	}
+}
+
+@layer components {
+	.dropdown-border {
+		@apply p-3 border-b border-gray-300;
 	}
 }
