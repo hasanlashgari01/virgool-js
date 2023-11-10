@@ -1,3 +1,65 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+	/* Fonts */
+	/* Iran Yekan */
+	@font-face {
+		font-family: "IRANYekanWebThin";
+		src: local("Iran Yekan"), url("/public/fonts/IranYekan/IRANYekanWebThin.woff2") format("woff2");
+		font-display: swap;
+	}
+	@font-face {
+		font-family: "IRANYekanWebRegular";
+		src: local("Iran Yekan"), url("/public/fonts/IranYekan/IRANYekanWebRegular.woff2") format("woff2");
+		font-display: swap;
+	}
+	@font-face {
+		font-family: "IRANYekanWebMedium";
+		src: local("Iran Yekan"), url("/public/fonts/IranYekan/IRANYekanWebMedium.woff2") format("woff2");
+		font-display: swap;
+	}
+	@font-face {
+		font-family: "IRANYekanWebLight";
+		src: local("Iran Yekan"), url("/public/fonts/IranYekan/IRANYekanWebLight.woff2") format("woff2");
+		font-display: swap;
+	}
+	@font-face {
+		font-family: "IRANYekanWebExtraBold";
+		src: local("Iran Yekan"), url("/public/fonts/IranYekan/IRANYekanWebExtraBold.woff2") format("woff2");
+		font-display: swap;
+	}
+	@font-face {
+		font-family: "IRANYekanWebExtraBlack";
+		src: local("Iran Yekan"), url("/public/fonts/IranYekan/IRANYekanWebExtraBlack.woff2") format("woff2");
+		font-display: swap;
+	}
+	@font-face {
+		font-family: "IRANYekanWebBold";
+		src: local("Iran Yekan"), url("/public/fonts/IranYekan/IRANYekanWebBold.woff2") format("woff2");
+		font-display: swap;
+	}
+	@font-face {
+		font-family: "IRANYekanWebBlack";
+		src: local("Iran Yekan"), url("/public/fonts/IranYekan/IRANYekanWebBlack.woff2") format("woff2");
+		font-display: swap;
+	}
+
+	/* Dana */
+	@font-face {
+		font-family: "dana-bold"; /* 800 */
+		src: local("dana-bold"), url("/public/fonts/dana/Dana-Bold.woff2") format("woff2");
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: "dana-demibold"; /* 800 */
+		src: local("dana-demibold"), url("/public/fonts/dana/Dana-DemiBold.woff2") format("woff2");
+		font-display: swap;
+	}
+
+	body {
+		@apply font-IRYekanMedium;
+	}
+}
