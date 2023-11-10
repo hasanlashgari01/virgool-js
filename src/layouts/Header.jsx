@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import LinkItem from "../components/templates/LinkItem";
 import ProfileDropDown from "../components/templates/ProfileDropDown";
 import NewPost from "../components/templates/NewPost";
