@@ -14,6 +14,12 @@ export default {
 					"2xl": "10rem",
 				},
 			},
+			screens: {
+				tb: "992px",
+			},
+			backgroundImage: {
+				"gradient-1": "linear-gradient(to bottom right,#054592 0,#1897d4)",
+			},
 			boxShadow: {
 				drop: "0 1px 2px rgba(0,0,0,.25), 0 0 1px rgba(0,0,0,.35)",
 			},

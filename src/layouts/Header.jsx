@@ -24,7 +24,7 @@ const Header = () => {
 						<Link to="/auth/login" className="text-blue-500 bg-white py-2 px-6">
 							ورود
 						</Link>
-						<Link to="/auth/register" className="bg-blue-500 text-white py-2 px-6 rounded-md">
+						<Link to="/auth/register" className="btn">
 							ثبت نام
 						</Link>
 					</div>
