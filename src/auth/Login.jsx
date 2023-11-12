@@ -2,6 +2,10 @@ import AuthForm from "../components/modules/AuthForm";
 import Aside from "../layouts/auth/Aside";
 
 const Login = () => {
+	const loginHandler = (e) => {
+		e.preventDefault();
+	};
+
 	return (
 		<div className="flex flex-col tb:flex-row h-screen">
 			<Aside isLoginPage={true} />
@@ -13,6 +17,7 @@ const Login = () => {
 					submitValue="ورود حساب کاربری"
 					msgHelpLink="register"
 					msgHelp="عضو نیستید؟ ثبت نام کنید"
+					submitHandler={loginHandler}
 				/>
 			</>
 		</div>

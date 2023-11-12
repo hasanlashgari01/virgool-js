@@ -13,7 +13,7 @@ const LinkItem = ({ to, name, classN = "" }) => {
 
 LinkItem.propTypes = {
 	to: PropTypes.string,
-	name: PropTypes.string,
+	name: PropTypes.any,
 	classN: PropTypes.string,
 };
 
