@@ -13,14 +13,16 @@ const links = [
 
 const ProfileDropDown = () => {
 	const [isDarkMode, setIsDarkMode] = useState(false);
+    
 
 	const changeTheme = () => setIsDarkMode(!isDarkMode);
+
 	return (
 		<div className="relative">
 			<div className="w-10 h-10 overflow-hidden rounded-full cursor-pointer">
 				<img src="/public/images/Ana-de-Armas-300x400.jpg" alt="عکس پروفایل" />
 			</div>
-			<ul className="absolute w-72 top-14 left-0 px-3 rounded-md shadow-drop child:dropdown-border">
+			<ul className="absolute hidden w-72 top-14 left-0 px-3 rounded-md shadow-drop child:dropdown-border">
 				<div>
 					<h4>حسن لشکری</h4>
 					<LinkItem to="" name="مشاهده پروفایل" classN="text-gray-700" />

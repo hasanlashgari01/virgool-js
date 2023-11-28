@@ -1,7 +1,6 @@
-import LinkItem from "../components/templates/LinkItem";
-import ProfileDropDown from "../components/templates/ProfileDropDown";
-import NewPost from "../components/templates/NewPost";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import HeaderTop from "../components/templates/HeaderTop";
+import HeaderNav from "../components/templates/HeaderNav";
 
 const items = [
 	{ id: 1, link: "/", name: "صفحه اصلی" },
@@ -11,32 +10,12 @@ const items = [
 ];
 
 const Header = () => {
+	const [isLogin, setIsLogin] = useState(true);
+
 	return (
 		<header>
-			<div className="flex justify-between items-center py-6">
-				<div className="flex gap-2.5">
-					<img src="https://virgool.io/images/icon.svg" alt="آیکون ویرگول" />
-					<NewPost />
-				</div>
-				<div>
-					{/* <ProfileDropDown /> */}
-					<div className="flex gap-3 items-center">
-						<Link to="/auth/login" className="text-blue-500 bg-white py-2 px-6">
-							ورود
-						</Link>
-						<Link to="/auth/register" className="btn">
-							ثبت نام
-						</Link>
-					</div>
-				</div>
-			</div>
-			<nav>
-				<ul className="flex gap-3">
-					{items.map(({ id, link, name }) => (
-						<LinkItem key={id} to={link} name={name} />
-					))}
-				</ul>
-			</nav>
+			<HeaderTop isLogin={isLogin} />
+			<HeaderNav isLogin={isLogin} items={items} />
 		</header>
 	);
 };

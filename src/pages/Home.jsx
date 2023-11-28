@@ -2,7 +2,7 @@ import Header from "../layouts/Header";
 
 const Home = () => {
 	return (
-		<div className="container">
+		<div>
 			<Header />
 			صفحه اصلی
 		</div>
