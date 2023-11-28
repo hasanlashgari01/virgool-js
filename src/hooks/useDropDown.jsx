@@ -4,9 +4,7 @@ const useDropDown = () => {
 	const imgRef = useRef();
 	const [isOpen, setIsOpen] = useState(false);
 
-	const openHandler = () => {
-		setIsOpen(!isOpen);
-	};
+	const openHandler = () => setIsOpen(!isOpen);
 
 	window.addEventListener(
 		"click",
