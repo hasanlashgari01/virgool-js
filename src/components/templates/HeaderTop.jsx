@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { IoMdNotificationsOutline, IoIosSearch  } from "react-icons/io";
 import NewPost from "./NewPost";
 import ProfileDropDown from "./ProfileDropDown";
 
@@ -10,16 +12,29 @@ const HeaderTop = ({ isLogin }) => {
 				<NewPost />
 			</div>
 			<div className="flex gap-3 items-center">
-				<Link to="/auth/login" className="text-blue-500 bg-white py-2 px-6">
-					ورود
-				</Link>
-				<Link to="/auth/register" className="btn">
-					ثبت نام
-				</Link>
-				{isLogin && <ProfileDropDown />}
+				<IoIosSearch  size={24} />
+				{isLogin ? (
+					<>
+						<IoMdNotificationsOutline size={24} />
+						<ProfileDropDown />
+					</>
+				) : (
+					<>
+						<Link to="/auth/login" className="text-blue-500 bg-white py-2 px-6">
+							ورود
+						</Link>
+						<Link to="/auth/register" className="btn">
+							ثبت نام
+						</Link>
+					</>
+				)}
 			</div>
 		</div>
 	);
+};
+
+HeaderTop.propTypes = {
+	isLogin: PropTypes.bool,
 };
 
 export default HeaderTop;
