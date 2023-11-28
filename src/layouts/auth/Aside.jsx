@@ -5,7 +5,7 @@ import LinkItem from "../../components/templates/LinkItem";
 
 const Aside = ({ isLoginPage = false }) => {
 	return (
-		<div className="relative flex flex-col justify-center items-center bg-gradient-1 tb:w-1/2 xl:w-8/12 h-1/4 tb:h-screen text-white">
+		<div className="hidden lg:flex relative flex-col justify-center items-center bg-gradient-1 tb:w-1/2 xl:w-8/12 h-1/4 tb:h-screen text-white">
 			<div className="flex flex-col justify-center items-center text-center px-6">
 				<img src="https://virgool.io/images/logo-bg.svg" alt="" />
 				<h3 className="text-2xl font-IRYekanBold">اینجا هر کسی می‌تونه بنویسه!</h3>
@@ -22,7 +22,7 @@ const Aside = ({ isLoginPage = false }) => {
 					</ul>
 				)}
 			</div>
-			<footer className="absolute hidden lg:block bottom-8 px-10 xl:flex justify-between w-full">
+			<footer className="absolute bottom-8 px-10 xl:flex justify-between w-full">
 				<span>© تمام حقوق برای ویرگول محفوظ است.</span>
 				<ul className="flex gap-3 items-center">
 					<LinkItem to="/" name="صفحه اصلی" />
