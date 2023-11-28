@@ -1,8 +1,8 @@
 import { useState } from "react";
-import LinkItem from "./LinkItem";
-import NewPost from "./NewPost";
 import { BsMoon, BsSun } from "react-icons/bs";
 import useDropDown from "../../hooks/useDropDown";
+import LinkItem from "./LinkItem";
+import NewPost from "./NewPost";
 
 const links = [
 	{ id: 1, link: "/me/settings", name: "تنظیمات حساب کاربری" },
@@ -13,7 +13,7 @@ const links = [
 ];
 
 const ProfileDropDown = () => {
-	const [imgRef, isOpen, setIsOpen] = useDropDown();
+	const [imgRef, isOpen, openHandler] = useDropDown();
 	const [isDarkMode, setIsDarkMode] = useState(false);
 
 	const changeTheme = () => setIsDarkMode(!isDarkMode);
@@ -24,7 +24,7 @@ const ProfileDropDown = () => {
 				<img
 					src="/public/images/Ana-de-Armas-300x400.jpg"
 					alt="عکس پروفایل"
-					onClick={() => setIsOpen((prev) => !prev)}
+					onClick={openHandler}
 					ref={imgRef}
 				/>
 			</div>

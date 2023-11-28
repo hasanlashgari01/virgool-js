@@ -4,13 +4,21 @@ const useDropDown = () => {
 	const imgRef = useRef();
 	const [isOpen, setIsOpen] = useState(false);
 
-	window.addEventListener("click", (e) => {
-		if (e.target !== imgRef.current) {
-			setIsOpen(false);
-		}
-	});
+	const openHandler = () => {
+		setIsOpen(!isOpen);
+	};
 
-	return [imgRef, isOpen, setIsOpen];
+	window.addEventListener(
+		"click",
+		(e) => {
+			if (e.target !== imgRef.current) {
+				setIsOpen(false);
+			}
+		},
+		{ capture: true }
+	);
+
+	return [imgRef, isOpen, setIsOpen, openHandler];
 };
 
 export default useDropDown;

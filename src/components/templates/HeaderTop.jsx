@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import { IoMdNotificationsOutline, IoIosSearch  } from "react-icons/io";
 import NewPost from "./NewPost";
 import ProfileDropDown from "./ProfileDropDown";
+import HeaderNotifications from "./HeaderNotifications";
+import HeaderSearch from "./HeaderSearch";
 
 const HeaderTop = ({ isLogin }) => {
 	return (
@@ -12,10 +13,10 @@ const HeaderTop = ({ isLogin }) => {
 				<NewPost />
 			</div>
 			<div className="flex gap-3 items-center">
-				<IoIosSearch  size={24} />
+				<HeaderSearch />
 				{isLogin ? (
 					<>
-						<IoMdNotificationsOutline size={24} />
+						<HeaderNotifications />
 						<ProfileDropDown />
 					</>
 				) : (
