@@ -64,7 +64,7 @@ const AuthForm = ({ isRegisterPage = false, title, submitValue, msgHelpLink, msg
 				}
 			})
 			.then((data) => console.log(data))
-			.catch((error) => error);
+			.catch((error) => console.log(error));
 	};
 
 	return (
