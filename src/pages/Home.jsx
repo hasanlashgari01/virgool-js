@@ -7,6 +7,7 @@ const Home = () => {
 			<Header />
 			<main className="container">
 				<SelectedPosts />
+				<hr />
 			</main>
 		</>
 	);
