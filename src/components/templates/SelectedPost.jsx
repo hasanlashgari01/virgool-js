@@ -5,7 +5,7 @@ import BookmarkIcon from "../../assets/bookmark.svg";
 
 let options = { month: "long", day: "numeric" };
 
-const SelectedPost = ({ title, description, createdAt, author, topicID }) => {
+const SelectedPost = ({ _id, title, description, createdAt, author, topicID }) => {
 	const dt = new Date(createdAt);
 
 	return (
@@ -16,7 +16,9 @@ const SelectedPost = ({ title, description, createdAt, author, topicID }) => {
 					<span className="post__badge mr-5">{dt.toLocaleDateString("fa-IR", options)}</span>
 				</div>
 				<div className="mt-3 space-y-1">
-					<h3 className="font-IRYekanBold line-clamp-1">{title}</h3>
+					<Link className="font-IRYekanBold line-clamp-1" to={`post/${_id}`}>
+						{title}
+					</Link>
 					<p className="font-IRYekanRegular text-sm line-clamp-2">{description}</p>
 				</div>
 				<div className="flex justify-between sm:ml-10 mt-6">
@@ -41,6 +43,7 @@ const SelectedPost = ({ title, description, createdAt, author, topicID }) => {
 };
 
 SelectedPost.propTypes = {
+	_id: propTypes.string,
 	title: propTypes.string,
 	description: propTypes.string,
 	createdAt: propTypes.string,
