@@ -3,9 +3,9 @@ import ChevronLeftIcon from "../../assets/chevron-left.svg";
 
 const Welcome = () => {
 	return (
-		<div className="">
-			<h3 className="font-IRYekanBold text-lg">به ویرگول خوش آمدید</h3>
-			<p className="text-[#858585] font-IRYekanMedium mt-2 mb-4 leading-6 text-sm">
+		<div>
+			<h3 className="box__title">به ویرگول خوش آمدید</h3>
+			<p className="text-gray-450 font-IRYekanMedium mt-2 mb-4 leading-6 text-sm">
 				زمان آن رسیده که شیوه‌ی نوشتن و خواندن مطالبتان را تغییر دهید. اگر برای آغاز دوران جدید آماده هستید به
 				ویرگول خوش آمدید.
 			</p>

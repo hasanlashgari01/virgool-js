@@ -19,7 +19,7 @@ const SelectedPost = ({ _id, title, description, createdAt, author, topicID }) =
 					<Link className="font-IRYekanBold line-clamp-1" to={`post/${_id}`}>
 						{title}
 					</Link>
-					<p className="font-IRYekanRegular text-sm line-clamp-2">{description}</p>
+					<p className="font-IRYekanRegular text-sm line-clamp-2 text-gray-450">{description}</p>
 				</div>
 				<div className="flex justify-between sm:ml-10 mt-6">
 					<Link className="post__badge" to={topicID.href}>
