@@ -1,4 +1,5 @@
 import SelectedPosts from "../components/templates/SelectedPosts";
+import Aside from "../layouts/Aside";
 import Header from "../layouts/Header";
 
 const Home = () => {
@@ -8,6 +9,9 @@ const Home = () => {
 			<main className="container">
 				<SelectedPosts />
 				<hr />
+				<div>
+					<Aside />
+				</div>
 			</main>
 		</>
 	);
