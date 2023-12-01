@@ -1,6 +1,7 @@
 import SelectedPosts from "../components/templates/SelectedPosts";
 import Aside from "../layouts/Aside";
 import Header from "../layouts/Header";
+import Main from "../layouts/Main";
 
 const Home = () => {
 	return (
@@ -9,7 +10,8 @@ const Home = () => {
 			<main className="container">
 				<SelectedPosts />
 				<hr />
-				<div>
+				<div className="flex mt-16 mb-96">
+					<Main />
 					<Aside />
 				</div>
 			</main>
