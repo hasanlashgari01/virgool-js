@@ -1,8 +1,10 @@
 import { useState } from "react";
 import Welcome from "../components/templates/Welcome";
 import PostBox from "../components/templates/PostBox";
+import useGetAxios from "../hooks/useGetAxios";
 
 const Aside = () => {
+	const [data] = useGetAxios({ url: "v1/post" });
 	const [isLogin, setIsLogin] = useState(true);
 
 	return (
@@ -10,12 +12,12 @@ const Aside = () => {
 			{!isLogin ? (
 				<>
 					<Welcome />
-					<PostBox title="محبوب‌ترین‌های ویرگول" />
+					<PostBox posts={data} title="محبوب‌ترین‌های ویرگول" />
 				</>
 			) : (
 				<>
-					<PostBox title="جدیدترین پست‌های دوستان" subTitle="و انتشاراتی که دنبال می‌کنید" />
-					<PostBox title="پست‌های ذخیره شده" />
+					<PostBox posts={data} title="جدیدترین پست‌های دوستان" subTitle="و انتشاراتی که دنبال می‌کنید" />
+					<PostBox posts={data} title="پست‌های ذخیره شده" />
 				</>
 			)}
 		</div>

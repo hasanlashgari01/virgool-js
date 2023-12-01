@@ -1,3 +1,4 @@
+import propTypes from "prop-types";
 import PostOverview from "./PostOverview";
 
 const PostBox = ({ title, subTitle, posts }) => {
@@ -8,12 +9,18 @@ const PostBox = ({ title, subTitle, posts }) => {
 				{subTitle && <h4 className="text-xs text-gray-200">{subTitle}</h4>}
 			</div>
 			<ul className="inline-grid gap-5 px-5 my-6">
-				{[0, 1, 2, 3].slice(0, 4).map((index, post) => (
-					<PostOverview key={index} />
+				{posts.slice(0, 4).map(({ _id, title, author }) => (
+					<PostOverview key={_id} title={title} name={author.name} />
 				))}
 			</ul>
 		</div>
 	);
+};
+
+PostBox.propTypes = {
+	title: propTypes.string,
+	subTitle: propTypes.string,
+	posts: propTypes.array,
 };
 
 export default PostBox;
