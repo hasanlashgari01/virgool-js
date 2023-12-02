@@ -1,6 +1,5 @@
-import NewPost from "../pages/NewPost";
 import { AuthLogin, AuthRegister } from "./auth.routes";
-import { Home } from "./index.routes";
+import { CreatePost, Home } from "./index.routes";
 import { Settings, Publications, Lists, Likes, IndexMe } from "./me.routes";
 import { Drafts, IndexPosts, Published } from "./posts.routes";
 import { IndexProfile, ProfileLists, ProfilePosts, ProfilePublications } from "./profile.routes";
@@ -16,7 +15,7 @@ const routes = [
 	},
 	// Home
 	{ path: "/", element: <Home /> },
-	{ path: "/post/create", element: <NewPost /> },
+	{ path: "/post/create", element: <CreatePost /> },
 	// Me
 	{
 		path: "/me/*",
