@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link, useNavigate } from "react-router-dom";
@@ -5,7 +6,6 @@ import * as yup from "yup";
 import PropTypes from "prop-types";
 import MsgBox from "./ErrorMessage";
 import { TOKEN_ADMIN, authFetch } from "../../services/virgoolApi";
-import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
@@ -18,10 +18,7 @@ const schemaRegister = yup
 		name: yup.string().min(3, "اسم باید بیشتر از سه حرف باشد").required("اسم ضروری است"),
 		username: yup.string().min(3, "نام کاربری باید بیشتر از سه حرف باشد").required("نام کاربری ضروری است"),
 		email: yup.string().email("ایمیل به درستی وارد نشده است").required("ایمیل ضروری است"),
-		identifier: yup
-			.string()
-			.required("شماره تلفن لازم است")
-			.matches(phoneRegExp, "شماره تلفن به درستی وارد نشده است"),
+		phone: yup.string().required("شماره تلفن لازم است").matches(phoneRegExp, "شماره تلفن به درستی وارد نشده است"),
 		password: yup
 			.string()
 			.min(8, "رمز عبور باید بین ۸ و ۱۶ کاراکتر باشد")
@@ -55,13 +52,13 @@ const AuthForm = ({ isRegisterPage = false, title, submitValue, msgHelpLink, msg
 	} = useForm({ resolver: yupResolver(isRegisterPage ? schemaRegister : schemaLogin) });
 
 	const submitHandler = (data) => {
+		console.log(data);
 		axios
 			.post(authFetch() + status, data)
 			.then((res) => {
-				if (res.status == 200) {
+				if ((res.status == 200) | 201) {
 					loginHandler(TOKEN_ADMIN);
-					toast.loading("در حال رفتن به صفحه اصلی...");
-					toast.success("شما وارد حساب خود شدید");
+					isRegisterPage ? toast.success("حساب با موفقیت ساخته شد") : toast.success("شما وارد حساب خود شدید");
 					setTimeout(() => {
 						navigate("/");
 					}, 3000);
@@ -70,6 +67,8 @@ const AuthForm = ({ isRegisterPage = false, title, submitValue, msgHelpLink, msg
 			.catch((err) => {
 				if (err.response && err.response.status == 500) {
 					toast.error("رمز عبور نادرست است");
+				} else if (err.response.status == 409) {
+					toast.error("کاربر وجود دارد");
 				}
 			});
 	};
@@ -98,10 +97,17 @@ const AuthForm = ({ isRegisterPage = false, title, submitValue, msgHelpLink, msg
 							{errors.email && <MsgBox msg={errors.email.message} />}
 						</label>
 					)}
-					<label className="relative">
-						<input type="text" placeholder="شماره تلفن" className="input" {...register("identifier")} />
-						{errors.identifier && <MsgBox msg={errors.identifier.message} />}
-					</label>
+					{isRegisterPage ? (
+						<label className="relative">
+							<input type="text" placeholder="شماره تلفن" className="input" {...register("phone")} />
+							{errors.phone && <MsgBox msg={errors.phone.message} />}
+						</label>
+					) : (
+						<label className="relative">
+							<input type="text" placeholder="شماره تلفن" className="input" {...register("identifier")} />
+							{errors.identifier && <MsgBox msg={errors.identifier.message} />}
+						</label>
+					)}
 					<label className="relative">
 						<input type="password" placeholder="رمز عبور" className="input" {...register("password")} />
 						{errors.password && <MsgBox msg={errors.password.message} />}
