@@ -8,7 +8,7 @@ const Aside = () => {
 	const [isLogin, setIsLogin] = useState(true);
 
 	return (
-		<div className="max-tb:hidden w-1/3 space-y-8">
+		<div className="max-tb:flex-1 tb:w-1/3 space-y-8">
 			{!isLogin ? (
 				<>
 					<Welcome />

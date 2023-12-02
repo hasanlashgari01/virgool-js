@@ -7,10 +7,10 @@ const Home = () => {
 	return (
 		<>
 			<Header />
-			<main className="container">
-				<SelectedPosts />
+			<main className="container mt-10">
+				<SelectedPosts title="منتخب‌های ویرگول" className="tb:grid-cols-2 gap-10" />
 				<hr />
-				<div className="flex mt-16 mb-96">
+				<div className="flex max-tb:flex-col gap-10 mt-16 mb-96">
 					<Main />
 					<Aside />
 				</div>

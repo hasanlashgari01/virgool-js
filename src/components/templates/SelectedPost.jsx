@@ -22,7 +22,7 @@ const SelectedPost = ({ _id, title, description, createdAt, author, topicID }) =
 					<p className="font-IRYekanRegular text-sm line-clamp-2 text-gray-450">{description}</p>
 				</div>
 				<div className="flex justify-between sm:ml-10 mt-6">
-					<Link className="post__badge" to={topicID.href}>
+					<Link className="post__badge" to={`/topic/${topicID.href}`}>
 						{topicID.name}
 					</Link>
 					<div className="flex gap-3">
