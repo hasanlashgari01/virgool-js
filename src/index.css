@@ -3,85 +3,101 @@
 @tailwind utilities;
 
 @layer base {
-	/* Fonts */
-	/* Iran Yekan */
-	@font-face {
-		font-family: "IRANYekanWebThin";
-		src: local("Iran Yekan"), url("/public/fonts/IranYekan/IRANYekanWebThin.woff2") format("woff2");
-		font-display: swap;
-	}
-	@font-face {
-		font-family: "IRANYekanWebRegular";
-		src: local("Iran Yekan"), url("/public/fonts/IranYekan/IRANYekanWebRegular.woff2") format("woff2");
-		font-display: swap;
-	}
-	@font-face {
-		font-family: "IRANYekanWebMedium";
-		src: local("Iran Yekan"), url("/public/fonts/IranYekan/IRANYekanWebMedium.woff2") format("woff2");
-		font-display: swap;
-	}
-	@font-face {
-		font-family: "IRANYekanWebLight";
-		src: local("Iran Yekan"), url("/public/fonts/IranYekan/IRANYekanWebLight.woff2") format("woff2");
-		font-display: swap;
-	}
-	@font-face {
-		font-family: "IRANYekanWebExtraBold";
-		src: local("Iran Yekan"), url("/public/fonts/IranYekan/IRANYekanWebExtraBold.woff2") format("woff2");
-		font-display: swap;
-	}
-	@font-face {
-		font-family: "IRANYekanWebExtraBlack";
-		src: local("Iran Yekan"), url("/public/fonts/IranYekan/IRANYekanWebExtraBlack.woff2") format("woff2");
-		font-display: swap;
-	}
-	@font-face {
-		font-family: "IRANYekanWebBold";
-		src: local("Iran Yekan"), url("/public/fonts/IranYekan/IRANYekanWebBold.woff2") format("woff2");
-		font-display: swap;
-	}
-	@font-face {
-		font-family: "IRANYekanWebBlack";
-		src: local("Iran Yekan"), url("/public/fonts/IranYekan/IRANYekanWebBlack.woff2") format("woff2");
-		font-display: swap;
-	}
+  /* Fonts */
+  /* Iran Yekan */
+  @font-face {
+    font-family: "IRANYekanWebThin";
+    src: local("Iran Yekan"), url("/public/fonts/IranYekan/IRANYekanWebThin.woff2") format("woff2");
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "IRANYekanWebRegular";
+    src: local("Iran Yekan"), url("/public/fonts/IranYekan/IRANYekanWebRegular.woff2") format("woff2");
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "IRANYekanWebMedium";
+    src: local("Iran Yekan"), url("/public/fonts/IranYekan/IRANYekanWebMedium.woff2") format("woff2");
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "IRANYekanWebLight";
+    src: local("Iran Yekan"), url("/public/fonts/IranYekan/IRANYekanWebLight.woff2") format("woff2");
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "IRANYekanWebExtraBold";
+    src: local("Iran Yekan"), url("/public/fonts/IranYekan/IRANYekanWebExtraBold.woff2") format("woff2");
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "IRANYekanWebExtraBlack";
+    src: local("Iran Yekan"), url("/public/fonts/IranYekan/IRANYekanWebExtraBlack.woff2") format("woff2");
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "IRANYekanWebBold";
+    src: local("Iran Yekan"), url("/public/fonts/IranYekan/IRANYekanWebBold.woff2") format("woff2");
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "IRANYekanWebBlack";
+    src: local("Iran Yekan"), url("/public/fonts/IranYekan/IRANYekanWebBlack.woff2") format("woff2");
+    font-display: swap;
+  }
 
-	/* Dana */
-	@font-face {
-		font-family: "dana-bold"; /* 800 */
-		src: local("dana-bold"), url("/public/fonts/dana/Dana-Bold.woff2") format("woff2");
-		font-display: swap;
-	}
+  /* Dana */
+  @font-face {
+    font-family: "dana-bold"; /* 800 */
+    src: local("dana-bold"), url("/public/fonts/dana/Dana-Bold.woff2") format("woff2");
+    font-display: swap;
+  }
 
-	@font-face {
-		font-family: "dana-demibold"; /* 800 */
-		src: local("dana-demibold"), url("/public/fonts/dana/Dana-DemiBold.woff2") format("woff2");
-		font-display: swap;
-	}
+  @font-face {
+    font-family: "dana-demibold"; /* 800 */
+    src: local("dana-demibold"), url("/public/fonts/dana/Dana-DemiBold.woff2") format("woff2");
+    font-display: swap;
+  }
 
-	body {
-		@apply font-IRYekanRegular;
-	}
+  body {
+    @apply font-IRYekanRegular;
+  }
 }
 
 @layer components {
-	.dropdown-border {
-		@apply p-3 border-b border-gray-300;
-	}
+  .dropdown-border {
+    @apply p-3 border-b border-gray-300;
+  }
 
-	.btn {
-		@apply bg-blue-500 hover:bg-blue-700 text-white py-2 px-6 rounded-md cursor-pointer transition-colors duration-200 ease-in-out;
-	}
+  .btn {
+    @apply bg-blue-500 hover:bg-blue-700 text-white py-2 px-6 rounded-md cursor-pointer transition-colors duration-200 ease-in-out;
+  }
 
-	.input {
-		@apply w-full sm:w-96 shadow-drop rounded-full py-2 px-6 border-none outline-none;
-	}
+  .input {
+    @apply w-full sm:w-96 shadow-drop rounded-full py-2 px-6 border-none outline-none;
+  }
 
-	.post__badge {
-		@apply bg-slate-100 py-0.5 px-2.5 text-xs font-IRYekanBold rounded-full;
-	}
+  .post__badge {
+    @apply bg-slate-100 py-0.5 px-2.5 text-xs font-IRYekanBold rounded-full;
+  }
 
-	.box__title {
-		@apply font-IRYekanBold text-lg;
-	}
+  .box__title {
+    @apply font-IRYekanBold text-lg;
+  }
+
+  .post__body {
+    @apply mb-10;
+  }
+
+  .post__body * {
+    @apply inline-block mt-4;
+  }
+
+  .post__body h1 {
+    @apply text-lg mt-8;
+  }
+
+  .post__body p {
+    @apply text-justify;
+  }
 }
