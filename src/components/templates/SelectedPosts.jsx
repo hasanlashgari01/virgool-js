@@ -6,7 +6,7 @@ import Title from "./Title";
 const SelectedPosts = ({ isSelected, title, className }) => {
   const [data] = useGetAxios({ url: "v1/post" });
 
-  const shuffledData = [...data].sort((a, b) => 0.5 - Math.random()).slice(0, 4);
+  const shuffledData = [...data].sort(() => 0.5 - Math.random()).slice(0, 4);
 
   return (
     <>
