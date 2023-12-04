@@ -3,14 +3,16 @@ import useGetAxios from "../../hooks/useGetAxios";
 import SelectedPost from "./SelectedPost";
 import Title from "./Title";
 
-const SelectedPosts = ({ title, className }) => {
+const SelectedPosts = ({ isSelected, title, className }) => {
 	const [data] = useGetAxios({ url: "v1/post" });
+
+	const shuffledData = data.sort((a, b) => 0.5 - Math.random());
 
 	return (
 		<>
 			<Title text={title} />
 			<div className={`grid grid-cols-1 mb-10 ${className}`}>
-				{data.slice(0, 4).map((post) => (
+				{(isSelected ? shuffledData.slice(0, 4) : data).map((post) => (
 					<SelectedPost key={post._id} {...post} />
 				))}
 			</div>
@@ -19,6 +21,7 @@ const SelectedPosts = ({ title, className }) => {
 };
 
 SelectedPosts.propTypes = {
+	isSelected: propTypes.bool,
 	title: propTypes.string,
 	className: propTypes.string,
 };

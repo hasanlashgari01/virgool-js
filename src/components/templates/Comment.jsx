@@ -19,7 +19,7 @@ const Comment = ({ _id, body, createdAt, author }) => {
 				</div>
 			</div>
 			<div>
-				<h2>{body}</h2>
+				<p>{body}</p>
 			</div>
 		</div>
 	);

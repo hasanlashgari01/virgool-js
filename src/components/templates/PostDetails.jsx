@@ -15,7 +15,7 @@ const PostDetails = ({ post }) => {
 			<hr />
 			<div>
 				<h1 className="text-2xl tb:text-3xl font-IRYekanBold">{post.title}</h1>
-				<p>{post && post.body}</p>
+				<p dangerouslySetInnerHTML={{ __html: post.body }} />
 			</div>
 			<hr />
 		</>
