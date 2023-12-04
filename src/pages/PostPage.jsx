@@ -3,9 +3,11 @@ import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { BASE_URL, TOKEN_ADMIN } from "../services/virgoolApi";
+import toast from "react-hot-toast";
 import PostDetails from "../components/templates/PostDetails";
 import Comment from "../components/templates/Comment";
 import HeaderTop from "../components/templates/HeaderTop";
+import ErrorMsg from "../components/modules/ErrorMsg";
 
 const PostPage = () => {
   const { postId } = useParams();
@@ -26,8 +28,11 @@ const PostPage = () => {
 
     axios
       .post(`${BASE_URL}v1/comment`, info, { headers: { Authorization: `Bearer ${TOKEN_ADMIN}` } })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then((res) => {
+        console.log(res);
+        res && toast.success("نظر شما با موفقیت ثبت شد");
+      })
+      .catch((err) => err && toast.error("مشکلی رخ داده"));
   };
 
   return (
@@ -50,11 +55,17 @@ const PostPage = () => {
             <input type="submit" value="ثبت نظر" className="btn" />
           </form>
         </div>
-        <ul className="w-full tb:w-2/3 mt-10 grid gap-5">
-          {comments.map((comment) => (
-            <Comment key={comment._id} {...comment} />
-          ))}
-        </ul>
+        <div className="mt-10">
+          {comments.length >= 1 ? (
+            <ul className="w-full tb:w-2/3 grid gap-5">
+              {comments.map((comment) => (
+                <Comment key={comment._id} {...comment} />
+              ))}
+            </ul>
+          ) : (
+            <ErrorMsg msg="نظری وجود ندارد" />
+          )}
+        </div>
       </main>
       <aside></aside>
     </div>
