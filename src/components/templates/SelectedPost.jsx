@@ -53,7 +53,7 @@ SelectedPost.propTypes = {
   description: propTypes.string,
   createdAt: propTypes.string,
   author: propTypes.object,
-  topicID: propTypes.string || propTypes.object,
+  topicID: propTypes.any,
 };
 
 export default SelectedPost;
