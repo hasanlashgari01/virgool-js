@@ -4,5 +4,6 @@ const TOKEN_ADMIN =
 
 const authFetch = () => `${BASE_URL}v1/auth/`;
 const getTopics = () => `${BASE_URL}v1/topic`;
+const getTopic = (href) => `${BASE_URL}v1/topic/${href}`;
 
-export { BASE_URL, TOKEN_ADMIN, authFetch, getTopics };
+export { BASE_URL, TOKEN_ADMIN, authFetch, getTopics, getTopic };

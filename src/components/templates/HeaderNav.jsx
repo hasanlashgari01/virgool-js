@@ -16,7 +16,7 @@ const HeaderNav = ({ isLogin }) => {
 			<ul className="container flex gap-5 py-4 text-sm">
 				<LinkItem to="http://localhost:5173" name="صفحه اصلی" />
 				{data.map(({ _id, href, name }) => (
-					<LinkItem key={_id} to={href} name={name} />
+					<LinkItem key={_id} to={`/topic/${href}`} name={name} />
 				))}
 			</ul>
 		</nav>

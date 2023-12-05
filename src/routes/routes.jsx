@@ -1,3 +1,4 @@
+import TopicPage from "../pages/TopicPage";
 import { AuthLogin, AuthRegister } from "./auth.routes";
 import { CreatePost, Home } from "./index.routes";
 import { Settings, Publications, Lists, Likes, IndexMe } from "./me.routes";
@@ -15,6 +16,7 @@ const routes = [
 	},
 	// Home
 	{ path: "/", element: <Home /> },
+	{ path: "/topic/:href", element: <TopicPage /> },
 	{ path: "/post/create", element: <CreatePost /> },
 	// Post Single Page
 	{ path: "/post/:postId", element: <PostPage /> },
