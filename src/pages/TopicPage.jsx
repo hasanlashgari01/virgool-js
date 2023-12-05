@@ -4,6 +4,7 @@ import axios from "axios";
 import Header from "../layouts/Header";
 import { getTopic } from "../services/virgoolApi";
 import SelectedPost from "../components/templates/SelectedPost";
+import ErrorMsg from "../components/modules/ErrorMsg";
 
 const TopicPage = () => {
   const { href } = useParams();
@@ -11,15 +12,12 @@ const TopicPage = () => {
   const [topic, setTopic] = useState();
   const [posts, setPosts] = useState();
 
-  
   useEffect(() => {
     axios.get(getTopic(href)).then(({ data }) => {
       setTopic(data.topic);
       setPosts(data.posts);
     });
   }, [href]);
-
-  console.log(posts);
 
   return (
     <>
@@ -29,9 +27,11 @@ const TopicPage = () => {
           دسته بندی : <span className="text-2xl">{topic?.name}</span>
         </h1>
         <ul className="grid grid-cols-1 mb-10 tb:grid-cols-2 gap-10 mt-10">
-          {posts?.map((post) => (
-            <SelectedPost key={post._id} {...post} isTopic={true} />
-          ))}
+          {posts?.length > 0 ? (
+            posts.map((post) => <SelectedPost key={post._id} {...post} isTopic={true} />)
+          ) : (
+            <ErrorMsg msg="پستی در این دسته بندی یافت نشد" />
+          )}
         </ul>
       </div>
     </>
