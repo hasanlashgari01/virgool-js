@@ -5,7 +5,7 @@ import LinkItem from "./LinkItem";
 import NewPost from "./NewPost";
 
 const links = [
-	{ id: 1, link: "/me/settings", name: "تنظیمات حساب کاربری" },
+	{ id: 1, link: "/@hasan/settings", name: "تنظیمات حساب کاربری" },
 	{ id: 2, link: "/posts/drafts", name: "پست ها و پیش نویس ها" },
 	{ id: 3, link: "/me/interests", name: "علاقه‌مندی‌های من" },
 	{ id: 4, link: "/me/likes", name: "پست‌های مورد علاقه من" },

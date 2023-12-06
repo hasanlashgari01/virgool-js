@@ -22,7 +22,7 @@ const routes = [
 	{ path: "/post/:postId", element: <PostPage /> },
 	// Me
 	{
-		path: "/me/*",
+		path: "/:username/*",
 		element: <IndexMe />,
 		children: [
 			{ path: "settings", element: <Settings /> },
