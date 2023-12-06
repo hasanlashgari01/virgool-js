@@ -1,7 +1,7 @@
 import TopicPage from "../pages/TopicPage";
 import { AuthLogin, AuthRegister } from "./auth.routes";
 import { CreatePost, Home } from "./index.routes";
-import { Settings, Publications, Lists, Likes, IndexMe } from "./me.routes";
+import { Settings, Publications, Lists, Posts, IndexMe } from "./me.routes";
 import { Drafts, IndexPosts, PostPage, Published } from "./posts.routes";
 import { IndexProfile, ProfileLists, ProfilePosts, ProfilePublications } from "./profile.routes";
 
@@ -28,7 +28,7 @@ const routes = [
 			{ path: "settings", element: <Settings /> },
 			{ path: "publications", element: <Publications /> },
 			{ path: "Lists", element: <Lists /> },
-			{ path: "Likes", element: <Likes /> },
+			{ path: "Posts", element: <Posts /> },
 		],
 	},
 	// Posts
