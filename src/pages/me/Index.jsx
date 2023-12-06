@@ -25,7 +25,7 @@ const Index = () => {
     return (
         <>
             <HeaderTop />
-            <div>
+            <div className="container">
                 <UserDetails {...user} />
                 <Outlet />
             </div>

@@ -100,4 +100,8 @@
   .post__body p {
     @apply text-justify;
   }
+
+  .profile__btn {
+    @apply w-60 py-2 text-center border-2 rounded-full transition-colors;
+  }
 }
