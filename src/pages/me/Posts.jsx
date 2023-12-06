@@ -14,8 +14,6 @@ const Likes = () => {
         });
     }, []);
 
-    console.log(posts);
-
     return (
         <ul className="flex flex-col gap-5 xl:items-center">
             {posts.map((post) => (
