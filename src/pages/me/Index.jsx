@@ -5,7 +5,7 @@ const Index = () => {
     return (
         <>
             <HeaderTop isLogin={true} />
-            <div>
+            <div className="container mt-5">
                 <Outlet />
             </div>
         </>

@@ -5,7 +5,7 @@ import LinkItem from "./LinkItem";
 import NewPost from "./NewPost";
 
 const links = [
-    { id: 1, link: "settings", name: "تنظیمات حساب کاربری" },
+    { id: 1, link: "me/settings", name: "تنظیمات حساب کاربری" },
     { id: 2, link: "posts/drafts", name: "پست ها و پیش نویس ها" },
     { id: 3, link: "interests", name: "علاقه‌مندی‌های من" },
     { id: 4, link: "likes", name: "پست‌های مورد علاقه من" },
@@ -37,7 +37,7 @@ const ProfileDropDown = () => {
                     <div className="child:py-1">
                         <NewPost />
                         {links.map(({ id, link, name }) => (
-                            <LinkItem key={id} to={`/me/@hasan/${link}`} name={name} />
+                            <LinkItem key={id} to={`/${link}`} name={name} />
                         ))}
                     </div>
                     <div>
