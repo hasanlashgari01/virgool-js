@@ -1,40 +1,48 @@
 import { useEffect, useRef } from "react";
+import propTypes from "prop-types";
 
-const items = [
-    { id: 1, text: "درباره شما" },
-    { id: 2, text: "حساب کاربری" },
-    { id: 3, text: "اطلاعات شخصی" },
-    { id: 4, text: "ایمیل نوتیفیکیشن" },
-    { id: 5, text: "تنظیمات حالت شب" },
-    { id: 6, text: "تنظیمات پیشرفته" },
-];
-
-const Aside = () => {
+const Aside = ({ topPosition }) => {
     const asideRef = useRef();
 
-    useEffect(() => {
+    const onLoadHandler = () => {
         Array.from(asideRef.current.children)[0].classList.add("active");
+
+        window.removeEventListener("load", onLoadHandler);
+    };
+
+    useEffect(() => {
+        window.addEventListener("load", onLoadHandler);
     }, []);
 
-    const goItem = (e) => {
+    const goItem = (e, top) => {
         Array.from(asideRef.current.children).forEach((item) => {
             item.classList.remove("active");
         });
         e.target.classList.add("active");
+        window.scrollTo({
+            top,
+            behavior: "smooth",
+        });
     };
 
     return (
         <div className="basis-80 sticky top-20">
             <h1 className="text-2xl">تنظیمات کاربری</h1>
-            <ul className="settings" ref={asideRef}>
-                {items.map((item) => (
-                    <li key={item.id} className="item" onClick={(e) => goItem(e)}>
-                        {item.text}
-                    </li>
-                ))}
-            </ul>
+            {topPosition && (
+                <ul className="settings" ref={asideRef}>
+                    {topPosition.map(({ id, text, top }) => (
+                        <li key={id} className="item" onClick={(e) => goItem(e, top)}>
+                            {text}
+                        </li>
+                    ))}
+                </ul>
+            )}
         </div>
     );
+};
+
+Aside.propTypes = {
+    topPosition: propTypes.array,
 };
 
 export default Aside;
