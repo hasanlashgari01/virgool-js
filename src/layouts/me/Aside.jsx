@@ -20,7 +20,7 @@ const Aside = ({ topPosition }) => {
         });
         e.target.classList.add("active");
         window.scrollTo({
-            top,
+            top: top - 85,
             behavior: "smooth",
         });
     };

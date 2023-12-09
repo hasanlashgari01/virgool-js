@@ -5,6 +5,7 @@ const TOKEN_ADMIN =
 const authFetch = () => `${BASE_URL}v1/auth/`;
 const getTopics = () => `${BASE_URL}v1/topic`;
 const getTopic = (href) => `${BASE_URL}v1/topic/${href}`;
-const getUserProfile = (username) => `${BASE_URL}v1/user/${username}`;
+const getUserProfile = (username) => `${BASE_URL}v1/user/profile/${username}`;
+const getUser = () => `${BASE_URL}v1/user/me/settings`;
 
-export { BASE_URL, TOKEN_ADMIN, authFetch, getTopics, getTopic, getUserProfile };
+export { BASE_URL, TOKEN_ADMIN, authFetch, getTopics, getTopic, getUserProfile, getUser };
