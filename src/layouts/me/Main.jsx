@@ -47,17 +47,12 @@ const Main = ({ setTopPosition }) => {
                                 setUserDetails={setUserDetails}
                                 description="بیوگرافی شما در صفحه پروفایل نمایش داده می شود. حداکثر ۲۰۰ کاراکتر"
                             />
-                            <div>
-                                <div className="flex justify-between items-center">
-                                    <img
-                                        src="/public/images/Ana-de-Armas-300x400.jpg"
-                                        alt=""
-                                        className="w-20 h-20 object-cover rounded-full"
-                                    />
-                                    <EditButton />
-                                </div>
-                                <h6>عکس شما در صفحه پروفایل و پست‌ها نمایش داده می‌شود.</h6>
-                            </div>
+                            <EditInput
+                                image="/public/images/Ana-de-Armas-300x400.jpg"
+                                userDetails={userDetails.biography}
+                                setUserDetails={setUserDetails}
+                                description="عکس شما در صفحه پروفایل و پست‌ها نمایش داده می‌شود."
+                            />
                         </>
                     )}
                 </div>

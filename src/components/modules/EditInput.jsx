@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import EditButton from "./EditButton";
 import propTypes from "prop-types";
 
-const EditInput = ({ userDetails, setUserDetails, description }) => {
+const EditInput = ({ image, userDetails, setUserDetails, description }) => {
     const [isShow, setIsShow] = useState(false);
     const [focus, setFocus] = useState(false);
 
@@ -22,13 +22,14 @@ const EditInput = ({ userDetails, setUserDetails, description }) => {
         <div>
             <div className="flex justify-between items-center">
                 <input
-                    type="text"
+                    type={image ? "file" : "text"}
                     className="border-b"
                     disabled={!isShow && true}
                     value={userDetails}
                     onChange={(e) => setUserDetails({ ...userDetails, userDetails: e.target.value })}
                     ref={inputRef}
                 />
+                {image && <img src={image} className="w-20 h-20 object-cover rounded-full" />}
                 <EditButton isShow={isShow} setIsShow={setIsShow} btnHandler={btnHandler} />
             </div>
             <h6>{description}</h6>
