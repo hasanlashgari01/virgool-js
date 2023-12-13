@@ -1,7 +1,6 @@
 import axios from "axios";
 import propTypes from "prop-types";
 import { useEffect, useRef, useState } from "react";
-import EditButton from "../../components/modules/EditButton";
 import { TOKEN_ADMIN, getUser } from "../../services/virgoolApi";
 import EditInput from "../../components/modules/EditInput";
 
@@ -25,16 +24,17 @@ const Main = ({ setTopPosition }) => {
         axios
             .get(getUser(), { headers: { Authorization: `Bearer ${TOKEN_ADMIN}` } })
             .then(({ data }) => {
+                console.log(data)
                 setUserDetails(data);
             })
             .catch((err) => console.log(err.response.data.message));
     }, []);
 
     return (
-        <div className="basis-full child:h-screen" ref={mainRef}>
+        <div className="basis-full" ref={mainRef}>
             <div>
                 <h1 className="text-xl lg:text-2xl pb-5 border-b border-[#cacaca]">درباره شما</h1>
-                <div className="py-10">
+                <div className="py-10 space-y-8">
                     {userDetails && (
                         <>
                             <EditInput
@@ -57,9 +57,31 @@ const Main = ({ setTopPosition }) => {
                     )}
                 </div>
             </div>
-            <div className="mt-20">
-                <h1>حساب کاربری</h1>
-            </div>
+{/*             <div>
+                <h1 className="text-xl lg:text-2xl pb-5 border-b border-[#cacaca]">حساب کاربری</h1>
+                <div className="py-10">
+                    {userDetails && (
+                        <>
+                            <EditInput
+                                userDetails={userDetails.username}
+                                setUserDetails={setUserDetails}
+                                description="نام کاربری"
+                            />
+                            <EditInput
+                                userDetails={userDetails.email}
+                                setUserDetails={setUserDetails}
+                            />
+                            <EditInput
+                                image="/public/images/Ana-de-Armas-300x400.jpg"
+                                userDetails={userDetails.biography}
+                                setUserDetails={setUserDetails}
+                                description="عکس شما در صفحه پروفایل و پست‌ها نمایش داده می‌شود."
+                            />
+                        </>
+                    )}
+                </div>
+            </div> */}
+
             <div className="mt-20">
                 <h1>اطلاعات شخصی</h1>
             </div>

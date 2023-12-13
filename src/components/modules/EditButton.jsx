@@ -6,25 +6,25 @@ const EditButton = ({ isShow, setIsShow, btnHandler }) => {
     return (
         <div className="flex flex-col space-y-2">
             {!isShow && (
-                <div
-                    className="w-fit flex gap-3 self-start items-center py-1.5 px-3 border rounded-md cursor-pointer"
+                <span
+                    className="w-fit flex gap-3 self-start items-center bg-transparent py-1.5 px-3 border rounded-md cursor-pointer"
                     onClick={btnHandler}
                 >
-                    <input type="submit" value="ویرایش" className="border-none outline-none" />
+                    <button className="border-none outline-none">ویرایش</button>
                     <MdDriveFileRenameOutline size={18} />
-                </div>
+                </span>
             )}
             {isShow && (
                 <div className="flex gap-5">
-                    <div className="flex gap-3 self-start items-center bg-blue-50 text-blue-500 py-1.5 px-3 border rounded-md cursor-pointer">
-                        <input type="button" value="ذخیره" />
+                    <div className="flex gap-3 self-start items-center bg-blue-50 hover:bg-blue-100 text-blue-600 py-1.5 px-3 border border-blue-50 hover:border-blue-100 rounded-md cursor-pointer transition-colors">
+                        <button>ذخیره</button>
                         <FaCheckCircle size={18} />
                     </div>
                     <div
-                        className="flex gap-3 self-start items-center bg-red-50 text-red-500 py-1.5 px-3 border rounded-md cursor-pointer"
+                        className="flex gap-3 self-start items-center bg-red-50 hover:bg-red-100 text-red-600 py-1.5 px-3 border border-red-50 hover:border-red-100 rounded-md cursor-pointer transition-colors"
                         onClick={() => setIsShow(false)}
                     >
-                        <input type="button" value="منصرف شدم" />
+                        <button>منصرف شدم</button>
                         <MdCancel size={18} />
                     </div>
                 </div>
