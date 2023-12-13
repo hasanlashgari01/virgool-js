@@ -4,8 +4,6 @@ import propTypes from "prop-types";
 const Aside = ({ topPosition }) => {
     const asideRef = useRef();
 
-    console.log(topPosition);
-
     const onLoadHandler = () => {
         Array.from(asideRef.current.children)[0].classList.add("active");
 
