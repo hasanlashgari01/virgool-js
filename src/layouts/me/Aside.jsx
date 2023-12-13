@@ -4,6 +4,8 @@ import propTypes from "prop-types";
 const Aside = ({ topPosition }) => {
     const asideRef = useRef();
 
+    console.log(topPosition);
+
     const onLoadHandler = () => {
         Array.from(asideRef.current.children)[0].classList.add("active");
 
@@ -20,7 +22,7 @@ const Aside = ({ topPosition }) => {
         });
         e.target.classList.add("active");
         window.scrollTo({
-            top: top - 85,
+            top: top,
             behavior: "smooth",
         });
     };

@@ -4,7 +4,7 @@ import propTypes from "prop-types";
 
 const EditButton = ({ isShow, setIsShow, btnHandler }) => {
     return (
-        <div className="flex flex-col space-y-2">
+        <div className="flex flex-col space-y-2 py-3">
             {!isShow && (
                 <span
                     className="w-fit flex gap-3 self-start items-center bg-transparent py-1.5 px-3 border rounded-md cursor-pointer"
