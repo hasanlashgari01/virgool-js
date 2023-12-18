@@ -149,11 +149,11 @@
         @apply flex gap-5 border-b text-gray-500;
     }
 
-    .tabs > * {
-        @apply p-2;
+    .tab {
+        @apply flex gap-3 p-2;
     }
 
-    .tabs .active {
+    .tabs .tab.active {
         @apply border-b border-black text-black transition-colors duration-500 ease-linear;
     }
 }

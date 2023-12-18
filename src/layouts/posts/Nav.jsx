@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import NewPost from "../../components/templates/NewPost";
+import { usePosts } from "../../context/PostsContext";
 
 const items = [
     { id: 1, link: "drafts", name: "پیش‌نویس‌ها" },
@@ -7,6 +8,10 @@ const items = [
 ];
 
 const Header = () => {
+    const [posts] = usePosts();
+
+    let { draftPosts, publishPosts } = posts;
+
     return (
         <div className="mt-10">
             <div className="flex items-center justify-between">
@@ -15,11 +20,14 @@ const Header = () => {
             </div>
             <nav className="mt-5">
                 <ul className="tabs">
-                    {items.map(({ id, link, name }) => (
-                        <NavLink key={id} to={link}>
-                            {name}
-                        </NavLink>
-                    ))}
+                    <NavLink to="drafts" className="tab">
+                        <span>پیش‌نویس‌ها</span>
+                        <span>{draftPosts.length}</span>
+                    </NavLink>
+                    <NavLink to="published" className="tab">
+                        <span>پست‌های منتشر شده</span>
+                        <span>{publishPosts.length}</span>
+                    </NavLink>
                 </ul>
             </nav>
         </div>

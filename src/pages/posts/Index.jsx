@@ -8,7 +8,9 @@ const Index = () => {
             <HeaderTop />
             <div className="container">
                 <Header />
-                <Outlet />
+                <div className="mt-5">
+                    <Outlet />
+                </div>
             </div>
         </>
     );
