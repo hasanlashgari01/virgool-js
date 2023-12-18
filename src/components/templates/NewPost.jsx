@@ -1,11 +1,16 @@
 import { Link } from "react-router-dom";
+import propTypes from "prop-types";
 
-const NewPost = () => {
-	return (
-		<Link to="/post/create" className="inline-block text-blue-400 hover:text-blue-500">
-			نوشتن پست جدید
-		</Link>
-	);
+const NewPost = ({ classes }) => {
+    return (
+        <Link to="/post/create" className={`inline-block text-blue-400 hover:text-blue-500 ${classes}`}>
+            نوشتن پست جدید
+        </Link>
+    );
+};
+
+NewPost.propTypes = {
+    classes: propTypes.string,
 };
 
 export default NewPost;

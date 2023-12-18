@@ -50,6 +50,16 @@ const routes = [
             { path: "publications", element: <ProfilePublications /> },
         ],
     },
+    {
+        path: "/admin/*",
+        element: <IndexMe />,
+        children: [
+            { path: "settings", element: <Settings /> },
+            { path: "publications", element: <Publications /> },
+            { path: "Lists", element: <Lists /> },
+            { path: "Posts", element: <Likes /> },
+        ],
+    },
 ];
 
 export { routes };

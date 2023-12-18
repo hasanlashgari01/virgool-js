@@ -26,7 +26,7 @@ const Aside = ({ topPosition }) => {
     };
 
     return (
-        <div className="basis-80 sticky top-20">
+        <div className="hidden tb:block basis-80 sticky top-20">
             <h1 className="text-2xl">تنظیمات کاربری</h1>
             {topPosition && (
                 <ul className="settings" ref={asideRef}>

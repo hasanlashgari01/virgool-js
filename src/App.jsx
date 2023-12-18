@@ -15,7 +15,7 @@ function App() {
     return (
         <>
             <Toaster />
-            <AuthProvider>{router}</AuthProvider>;
+            <AuthProvider>{router}</AuthProvider>
         </>
     );
 }

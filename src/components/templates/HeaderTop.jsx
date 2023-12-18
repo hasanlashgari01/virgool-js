@@ -7,14 +7,14 @@ import HeaderSearch from "./HeaderSearch";
 
 const HeaderTop = ({ isLogin }) => {
     return (
-        <div className="container flex justify-between items-center py-6">
+        <div className="container flex items-center justify-between py-6">
             <div className="flex gap-2.5">
                 <Link to="/">
                     <img src="https://virgool.io/images/icon.svg" alt="آیکون ویرگول" />
                 </Link>
                 <NewPost />
             </div>
-            <div className="flex gap-3 items-center">
+            <div className="flex items-center gap-3">
                 <HeaderSearch />
                 {isLogin ? (
                     <>
@@ -23,7 +23,7 @@ const HeaderTop = ({ isLogin }) => {
                     </>
                 ) : (
                     <>
-                        <Link to="/auth/login" className="text-blue-500 bg-white py-2 px-6">
+                        <Link to="/auth/login" className="bg-white px-6 py-2 text-blue-500">
                             ورود
                         </Link>
                         <Link to="/auth/register" className="btn">
