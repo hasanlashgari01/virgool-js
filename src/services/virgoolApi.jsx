@@ -1,11 +1,12 @@
 const BASE_URL = "http://localhost:4000/";
 const TOKEN_ADMIN =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjVkNmU5OGMxZDc4ODA4OTczNzllOSIsImlhdCI6MTcwMTUzMzUwMCwiZXhwIjoxNzA0MTI1NTAwfQ.0IU_vC-zWZaqs-IUNvKTyCBCIIX1krjZsROGIlK42DI";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MjE3MzM2OGI2NmM3YWQxZDVjZTViZSIsImlhdCI6MTcwMzQ5NjQzMiwiZXhwIjoxNzA2MDg4NDMyfQ.Hej9ZXUawa_acN05GjwX4qOQtVpJLt0nCxki85oiC6Y";
 
 const authFetch = () => `${BASE_URL}v1/auth/`;
 const getTopics = () => `${BASE_URL}v1/topic`;
 const getTopic = (href) => `${BASE_URL}v1/topic/${href}`;
 const getUserProfile = (username) => `${BASE_URL}v1/user/profile/${username}`;
 const getUser = () => `${BASE_URL}v1/user/me/settings`;
+const getDetails = () => `${BASE_URL}v2/admin/index`;
 
-export { BASE_URL, TOKEN_ADMIN, authFetch, getTopics, getTopic, getUserProfile, getUser };
+export { BASE_URL, TOKEN_ADMIN, authFetch, getTopics, getTopic, getUserProfile, getUser, getDetails };

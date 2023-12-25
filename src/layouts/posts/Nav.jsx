@@ -2,11 +2,6 @@ import { NavLink } from "react-router-dom";
 import NewPost from "../../components/templates/NewPost";
 import { usePosts } from "../../context/PostsContext";
 
-const items = [
-    { id: 1, link: "drafts", name: "پیش‌نویس‌ها" },
-    { id: 2, link: "published", name: "پست‌های منتشر شده" },
-];
-
 const Header = () => {
     const [posts] = usePosts();
 

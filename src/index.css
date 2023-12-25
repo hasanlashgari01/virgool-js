@@ -156,4 +156,20 @@
     .tabs .tab.active {
         @apply border-b border-black text-black transition-colors duration-500 ease-linear;
     }
+
+    .tabs {
+        @apply flex gap-5;
+    }
+
+    .admin__nav__tab {
+        @apply flex gap-3 p-0.5;
+    }
+
+    .tabs .admin__nav__tab.active {
+        @apply relative text-blue-500 transition-colors;
+    }
+
+    .tabs .admin__nav__tab.active::after {
+        @apply absolute left-0 top-2/4 h-2 w-2 -translate-y-2/4 rounded-full bg-blue-500 content-[''];
+    }
 }

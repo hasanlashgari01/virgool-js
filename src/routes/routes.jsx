@@ -1,7 +1,8 @@
 import TopicPage from "../pages/TopicPage";
+import { AdminBanUser, AdminComment, AdminIndex, AdminPage, AdminPost, AdminTopic, AdminUsers } from "./admin.routes";
 import { AuthLogin, AuthRegister } from "./auth.routes";
 import { CreatePost, Home } from "./index.routes";
-import { Settings, Publications, Lists, Likes, IndexMe } from "./me.routes";
+import { IndexMe, Likes, Lists, Publications, Settings } from "./me.routes";
 import { Drafts, IndexPosts, PostPage, Published } from "./posts.routes";
 import { IndexProfile, ProfileLists, ProfilePosts, ProfilePublications } from "./profile.routes";
 
@@ -52,12 +53,14 @@ const routes = [
     },
     {
         path: "/admin/*",
-        element: <IndexMe />,
+        element: <AdminPage />,
         children: [
-            { path: "settings", element: <Settings /> },
-            { path: "publications", element: <Publications /> },
-            { path: "Lists", element: <Lists /> },
-            { path: "Posts", element: <Likes /> },
+            { path: "index", element: <AdminIndex /> },
+            { path: "users", element: <AdminUsers /> },
+            { path: "topics", element: <AdminTopic /> },
+            { path: "posts", element: <AdminPost /> },
+            { path: "comments", element: <AdminComment /> },
+            { path: "ban-user", element: <AdminBanUser /> },
         ],
     },
 ];
