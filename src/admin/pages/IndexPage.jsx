@@ -17,8 +17,8 @@ const IndexPage = () => {
     }, []);
 
     return (
-        <div className="flex flex-1 gap-10">
-            <div className="grid flex-1 grid-cols-2 gap-7">
+        <div className="flex flex-1 flex-wrap gap-10">
+            <div className="grid flex-auto xl:flex-1 grid-cols-2 gap-7">
                 <Box count={users?.count} title="کاربران">
                     <FaRegUser size={20} />
                 </Box>
@@ -32,7 +32,7 @@ const IndexPage = () => {
                     <FaBan size={20} />
                 </Box>
             </div>
-            <div className="w-60 bg-red-100 font-DanaDemiBold">نمودار</div>
+            <div className="w-60 min-w-max bg-red-100 font-DanaDemiBold">نمودار</div>
         </div>
     );
 };

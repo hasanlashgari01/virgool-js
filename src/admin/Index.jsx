@@ -1,13 +1,16 @@
 import { useEffect } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import Aside from "./layout/Aside";
 import Header from "./layout/Header";
 
 const Index = () => {
     const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
-        navigate("index");
+        if (location.pathname === "/admin") {
+            navigate("index");
+        }
     }, []);
 
     return (
