@@ -158,11 +158,11 @@
     }
 
     .tabs {
-        @apply flex gap-5;
+        @apply fixed bottom-0 left-0 right-0 h-fit basis-52 flex-row  gap-5 rounded-xl border-2 bg-slate-50/80 p-5 xl:sticky xl:top-0 xl:flex xl:flex-col;
     }
 
     .admin__nav__tab {
-        @apply flex gap-3 p-0.5;
+        @apply flex flex-1 justify-center gap-3 p-0.5 xl:justify-start;
     }
 
     .tabs .admin__nav__tab.active {
@@ -170,6 +170,14 @@
     }
 
     .tabs .admin__nav__tab.active::after {
-        @apply absolute left-0 top-2/4 h-2 w-2 -translate-y-2/4 rounded-full bg-blue-500 content-[''];
+        @apply hidden xl:inline-block absolute left-0 top-2/4 h-2 w-2 -translate-y-2/4 rounded-full bg-blue-500 content-[''];
+    }
+
+    .admin__nav__tab--text {
+        @apply hidden xl:block;
+    }
+
+    .admin__nav__tab--icon {
+        @apply inline-block xl:hidden;
     }
 }
