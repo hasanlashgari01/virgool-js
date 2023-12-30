@@ -9,4 +9,6 @@ const getUserProfile = (username) => `${BASE_URL}v1/user/profile/${username}`;
 const getUser = () => `${BASE_URL}v1/user/me/settings`;
 const getDetails = () => `${BASE_URL}v2/admin/index`;
 
-export { BASE_URL, TOKEN_ADMIN, authFetch, getTopics, getTopic, getUserProfile, getUser, getDetails };
+const deleteTopic = (id) => `${BASE_URL}v1/admin/topic/${id}`;
+
+export { BASE_URL, TOKEN_ADMIN, authFetch, getTopics, getTopic, getUserProfile, getUser, getDetails, deleteTopic };

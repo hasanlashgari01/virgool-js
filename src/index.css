@@ -170,7 +170,7 @@
     }
 
     .tabs .admin__nav__tab.active::after {
-        @apply hidden xl:inline-block absolute left-0 top-2/4 h-2 w-2 -translate-y-2/4 rounded-full bg-blue-500 content-[''];
+        @apply absolute left-0 top-2/4 hidden h-2 w-2 -translate-y-2/4 rounded-full bg-blue-500 content-[''] xl:inline-block;
     }
 
     .admin__nav__tab--text {
@@ -179,5 +179,9 @@
 
     .admin__nav__tab--icon {
         @apply inline-block xl:hidden;
+    }
+
+    .delete__btn {
+        @apply flex items-center rounded-md px-6 py-2  transition-colors;
     }
 }
