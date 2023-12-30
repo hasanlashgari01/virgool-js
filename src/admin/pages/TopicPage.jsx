@@ -66,7 +66,7 @@ const TopicPage = () => {
                     <tr className="child:px-4 child:py-2">
                         <th className="flex-1">اسم</th>
                         <th className="flex-1">آدرس</th>
-                        <th className="w-36">عملیات</th>
+                        <th className="w-24">عملیات</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -79,7 +79,7 @@ const TopicPage = () => {
                                 name={topic.name}
                                 href={topic.href}
                                 category="موضوع"
-                                setIsEdit={setIsShowEditBox}
+                                setIsShow={setIsShowEditBox}
                                 setIsDelete={setIsShowDeleteBox}
                                 setItemDetails={setItemDetails}
                             />
@@ -108,7 +108,7 @@ const TopicPage = () => {
                         <InputEditBox title="اسم" register={{ ...register("name", { minLength: 3 }) }} />
                         <InputEditBox title="آدرس" register={{ ...register("href", { minLength: 3 }) }} />
                     </div>
-                    <EditBoxFooter setIsEdit={setIsShowEditBox} />
+                    <EditBoxFooter setIsShow={setIsShowEditBox} />
                 </form>
             </FormBox>
         </div>

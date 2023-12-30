@@ -1,10 +1,10 @@
 import { BiRename } from "react-icons/bi";
 import { FaRegTrashCan } from "react-icons/fa6";
 
-const TableAction = ({ id, name, href, category, setIsEdit, setIsDelete, setItemDetails }) => {
+const TableAction = ({ id, name, href, category, setIsShow, setIsDelete, setItemDetails }) => {
     const updateHandler = () => {
         setItemDetails({ id, name, href, category });
-        setIsEdit(true);
+        setIsShow(true);
     };
 
     const removeHandler = () => {
@@ -14,7 +14,7 @@ const TableAction = ({ id, name, href, category, setIsEdit, setIsDelete, setItem
 
     return (
         <>
-            <td className="flex justify-evenly gap-5">
+            <td className="relative flex justify-evenly gap-5">
                 <BiRename
                     size={20}
                     className="cursor-pointer rounded-md text-green-500"
