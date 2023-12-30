@@ -1,5 +1,5 @@
-const EditBoxFooter = ({ setIsEdit }) => {
-    const hideBox = () => setIsEdit(false);
+const EditBoxFooter = ({ setIsShow }) => {
+    const hideBox = () => setIsShow(false);
 
     return (
         <div className="mt-6 flex gap-5 child:cursor-pointer">

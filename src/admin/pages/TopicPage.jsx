@@ -2,12 +2,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import DeleteBox from "../../components/modules/DeleteBox";
-import EditBox from "../../components/modules/EditBox";
+import FormBox from "../../components/modules/FormBox";
 import TableAction from "../../components/modules/TableAction";
 import { BASE_URL, TOKEN_ADMIN, getTopics, topicRoute } from "../../services/virgoolApi";
 import { useForm } from "react-hook-form";
 import InputEditBox from "../../components/modules/InputEditBox";
 import EditBoxFooter from "../../components/modules/EditBoxFooter";
+import CreateTopic from "../layout/CreateTopic";
 
 const TopicPage = () => {
     const { register, handleSubmit } = useForm({
@@ -29,15 +30,17 @@ const TopicPage = () => {
 
     const deleteHandler = () => {
         axios
-            .delete(topicRoute(itemDetails.id), { headers: { Authorization: `Bearer ${TOKEN_ADMIN}` } })
+            .delete(`${BASE_URL}v1/admin/topic/${itemDetails.id}`, {
+                headers: { Authorization: `Bearer ${TOKEN_ADMIN}` },
+            })
             .then((res) => {
                 setIsShowDeleteBox(false);
                 if (res.status == 200) {
                     fetchTopics();
-                    toast.success(`موضوع ${itemDetails.title} با موفقیت حذف شد.`);
+                    toast.success(`موضوع ${itemDetails.name} با موفقیت حذف شد.`);
                 }
             })
-            .catch((err) => err && toast.error("مجددا تلاش کنید مشکلی رخ داده است."));
+            .catch((err) => err && toast.error(err.response.data.message));
     };
 
     const formSubmitting = (data) => {
@@ -56,8 +59,9 @@ const TopicPage = () => {
     };
 
     return (
-        <>
-            <table className="h-fit flex-1 border-separate border border-slate-300">
+        <div className="flex h-fit flex-1 flex-col">
+            <CreateTopic fetchTopics={fetchTopics} />
+            <table className="mt-5 h-fit flex-1 border-separate border border-slate-300">
                 <thead className="border-collapse border border-slate-500 bg-slate-600 font-IRYekanLight text-sm text-white">
                     <tr className="child:px-4 child:py-2">
                         <th className="flex-1">اسم</th>
@@ -84,16 +88,16 @@ const TopicPage = () => {
                 </tbody>
             </table>
             <DeleteBox
-                title={itemDetails.title}
+                title={itemDetails.name}
                 category={itemDetails.category}
                 isDelete={isShowDeleteBox}
                 setIsDelete={setIsShowDeleteBox}
                 deleteHandler={deleteHandler}
             />
-            <EditBox
+            <FormBox
                 details={itemDetails}
-                isEdit={isShowEditBox}
-                setIsEdit={setIsShowEditBox}
+                isShow={isShowEditBox}
+                setIsShow={setIsShowEditBox}
                 formSubmitting={formSubmitting}
             >
                 <form
@@ -106,8 +110,8 @@ const TopicPage = () => {
                     </div>
                     <EditBoxFooter setIsEdit={setIsShowEditBox} />
                 </form>
-            </EditBox>
-        </>
+            </FormBox>
+        </div>
     );
 };
 

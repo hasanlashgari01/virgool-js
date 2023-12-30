@@ -1,7 +1,7 @@
-const EditBox = ({ isEdit, children }) => {
+const FormBox = ({ isShow, children }) => {
     return (
         <>
-            {isEdit && (
+            {isShow && (
                 <div className="fixed inset-0 flex items-start justify-center bg-black/30 transition-all">
                     {children}
                 </div>
@@ -10,4 +10,4 @@ const EditBox = ({ isEdit, children }) => {
     );
 };
 
-export default EditBox;
+export default FormBox;
