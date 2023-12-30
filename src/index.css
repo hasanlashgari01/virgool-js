@@ -181,7 +181,7 @@
         @apply inline-block xl:hidden;
     }
 
-    .delete__btn {
-        @apply flex items-center rounded-md px-6 py-2  transition-colors;
+    .form__btn {
+        @apply flex items-center rounded-md px-6 py-1.5  transition-colors;
     }
 }

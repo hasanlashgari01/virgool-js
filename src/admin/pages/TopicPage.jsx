@@ -1,14 +1,23 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import DeleteMessage from "../../components/modules/DeleteMessage";
+import DeleteBox from "../../components/modules/DeleteBox";
+import EditBox from "../../components/modules/EditBox";
 import TableAction from "../../components/modules/TableAction";
-import { TOKEN_ADMIN, deleteTopic, getTopics } from "../../services/virgoolApi";
+import { BASE_URL, TOKEN_ADMIN, getTopics, topicRoute } from "../../services/virgoolApi";
+import { useForm } from "react-hook-form";
+import InputEditBox from "../../components/modules/InputEditBox";
+import EditBoxFooter from "../../components/modules/EditBoxFooter";
 
 const TopicPage = () => {
+    const { register, handleSubmit } = useForm({
+        defaultValues: { name: "", href: "" },
+    });
+
     const [topics, setTopics] = useState([]);
-    const [itemDetails, setItemDetails] = useState({ id: null, title: null, category: null });
+    const [itemDetails, setItemDetails] = useState({ id: null, title: null, href: null, category: null });
     const [isShowDeleteBox, setIsShowDeleteBox] = useState(false);
+    const [isShowEditBox, setIsShowEditBox] = useState(false);
 
     useEffect(() => {
         fetchTopics();
@@ -20,7 +29,7 @@ const TopicPage = () => {
 
     const deleteHandler = () => {
         axios
-            .delete(deleteTopic(itemDetails.id), { headers: { Authorization: `Bearer ${TOKEN_ADMIN}` } })
+            .delete(topicRoute(itemDetails.id), { headers: { Authorization: `Bearer ${TOKEN_ADMIN}` } })
             .then((res) => {
                 setIsShowDeleteBox(false);
                 if (res.status == 200) {
@@ -29,6 +38,21 @@ const TopicPage = () => {
                 }
             })
             .catch((err) => err && toast.error("مجددا تلاش کنید مشکلی رخ داده است."));
+    };
+
+    const formSubmitting = (data) => {
+        axios
+            .patch(`${BASE_URL}v1/admin/topic/${itemDetails.id}`, data, {
+                headers: { Authorization: `Bearer ${TOKEN_ADMIN}` },
+            })
+            .then((res) => {
+                setIsShowEditBox(false);
+                if (res.status == 201) {
+                    fetchTopics();
+                    toast.success(`موضوع ${data.name} با موفقیت تغییر کرد.`);
+                }
+            })
+            .catch((err) => err && toast.error(err.response.res.data.message));
     };
 
     return (
@@ -48,23 +72,41 @@ const TopicPage = () => {
                             <td>{topic.href}</td>
                             <TableAction
                                 id={topic._id}
-                                title={topic.name}
+                                name={topic.name}
+                                href={topic.href}
                                 category="موضوع"
-                                setIsShow={setIsShowDeleteBox}
-                                itemDetails={itemDetails}
+                                setIsEdit={setIsShowEditBox}
+                                setIsDelete={setIsShowDeleteBox}
                                 setItemDetails={setItemDetails}
                             />
                         </tr>
                     ))}
                 </tbody>
             </table>
-            <DeleteMessage
+            <DeleteBox
                 title={itemDetails.title}
                 category={itemDetails.category}
-                isShow={isShowDeleteBox}
-                setIsShow={setIsShowDeleteBox}
+                isDelete={isShowDeleteBox}
+                setIsDelete={setIsShowDeleteBox}
                 deleteHandler={deleteHandler}
             />
+            <EditBox
+                details={itemDetails}
+                isEdit={isShowEditBox}
+                setIsEdit={setIsShowEditBox}
+                formSubmitting={formSubmitting}
+            >
+                <form
+                    className="mt-20 inline-flex flex-col rounded-lg bg-white px-16 py-8 shadow-xl"
+                    onSubmit={handleSubmit(formSubmitting)}
+                >
+                    <div className="space-y-5">
+                        <InputEditBox title="اسم" register={{ ...register("name", { minLength: 3 }) }} />
+                        <InputEditBox title="آدرس" register={{ ...register("href", { minLength: 3 }) }} />
+                    </div>
+                    <EditBoxFooter setIsEdit={setIsShowEditBox} />
+                </form>
+            </EditBox>
         </>
     );
 };
