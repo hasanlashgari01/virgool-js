@@ -14,10 +14,7 @@ const DeleteBox = ({ title, category, isDelete, setIsDelete, deleteHandler }) =>
                             هستید؟
                         </h1>
                         <div className="mt-6 flex justify-center gap-5 child:cursor-pointer">
-                            <span
-                                className="form__btn bg-red-600 text-white hover:bg-red-500"
-                                onClick={() => deleteHandler()}
-                            >
+                            <span className="form__btn bg-red-600 text-white hover:bg-red-500" onClick={deleteHandler}>
                                 حذف
                             </span>
                             <span className="form__btn border-2 border-slate-300 hover:bg-slate-100" onClick={hideBox}>
