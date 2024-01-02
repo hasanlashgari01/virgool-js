@@ -40,6 +40,22 @@ const PostPage = () => {
             })
             .catch((err) => err && toast.error(err.response.data.message));
     };
+
+    const postHandler = (url, id, msg) => {
+        axios
+            .get(`${BASE_URL}v1/admin/post/${url}/${id}`, { headers: { Authorization: `Bearer ${TOKEN_ADMIN}` } })
+            .then((res) => {
+                if (res.status == 200) {
+                    fetchPosts();
+                    toast.success(msg);
+                }
+            })
+            .catch((err) => err && toast.error(err.response.data.message));
+    };
+
+    const publishHandler = (id) => postHandler("publish", id, "پست به دسته انتشارات منتقل شد.");
+    const rejectHandler = (id) => postHandler("draft", id, "پست به دسته رجکت ها منتقل شد.");
+
     return (
         <div className="flex h-fit flex-1 flex-col">
             <table className="mt-5 h-fit flex-1 border-separate border border-slate-300">
@@ -62,9 +78,9 @@ const PostPage = () => {
                             </td>
                             <td>
                                 <span
-                                    className={`rounded-md px-2 py-1 text-white ${
-                                        status === "published" ? "bg-green-500" : "bg-red-500"
-                                    }`}
+                                    className={`cursor-pointer rounded-md px-2 py-1 text-white 
+                                        ${status === "published" ? "bg-green-500" : "bg-red-500"}`}
+                                    onClick={() => (status === "published" ? rejectHandler : publishHandler)(_id)}
                                 >
                                     {status}
                                 </span>
