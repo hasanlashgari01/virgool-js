@@ -29,7 +29,6 @@ const PostPage = () => {
         axios
             .post(`${BASE_URL}v1/comment`, info, { headers: { Authorization: `Bearer ${TOKEN_ADMIN}` } })
             .then((res) => {
-                console.log(res);
                 res && toast.success("نظر شما با موفقیت ثبت شد");
             })
             .catch((err) => err && toast.error("مشکلی رخ داده"));
@@ -41,7 +40,7 @@ const PostPage = () => {
             <main className="container">
                 <PostDetails post={post} id="post" />
                 <div className="mt-10" id="comments">
-                    <h1 className="text-3xl font-DanaDemiBold mb-10">نظرات</h1>
+                    <h1 className="mb-10 font-DanaDemiBold text-3xl">نظرات</h1>
                     <form className="flex flex-col items-start gap-5" onSubmit={handleSubmit(onSubmit)}>
                         <textarea
                             name=""
@@ -49,7 +48,7 @@ const PostPage = () => {
                             cols="30"
                             rows="10"
                             placeholder="نظر خود را بنویسید"
-                            className="bg-gray-200/50 py-2.5 px-5 rounded-lg outline-none w-full tb:w-2/3 h-32"
+                            className="h-32 w-full rounded-lg bg-gray-200/50 px-5 py-2.5 outline-none tb:w-2/3"
                             {...register("body", { required: true, minLength: 20, maxLength: 1000 })}
                         ></textarea>
                         <input type="submit" value="ثبت نظر" className="btn" />
@@ -57,7 +56,7 @@ const PostPage = () => {
                 </div>
                 <div className="mt-10">
                     {comments.length >= 1 ? (
-                        <ul className="w-full tb:w-2/3 grid gap-5">
+                        <ul className="grid w-full gap-5 tb:w-2/3">
                             {comments.map((comment) => (
                                 <Comment key={comment._id} {...comment} />
                             ))}

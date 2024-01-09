@@ -70,7 +70,7 @@ const CommentPage = () => {
                 <tbody>
                     {comments.map(({ _id, body, author, post, isAccepted }) => (
                         <tr className="child:py-2 child:text-center" key={_id}>
-                            <td>{author.username}</td>
+                            <td>{author.name}</td>
                             <td>
                                 <Link to={`/post/${post?._id}`}>{body}</Link>
                             </td>

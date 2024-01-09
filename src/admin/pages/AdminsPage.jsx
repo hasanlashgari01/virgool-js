@@ -1,20 +1,20 @@
 import axios from "axios";
-import { BASE_URL, TOKEN_ADMIN } from "../../services/virgoolApi";
 import { useEffect, useState } from "react";
+import { BASE_URL, TOKEN_ADMIN } from "../../services/virgoolApi";
+import { BiTrash } from "react-icons/bi";
 import DeleteBox from "../../components/modules/DeleteBox";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
-import { BiTrash } from "react-icons/bi";
 
-const UsersPage = () => {
-    const [users, setUsers] = useState([]);
+const AdminsPage = () => {
+    const [admins, setAdmins] = useState([]);
     const [itemDetails, setItemDetails] = useState({ id: null, username: null, href: null, category: null });
     const [isShowDeleteBox, setIsShowDeleteBox] = useState(false);
 
-    const fetchUsers = () => {
+    const fetchAdmins = () => {
         axios
-            .get(`${BASE_URL}v2/admin/user`, { headers: { Authorization: `Bearer ${TOKEN_ADMIN}` } })
-            .then(({ data: { users } }) => setUsers(users));
+            .get(`${BASE_URL}v2/admin/user/admins`, { headers: { Authorization: `Bearer ${TOKEN_ADMIN}` } })
+            .then(({ data: { admins } }) => setAdmins(admins));
     };
 
     const showModal = (id, title) => {
@@ -30,7 +30,7 @@ const UsersPage = () => {
             .then((res) => {
                 setIsShowDeleteBox(false);
                 if (res.status == 200) {
-                    fetchUsers();
+                    fetchAdmins();
                     toast.success(`کاربر ${itemDetails.username} با موفقیت بن شد.`);
                 }
             })
@@ -42,7 +42,7 @@ const UsersPage = () => {
             .get(`${BASE_URL}v1/admin/user/role/${id}`, { headers: { Authorization: `Bearer ${TOKEN_ADMIN}` } })
             .then((res) => {
                 if (res.status == 200) {
-                    fetchUsers();
+                    fetchAdmins();
                     toast.success(`نقش کاربر به ${role === "ADMIN" ? "کاربر" : "مدیر"} تغییر کرد`);
                 }
             })
@@ -50,7 +50,7 @@ const UsersPage = () => {
     };
 
     useEffect(() => {
-        fetchUsers();
+        fetchAdmins();
     }, []);
 
     return (
@@ -65,7 +65,7 @@ const UsersPage = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {users.map(({ _id, cover, name, username, role }) => (
+                    {admins.map(({ _id, cover, name, username, role }) => (
                         <tr className="child:py-2 child:text-center" key={_id}>
                             <td>
                                 <img src={cover} alt="عنوان عکس" />
@@ -76,7 +76,7 @@ const UsersPage = () => {
                             <td>
                                 <span
                                     className={`cursor-pointer rounded-md px-2 py-1 text-white 
-                                        ${role === "ADMIN" ? "bg-green-500" : "bg-red-500"}`}
+                                ${role === "ADMIN" ? "bg-green-500" : "bg-red-500"}`}
                                     onClick={() => changeRoleHandler(_id, role)}
                                 >
                                     {role === "ADMIN" ? "مدیر" : "کاربر"}
@@ -93,7 +93,7 @@ const UsersPage = () => {
                     ))}
                 </tbody>
             </table>
-            {!users.length && <h1 className="text-center">کاربری در سایت وجود ندارد</h1>}
+            {!admins.length && <h1 className="text-center">کاربری در سایت وجود ندارد</h1>}
             <DeleteBox
                 title={itemDetails.username}
                 category="کاربر"
@@ -106,4 +106,4 @@ const UsersPage = () => {
     );
 };
 
-export default UsersPage;
+export default AdminsPage;

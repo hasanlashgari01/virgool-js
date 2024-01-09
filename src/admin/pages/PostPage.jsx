@@ -63,18 +63,22 @@ const PostPage = () => {
                     <tr className="child:px-4 child:py-2">
                         <th>عکس</th>
                         <th className="flex-1">عنوان</th>
+                        <th className="flex-1">نویسنده</th>
                         <th className="w-24">وضعیت</th>
                         <th>بیشتر</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {posts.map(({ _id, cover, title, status }) => (
+                    {posts.map(({ _id, cover, title, status, author }) => (
                         <tr className="child:py-2 child:text-center" key={_id}>
                             <td>
                                 <img src={cover} alt="عنوان عکس" />
                             </td>
                             <td>
                                 <Link to={`/post/${_id}`}>{title}</Link>
+                            </td>
+                            <td>
+                                <Link to={`/post/${_id}`}>{author.name}</Link>
                             </td>
                             <td>
                                 <span

@@ -19,8 +19,6 @@ const BanUserPage = () => {
         fetchBannedUsers();
     }, []);
 
-    console.log(bannedUsers);
-
     return (
         <div className="flex h-fit flex-1 flex-col">
             <table className="mt-5 h-fit flex-1 border-separate border border-slate-300">

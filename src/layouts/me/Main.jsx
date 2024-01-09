@@ -30,7 +30,7 @@ const Main = ({ topPosition, setTopPosition }) => {
             .then(({ data }) => {
                 setUserDetails(data);
             })
-            .catch((err) => console.log(err.response.data.message));
+            .catch((err) => err.response.data.message);
     }, []);
 
     return (

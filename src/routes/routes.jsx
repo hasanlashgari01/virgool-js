@@ -1,5 +1,14 @@
 import TopicPage from "../pages/TopicPage";
-import { AdminBanUser, AdminComment, AdminIndex, AdminPage, AdminPost, AdminTopic, AdminUsers } from "./admin.routes";
+import {
+    AdminBanUser,
+    AdminComment,
+    AdminIndex,
+    AdminPage,
+    AdminPost,
+    AdminTopic,
+    AdminUsers,
+    AdminUsersAdmins,
+} from "./admin.routes";
 import { AuthLogin, AuthRegister } from "./auth.routes";
 import { CreatePost, Home } from "./index.routes";
 import { IndexMe, Likes, Lists, Publications, Settings } from "./me.routes";
@@ -56,6 +65,7 @@ const routes = [
         element: <AdminPage />,
         children: [
             { path: "index", element: <AdminIndex /> },
+            { path: "admins", element: <AdminUsersAdmins /> },
             { path: "users", element: <AdminUsers /> },
             { path: "topics", element: <AdminTopic /> },
             { path: "posts", element: <AdminPost /> },

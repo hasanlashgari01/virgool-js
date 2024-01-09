@@ -1,9 +1,11 @@
 import { FaRegComment } from "react-icons/fa";
 import { FiUsers } from "react-icons/fi";
+import { GrUserAdmin } from "react-icons/gr";
 import { IoHomeOutline, IoImagesOutline } from "react-icons/io5";
 import { LuUserX } from "react-icons/lu";
 import { TbCategory } from "react-icons/tb";
 import { NavLink } from "react-router-dom";
+
 
 const Aside = () => {
     return (
@@ -27,6 +29,10 @@ const Aside = () => {
             <NavLink to="users" className="admin__nav__tab">
                 <span className="admin__nav__tab--text">کاربران</span>
                 <FiUsers size={24} className="admin__nav__tab--icon" />
+            </NavLink>
+            <NavLink to="admins" className="admin__nav__tab">
+                <span className="admin__nav__tab--text">مدیران</span>
+                <GrUserAdmin size={24} className="admin__nav__tab--icon" />
             </NavLink>
             <NavLink to="ban-user" className="admin__nav__tab">
                 <span className="admin__nav__tab--text">کاربران بن شده</span>

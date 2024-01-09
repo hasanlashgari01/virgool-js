@@ -18,7 +18,6 @@ const UserProfile = () => {
             navigate("/");
         } else {
             axios.get(getUserProfile(username.slice(1))).then(({ data }) => {
-                console.log(data);
                 setUser(data.findUser);
                 setPosts(data.postsOfUser);
             });
@@ -28,10 +27,10 @@ const UserProfile = () => {
     return (
         <>
             <HeaderTop />
-            <div className="container flex justify-center items-center flex-col overflow-hidden">
+            <div className="container flex flex-col items-center justify-center overflow-hidden">
                 <UserDetails />
                 <Navigation />
-                <div className="w-screen h-[1px] bg-gray-300 mb-5"></div>
+                <div className="mb-5 h-[1px] w-screen bg-gray-300"></div>
                 <Outlet />
             </div>
         </>

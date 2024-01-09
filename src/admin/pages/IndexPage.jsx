@@ -13,12 +13,12 @@ const IndexPage = () => {
         axios
             .get(getDetails(), { headers: { Authorization: `Bearer ${TOKEN_ADMIN}` } })
             .then((res) => setInfos(res.data))
-            .catch((err) => console.log(err));
+            .catch((err) => err);
     }, []);
 
     return (
         <div className="flex flex-1 flex-wrap gap-10">
-            <div className="grid flex-auto xl:flex-1 grid-cols-2 gap-7">
+            <div className="grid flex-auto grid-cols-2 gap-7 xl:flex-1">
                 <Box count={users?.count} title="کاربران">
                     <FaRegUser size={20} />
                 </Box>
