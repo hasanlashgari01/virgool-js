@@ -1,4 +1,4 @@
-const DeleteBox = ({ title, category, isDelete, setIsDelete, deleteHandler }) => {
+const DeleteBox = ({ title, category, isDelete, setIsDelete, deleteHandler, isBan = false }) => {
     const hideBox = () => setIsDelete(false);
 
     return (
@@ -7,7 +7,7 @@ const DeleteBox = ({ title, category, isDelete, setIsDelete, deleteHandler }) =>
                 <div className="fixed inset-0 grid place-content-center bg-black/30 transition-all">
                     <div className="inline-flex flex-col rounded-lg bg-white px-16 py-8 shadow-xl">
                         <h1 className="text-center font-IRYekanRegular xl:text-lg">
-                            آیا مایل به حذف{" "}
+                            آیا مایل به <span>{isBan ? "بن" : "حذف"}</span>{" "}
                             <span className="font-IRYekanExtraBold">
                                 {category} {title}
                             </span>{" "}
