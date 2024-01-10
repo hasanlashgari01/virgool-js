@@ -16,7 +16,7 @@ const AuthProvider = ({ children }) => {
 
     const loginHandler = (token) => {
         setDefaultValue({ ...defaultValue, isLoggedIn: true, token });
-        localStorage.setItem("user", JSON.stringify({ token }));
+        localStorage.setItem("user", JSON.stringify(token));
     };
 
     const logoutHandler = () => {

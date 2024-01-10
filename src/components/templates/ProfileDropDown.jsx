@@ -1,6 +1,9 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { BsMoon, BsSun } from "react-icons/bs";
 import useDropDown from "../../hooks/useDropDown";
+import { getTokenFromLocalStorage } from "../../services/func";
+import { getMe } from "../../services/virgoolApi";
 import LinkItem from "./LinkItem";
 import NewPost from "./NewPost";
 
@@ -15,24 +18,32 @@ const links = [
 const ProfileDropDown = () => {
     const [imgRef, isOpen, openHandler] = useDropDown();
     const [isDarkMode, setIsDarkMode] = useState(false);
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+        axios
+            .get(getMe(), { headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` } })
+            .then((res) => setUser(res.data))
+            .catch((err) => err && err.response);
+    }, []);
 
     const changeTheme = () => setIsDarkMode(!isDarkMode);
 
     return (
         <div className="relative">
-            <div className="w-10 h-10 overflow-hidden rounded-full cursor-pointer">
+            <div className="h-10 w-10 cursor-pointer overflow-hidden rounded-full">
                 <img
-                    src="/public/images/Ana-de-Armas-300x400.jpg"
+                    src={user.avatar ? user.avatar : "/public/images/Ana-de-Armas-300x400.jpg"}
                     alt="عکس پروفایل"
                     onClick={openHandler}
                     ref={imgRef}
                 />
             </div>
             {isOpen && (
-                <ul className="absolute bg-white w-72 top-14 left-0 px-3 rounded-md shadow-drop child:dropdown-border">
+                <ul className="child:dropdown-border absolute left-0 top-14 w-72 rounded-md bg-white px-3 shadow-drop">
                     <div>
-                        <h4>حسن لشکری</h4>
-                        <LinkItem to={`me/@hasan`} name="مشاهده پروفایل" classN="text-gray-700" />
+                        <h4>{user.name}</h4>
+                        <LinkItem to={`/me/@${user.username}`} name="مشاهده پروفایل" classN="text-gray-700" />
                     </div>
                     <div className="child:py-1">
                         <NewPost />
@@ -43,7 +54,7 @@ const ProfileDropDown = () => {
                     <div>
                         <LinkItem to="/me/publications" name="انتشارات" />
                     </div>
-                    <div className="flex justify-between items-center cursor-pointer select-none" onClick={changeTheme}>
+                    <div className="flex cursor-pointer select-none items-center justify-between" onClick={changeTheme}>
                         <span>حالت {isDarkMode ? "شب" : "روز"}</span>
                         {isDarkMode ? <BsMoon /> : <BsSun />}
                     </div>

@@ -1,8 +1,12 @@
 let options = { month: "long", day: "numeric" };
 
 const toDate = (date) => {
-	const time = new Date(date);
-	return time.toLocaleDateString("fa-IR", options);
+    const time = new Date(date);
+    return time.toLocaleDateString("fa-IR", options);
 };
 
-export { toDate };
+const getTokenFromLocalStorage = () => {
+    return JSON.parse(localStorage.getItem("user"));
+};
+
+export { toDate, getTokenFromLocalStorage };

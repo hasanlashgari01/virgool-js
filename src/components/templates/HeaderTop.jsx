@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import NewPost from "./NewPost";
-import ProfileDropDown from "./ProfileDropDown";
+import { Link } from "react-router-dom";
 import HeaderNotifications from "./HeaderNotifications";
 import HeaderSearch from "./HeaderSearch";
+import NewPost from "./NewPost";
+import ProfileDropDown from "./ProfileDropDown";
 
 const HeaderTop = ({ isLogin }) => {
     return (

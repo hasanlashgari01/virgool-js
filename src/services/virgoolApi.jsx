@@ -11,7 +11,19 @@ const getTopic = (href) => `${BASE_URL}v1/topic/${href}`;
 const getUserProfile = (username) => `${BASE_URL}v1/user/profile/${username}`;
 const getUser = () => `${BASE_URL}v1/user/me/settings`;
 const getDetails = () => `${BASE_URL}v2/admin/index`;
+const getMe = () => `${BASE_URL}v1/auth/getMe`;
 
 const topicRoute = (id) => `${adminRouteV1}/topic/${id}`;
 
-export { BASE_URL, TOKEN_ADMIN, authFetch, getTopics, getTopic, getUserProfile, getUser, getDetails, topicRoute };
+export {
+    BASE_URL,
+    TOKEN_ADMIN,
+    authFetch,
+    getTopics,
+    getTopic,
+    getUserProfile,
+    getUser,
+    getDetails,
+    topicRoute,
+    getMe,
+};
