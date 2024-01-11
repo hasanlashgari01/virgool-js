@@ -8,9 +8,9 @@ import ProfileDropDown from "./ProfileDropDown";
 const HeaderTop = ({ isLogin }) => {
     return (
         <div className="container flex items-center justify-between py-6">
-            <div className="flex gap-2.5">
-                <Link to="/">
-                    <img src="https://virgool.io/images/icon.svg" alt="آیکون ویرگول" />
+            <div className="flex items-center gap-2.5">
+                <Link to="/" className="h-12">
+                    <img src="https://static.virgool.io/images/icon.svg" alt="آیکون ویرگول" className="h-full" />
                 </Link>
                 <NewPost />
             </div>

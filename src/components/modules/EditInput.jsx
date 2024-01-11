@@ -4,6 +4,7 @@ import propTypes from "prop-types";
 import Input from "./Input";
 
 const EditInput = ({ image, userDetails, setUserDetails, title, description, dir }) => {
+    const [value, setValue] = useState("");
     const [isShow, setIsShow] = useState(false);
     const [focus, setFocus] = useState(false);
 
@@ -20,9 +21,9 @@ const EditInput = ({ image, userDetails, setUserDetails, title, description, dir
     };
 
     return (
-        <div className="flex justify-between items-end gap-5">
-            <div className="flex flex-col w-2/3">
-                {title && <h3 className="text-lg lg:text-xl font-DanaDemiBold">{title}</h3>}
+        <div className="flex items-end justify-between gap-5">
+            <div className="flex w-2/3 flex-col">
+                {title && <h3 className="font-DanaDemiBold text-lg lg:text-xl">{title}</h3>}
                 {image && isShow && (
                     <Input
                         type="file"
@@ -42,12 +43,14 @@ const EditInput = ({ image, userDetails, setUserDetails, title, description, dir
                         description={description}
                         inputRef={inputRef}
                         dir={dir}
+                        value={value}
+                        setValue={setValue}
                     />
                 )}
-                {image && !isShow && <img src={image} className="w-20 h-20 object-cover rounded-full" />}
-                {description && <h6 className="mt-3 text-gray-500 text-sm">{description}</h6>}
+                {image && !isShow && <img src={image} className="h-20 w-20 rounded-full object-cover" />}
+                {description && <h6 className="mt-3 text-sm text-gray-500">{description}</h6>}
             </div>
-            <EditButton isShow={isShow} setIsShow={setIsShow} btnHandler={btnHandler} />
+            <EditButton userDetails={userDetails} isShow={isShow} setIsShow={setIsShow} btnHandler={btnHandler} />
         </div>
     );
 };

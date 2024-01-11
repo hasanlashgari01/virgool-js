@@ -10,7 +10,7 @@ import PersonalInformation from "./PersonalInformation";
 import ThemeSettings from "./ThemeSettings";
 
 const Main = ({ topPosition, setTopPosition }) => {
-    const [userDetails, setUserDetails] = useState({ threshold: 0 });
+    const [userDetails, setUserDetails] = useState({});
     const mainRef = useRef();
 
     useEffect(() => {

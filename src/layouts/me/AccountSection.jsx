@@ -4,8 +4,8 @@ import EditInput from "../../components/modules/EditInput";
 const AccountSection = ({ userDetails, setUserDetails }) => {
     return (
         <div>
-            <h1 className="text-xl lg:text-2xl pb-5 border-b border-[#cacaca]">حساب کاربری</h1>
-            <div className="mt-10 mb-28 space-y-8">
+            <h1 className="border-b border-[#cacaca] pb-5 text-xl lg:text-2xl">حساب کاربری</h1>
+            <div className="mb-28 mt-10 space-y-8">
                 <EditInput
                     userDetails={userDetails && userDetails.username}
                     setUserDetails={setUserDetails}

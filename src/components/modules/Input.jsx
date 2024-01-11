@@ -1,29 +1,35 @@
 import propTypes from "prop-types";
 import { IoCameraOutline } from "react-icons/io5";
 
-const Input = ({ type, htmlFor, isShow, userDetails, setUserDetails, inputRef, placeholder, dir }) => {
+const Input = ({ value, setValue, type, htmlFor, isShow, userDetails, setUserDetails, inputRef, placeholder, dir }) => {
+    const changeHandler = (e, type) => {
+        setUserDetails({ ...userDetails, [type]: e.target.value });
+        // console.log(Object.keys(userDetails));
+        // setValue(userDetails)
+    };
+
     return (
         <label
             htmlFor={htmlFor}
             className={
                 type === "file"
-                    ? "relative cursor-pointer w-20 h-20 overflow-hidden bg-slate-300 rounded-full"
+                    ? "relative h-20 w-20 cursor-pointer overflow-hidden rounded-full bg-slate-300"
                     : "w-80 cursor-text"
             }
         >
-            {type === "file" && <IoCameraOutline className="absolute p-5 w-full h-full aspect-square" />}
+            {type === "file" && <IoCameraOutline className="absolute aspect-square h-full w-full p-5" />}
             <input
                 id={htmlFor}
                 type={type}
                 className={
                     type === "file"
-                        ? "w-full file:hidden invisible"
-                        : "w-full border-b bg-transparent py-3 cursor-text outline-none"
+                        ? "invisible w-full file:hidden"
+                        : "w-full cursor-text border-b bg-transparent py-3 outline-none"
                 }
                 dir={dir ? "ltr" : "trl"}
                 disabled={!isShow && true}
                 value={userDetails}
-                onChange={(e) => setUserDetails({ ...userDetails, userDetails: e.target.value })}
+                onChange={(e) => changeHandler(e, type)}
                 ref={inputRef}
                 placeholder={placeholder}
             />
