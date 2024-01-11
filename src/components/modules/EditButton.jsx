@@ -1,23 +1,8 @@
+import propTypes from "prop-types";
 import { FaCheckCircle } from "react-icons/fa";
 import { MdCancel, MdDriveFileRenameOutline } from "react-icons/md";
-import propTypes from "prop-types";
-import axios from "axios";
-import { BASE_URL } from "../../services/virgoolApi";
-import toast from "react-hot-toast";
 
-const EditButton = ({ userDetails, isShow, setIsShow, btnHandler }) => {
-    console.log(userDetails);
-    const saveHandler = (url) => {
-        axios
-            .put(`${BASE_URL}v1/user/me/name`, { _id: "652173368b66c7ad1d5ce5be", name: "سعیدی راد" })
-            .then((res) => {
-                if ((res.status == 200) | 201) {
-                    toast.success("اطلاعات با موفقیت آپدیت شد.");
-                }
-            })
-            .catch((err) => console.log(err.response.data));
-    };
-
+const EditButton = ({ setIsSave, isShow, setIsShow, btnHandler }) => {
     return (
         <div className="flex flex-col space-y-2 py-3">
             {!isShow && (
@@ -33,7 +18,7 @@ const EditButton = ({ userDetails, isShow, setIsShow, btnHandler }) => {
                 <div className="flex gap-5">
                     <div
                         className="flex cursor-pointer items-center gap-3 self-start rounded-md border border-blue-50 bg-blue-50 px-3 py-1.5 text-blue-600 transition-colors hover:border-blue-100 hover:bg-blue-100"
-                        onClick={saveHandler}
+                        onClick={() => setIsSave(true)}
                     >
                         <button>ذخیره</button>
                         <FaCheckCircle size={18} />

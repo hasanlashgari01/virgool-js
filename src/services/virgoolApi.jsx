@@ -10,6 +10,7 @@ const getTopics = () => `${BASE_URL}v1/topic`;
 const getTopic = (href) => `${BASE_URL}v1/topic/${href}`;
 const getUserProfile = (username) => `${BASE_URL}v1/user/profile/${username}`;
 const getUser = () => `${BASE_URL}v1/user/me/settings`;
+const putUser = () => `${BASE_URL}v1/user/me/settings`;
 const getDetails = () => `${BASE_URL}v2/admin/index`;
 const getMe = () => `${BASE_URL}v1/auth/getMe`;
 
@@ -23,6 +24,7 @@ export {
     getTopic,
     getUserProfile,
     getUser,
+    putUser,
     getDetails,
     topicRoute,
     getMe,

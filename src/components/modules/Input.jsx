@@ -1,13 +1,7 @@
 import propTypes from "prop-types";
 import { IoCameraOutline } from "react-icons/io5";
 
-const Input = ({ value, setValue, type, htmlFor, isShow, userDetails, setUserDetails, inputRef, placeholder, dir }) => {
-    const changeHandler = (e, type) => {
-        setUserDetails({ ...userDetails, [type]: e.target.value });
-        // console.log(Object.keys(userDetails));
-        // setValue(userDetails)
-    };
-
+const Input = ({ type, htmlFor, inputValue, inputRef, placeholder, dir }) => {
     return (
         <label
             htmlFor={htmlFor}
@@ -21,17 +15,16 @@ const Input = ({ value, setValue, type, htmlFor, isShow, userDetails, setUserDet
             <input
                 id={htmlFor}
                 type={type}
+                placeholder={placeholder}
                 className={
                     type === "file"
                         ? "invisible w-full file:hidden"
                         : "w-full cursor-text border-b bg-transparent py-3 outline-none"
                 }
                 dir={dir ? "ltr" : "trl"}
-                disabled={!isShow && true}
-                value={userDetails}
-                onChange={(e) => changeHandler(e, type)}
+                value={inputValue}
+                // onChange={(e) => changeHandler(e, inputField)}
                 ref={inputRef}
-                placeholder={placeholder}
             />
         </label>
     );

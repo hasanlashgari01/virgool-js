@@ -1,28 +1,79 @@
+import axios from "axios";
 import propTypes from "prop-types";
-import EditInput from "../../components/modules/EditInput";
+import { useForm } from "react-hook-form";
+import MsgBox from "../../components/modules/ErrorMessage";
+import { getTokenFromLocalStorage } from "../../services/func";
+import { BASE_URL, getUser, putUser } from "../../services/virgoolApi";
+import toast from "react-hot-toast";
 
-const AboutMeSection = ({ userDetails, setUserDetails }) => {
+const AboutMeSection = () => {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({
+        defaultValues: async () => {
+            const {
+                data: { name, biography },
+            } = await axios.get(getUser(), {
+                headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
+            });
+
+            return {
+                name,
+                biography,
+            };
+        },
+    });
+
+    const updateHandler = (data) => {
+        axios
+            .put(`${BASE_URL}v1/user/me/settings`, data, {
+                headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
+            })
+            .then((res) => {
+                if (res.status == 201) {
+                    toast.success("اطلاعات به روز شد.");
+                }
+            })
+            .catch((err) => {
+                toast.error(err.response.data.message);
+            });
+    };
+
     return (
         <div>
             <h1 className="mb-5 border-b border-[#cacaca] pb-5 text-xl lg:text-2xl">درباره شما</h1>
-            <div className="mb-28 mt-10 space-y-8">
-                <EditInput
-                    userDetails={userDetails?.name}
-                    setUserDetails={setUserDetails}
-                    description="نام نمایشی خود را وارد کنید"
-                />
-                <EditInput
-                    userDetails={userDetails?.biography}
-                    setUserDetails={setUserDetails}
-                    description="بیوگرافی شما در صفحه پروفایل نمایش داده می شود. حداکثر ۲۰۰ کاراکتر"
-                />
-                <EditInput
-                    image={userDetails.avatar ? userDetails.avatar : "/public/images/Ana-de-Armas-300x400.jpg"}
-                    userDetails={userDetails?.avatar}
-                    setUserDetails={setUserDetails}
-                    description="عکس شما در صفحه پروفایل و پست‌ها نمایش داده می‌شود."
-                />
-            </div>
+            <form className="mb-28 mt-10 space-y-8" onSubmit={handleSubmit(updateHandler)}>
+                <label htmlFor="">
+                    <input
+                        type="text"
+                        name="name"
+                        className="w-full cursor-text border-b bg-transparent py-3 outline-none"
+                        {...register("name")}
+                    />
+                    {errors.name && <MsgBox msg={errors.name.message} />}
+                </label>
+                <label htmlFor="">
+                    <input
+                        type="text"
+                        name="name"
+                        className="w-full cursor-text border-b bg-transparent py-3 outline-none"
+                        {...register("biography")}
+                    />
+                    {errors.biography && <MsgBox msg={errors.biography.message} />}
+                </label>
+                <label htmlFor="">
+                    <input
+                        type="text"
+                        name="name"
+                        className="w-full cursor-text border-b bg-transparent py-3 outline-none"
+                        {...register("avatar")}
+                    />
+                    {errors.avatar && <MsgBox msg={errors.avatar.message} />}
+                </label>
+                <input type="submit" value="ثبت عملیات" className="btn" />
+            </form>
         </div>
     );
 };
