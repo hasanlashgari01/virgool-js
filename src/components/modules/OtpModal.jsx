@@ -45,10 +45,11 @@ const OtpModal = ({ identifier, isRegisterPage, setIsShowModal }) => {
                 .post(authFetch() + status, data)
                 .then((res) => {
                     if (res.status == (200 || 201)) {
-                        loginHandler(TOKEN_ADMIN);
+                        loginHandler(res?.data?.accessToken, res?.data?.user);
                         isRegisterPage
                             ? toast.success("حساب با موفقیت ساخته شد")
                             : toast.success("شما وارد حساب خود شدید");
+
                         setTimeout(() => {
                             navigate("/");
                         }, 3000);

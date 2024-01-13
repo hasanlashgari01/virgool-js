@@ -4,8 +4,14 @@ import HeaderNotifications from "./HeaderNotifications";
 import HeaderSearch from "./HeaderSearch";
 import NewPost from "./NewPost";
 import ProfileDropDown from "./ProfileDropDown";
+import { AuthContext } from "../../context/AuthContext";
+import { useContext } from "react";
 
-const HeaderTop = ({ isLogin }) => {
+const HeaderTop = () => {
+    const {
+        defaultValue: { isLoggedIn },
+    } = useContext(AuthContext);
+
     return (
         <div className="container flex items-center justify-between py-6">
             <div className="flex items-center gap-2.5">
@@ -16,7 +22,7 @@ const HeaderTop = ({ isLogin }) => {
             </div>
             <div className="flex items-center gap-3">
                 <HeaderSearch />
-                {isLogin ? (
+                {isLoggedIn ? (
                     <>
                         <HeaderNotifications />
                         <ProfileDropDown />

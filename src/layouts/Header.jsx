@@ -1,14 +1,11 @@
-import { useState } from "react";
-import HeaderTop from "../components/templates/HeaderTop";
 import HeaderNav from "../components/templates/HeaderNav";
+import HeaderTop from "../components/templates/HeaderTop";
 
 const Header = () => {
-    const [isLogin, setIsLogin] = useState(true);
-
     return (
         <header>
-            <HeaderTop isLogin={isLogin} />
-            <HeaderNav isLogin={isLogin} />
+            <HeaderTop />
+            <HeaderNav />
         </header>
     );
 };

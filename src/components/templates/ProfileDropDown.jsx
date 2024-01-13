@@ -1,9 +1,7 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { BsMoon, BsSun } from "react-icons/bs";
+import { AuthContext } from "../../context/AuthContext";
 import useDropDown from "../../hooks/useDropDown";
-import { getTokenFromLocalStorage } from "../../services/func";
-import { getMe } from "../../services/virgoolApi";
 import LinkItem from "./LinkItem";
 import NewPost from "./NewPost";
 
@@ -16,16 +14,11 @@ const links = [
 ];
 
 const ProfileDropDown = () => {
+    const {
+        defaultValue: { userInfos: user },
+    } = useContext(AuthContext);
     const [imgRef, isOpen, openHandler] = useDropDown();
     const [isDarkMode, setIsDarkMode] = useState(false);
-    const [user, setUser] = useState({});
-
-    useEffect(() => {
-        axios
-            .get(getMe(), { headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` } })
-            .then((res) => setUser(res.data))
-            .catch((err) => err && err.response);
-    }, []);
 
     const changeTheme = () => setIsDarkMode(!isDarkMode);
 
@@ -33,7 +26,7 @@ const ProfileDropDown = () => {
         <div className="relative">
             <div className="h-10 w-10 cursor-pointer overflow-hidden rounded-full">
                 <img
-                    src={user.avatar ? user.avatar : "/public/images/Ana-de-Armas-300x400.jpg"}
+                    src={user?.avatar ? user.avatar : "/public/images/Ana-de-Armas-300x400.jpg"}
                     alt="عکس پروفایل"
                     onClick={openHandler}
                     ref={imgRef}
