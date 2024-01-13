@@ -7,7 +7,7 @@ import EmailNotification from "./EmailNotification";
 import PersonalInformation from "./PersonalInformation";
 import ThemeSettings from "./ThemeSettings";
 
-const Main = ({ topPosition, setTopPosition }) => {
+const Main = ({ setTopPosition }) => {
     const mainRef = useRef();
 
     useEffect(() => {
@@ -23,7 +23,7 @@ const Main = ({ topPosition, setTopPosition }) => {
 
     return (
         <div className="w-full" ref={mainRef}>
-            <AboutMeSection topPosition={topPosition} setTopPosition={setTopPosition} />
+            <AboutMeSection />
             <AccountSection />
             <PersonalInformation />
             <ThemeSettings />

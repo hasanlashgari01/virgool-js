@@ -1,7 +1,11 @@
-import { useContext, useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { BsMoon, BsSun } from "react-icons/bs";
-import { AuthContext } from "../../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 import useDropDown from "../../hooks/useDropDown";
+import { getTokenFromLocalStorage } from "../../services/func";
+import { BASE_URL } from "../../services/virgoolApi";
 import LinkItem from "./LinkItem";
 import NewPost from "./NewPost";
 
@@ -15,18 +19,36 @@ const links = [
 
 const ProfileDropDown = () => {
     const {
-        defaultValue: { userInfos: user },
-    } = useContext(AuthContext);
+        user: { avatar, themeMode, themeStatus, name, username },
+        logoutHandler,
+    } = useAuth();
+    const [theme, setTheme] = useState({ themeMode });
     const [imgRef, isOpen, openHandler] = useDropDown();
-    const [isDarkMode, setIsDarkMode] = useState(false);
 
-    const changeTheme = () => setIsDarkMode(!isDarkMode);
+    // useEffect(() => {}, [theme]);
+
+    /* const themeHandler = () => {
+        setTheme({ themeMode: theme === "LIGHT" ? "DARK" : "LIGHT" });
+        console.log(theme);
+        axios
+            .put(`${BASE_URL}v1/user/me/settings`, theme, {
+                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
+            })
+            .then((res) => {
+                if (res.status == 201) {
+                    toast.success("اطلاعات به روز شد.");
+                }
+            })
+            .catch((err) => {
+                toast.error(err.response.data.message);
+            });
+    }; */
 
     return (
         <div className="relative">
             <div className="h-10 w-10 cursor-pointer overflow-hidden rounded-full">
                 <img
-                    src={user?.avatar ? user.avatar : "/public/images/Ana-de-Armas-300x400.jpg"}
+                    src={avatar ? avatar : "/public/images/Ana-de-Armas-300x400.jpg"}
                     alt="عکس پروفایل"
                     onClick={openHandler}
                     ref={imgRef}
@@ -35,8 +57,8 @@ const ProfileDropDown = () => {
             {isOpen && (
                 <ul className="child:dropdown-border absolute left-0 top-14 w-72 rounded-md bg-white px-3 shadow-drop">
                     <div>
-                        <h4>{user.name}</h4>
-                        <LinkItem to={`/me/@${user.username}`} name="مشاهده پروفایل" classN="text-gray-700" />
+                        <h4>{name}</h4>
+                        <LinkItem to={`/me/@${username}`} name="مشاهده پروفایل" classN="text-gray-700" />
                     </div>
                     <div className="child:py-1">
                         <NewPost />
@@ -47,12 +69,18 @@ const ProfileDropDown = () => {
                     <div>
                         <LinkItem to="/me/publications" name="انتشارات" />
                     </div>
-                    <div className="flex cursor-pointer select-none items-center justify-between" onClick={changeTheme}>
-                        <span>حالت {isDarkMode ? "شب" : "روز"}</span>
-                        {isDarkMode ? <BsMoon /> : <BsSun />}
-                    </div>
-                    <div>
-                        <LinkItem to="/logout" name="خروج" />
+                    {themeStatus == 1 && (
+                        <div
+                            className="flex cursor-pointer select-none items-center justify-between"
+                            // onClick={() => themeHandler}
+                        >
+                            <span>حالت {themeMode === "LIGHT" ? "شب" : "روز"}</span>
+                            {themeMode === "LIGHT" ? <BsMoon /> : <BsSun />}
+                        </div>
+                    )}
+                    <div onClick={() => logoutHandler()}>
+                        {/* <LinkItem to="/logout" name="خروج" /> */}
+                        <span>خروج</span>
                     </div>
                 </ul>
             )}

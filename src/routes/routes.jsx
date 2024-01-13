@@ -13,6 +13,7 @@ import { AuthLogin, AuthRegister } from "./auth.routes";
 import { CreatePost, Home } from "./index.routes";
 import { IndexMe, Likes, Lists, Publications, Settings } from "./me.routes";
 import { Drafts, IndexPosts, PostPage, Published } from "./posts.routes";
+import { AdminPrivate, UserPrivate } from "./private.routes";
 import { IndexProfile, ProfileLists, ProfilePosts, ProfilePublications } from "./profile.routes";
 
 const routes = [
@@ -33,7 +34,11 @@ const routes = [
     // Me
     {
         path: "/me/*",
-        element: <IndexMe />,
+        element: (
+            <UserPrivate>
+                <IndexMe />
+            </UserPrivate>
+        ),
         children: [
             { path: "settings", element: <Settings /> },
             { path: "publications", element: <Publications /> },
@@ -62,7 +67,11 @@ const routes = [
     },
     {
         path: "/admin/*",
-        element: <AdminPage />,
+        element: (
+            <AdminPrivate>
+                <AdminPage />
+            </AdminPrivate>
+        ),
         children: [
             { path: "index", element: <AdminIndex /> },
             { path: "admins", element: <AdminUsersAdmins /> },
@@ -76,3 +85,4 @@ const routes = [
 ];
 
 export { routes };
+

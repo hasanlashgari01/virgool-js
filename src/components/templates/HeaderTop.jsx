@@ -1,16 +1,13 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 import HeaderNotifications from "./HeaderNotifications";
 import HeaderSearch from "./HeaderSearch";
 import NewPost from "./NewPost";
 import ProfileDropDown from "./ProfileDropDown";
-import { AuthContext } from "../../context/AuthContext";
-import { useContext } from "react";
 
 const HeaderTop = () => {
-    const {
-        defaultValue: { isLoggedIn },
-    } = useContext(AuthContext);
+    const { isLoggin } = useAuth();
 
     return (
         <div className="container flex items-center justify-between py-6">
@@ -22,7 +19,7 @@ const HeaderTop = () => {
             </div>
             <div className="flex items-center gap-3">
                 <HeaderSearch />
-                {isLoggedIn ? (
+                {isLoggin ? (
                     <>
                         <HeaderNotifications />
                         <ProfileDropDown />

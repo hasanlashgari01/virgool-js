@@ -2,7 +2,7 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import { useContext, useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
-import { TOKEN_ADMIN, authFetch } from "../../services/virgoolApi";
+import { authFetch } from "../../services/virgoolApi";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { RiCloseCircleFill } from "react-icons/ri";
@@ -45,7 +45,7 @@ const OtpModal = ({ identifier, isRegisterPage, setIsShowModal }) => {
                 .post(authFetch() + status, data)
                 .then((res) => {
                     if (res.status == (200 || 201)) {
-                        loginHandler(res?.data?.accessToken, res?.data?.user);
+                        loginHandler(res.data?.accessToken, res?.data?.user);
                         isRegisterPage
                             ? toast.success("حساب با موفقیت ساخته شد")
                             : toast.success("شما وارد حساب خود شدید");

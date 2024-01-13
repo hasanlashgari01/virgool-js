@@ -1,6 +1,6 @@
-import { createContext, useEffect, useState } from "react";
-import propTypes from "prop-types";
 import axios from "axios";
+import propTypes from "prop-types";
+import { createContext, useContext, useEffect, useState } from "react";
 import { getTokenFromLocalStorage } from "../services/func";
 import { getMe } from "../services/virgoolApi";
 
@@ -15,27 +15,29 @@ const AuthProvider = ({ children }) => {
         logout: () => {},
     });
 
-    const loginHandler = (token, data) => {
-        setDefaultValue({ ...defaultValue, isLoggedIn: true, token, userInfos: data });
-        localStorage.setItem("user", JSON.stringify(defaultValue));
+    const loginHandler = (token) => {
+        localStorage.setItem("user", JSON.stringify({ isLoggedIn: true, token }));
     };
 
     const logoutHandler = () => {
-        setDefaultValue({ ...defaultValue, token: null, userInfos: null });
         localStorage.removeItem("user");
     };
 
+    const fetchData = () => {
+        if (getTokenFromLocalStorage()) {
+            axios
+                .get(getMe(), { headers: { Authorization: `Bearer ${getTokenFromLocalStorage()?.token}` } })
+                .then((res) => {
+                    if (res.status == 200) {
+                        setDefaultValue({ isLoggedIn: true, userInfos: res.data });
+                    }
+                })
+                .catch((err) => err.response);
+        }
+    };
+
     useEffect(() => {
-        axios
-            .get(getMe(), { headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` } })
-            .then((res) => {
-                if (res.status == 200) {
-                    setDefaultValue({ isLoggedIn: true, userInfos: getTokenFromLocalStorage().userInfos });
-                } else {
-                    setDefaultValue({ isLoggedIn: false });
-                }
-            })
-            .catch((err) => err.response);
+        fetchData();
     }, []);
 
     return (
@@ -43,8 +45,17 @@ const AuthProvider = ({ children }) => {
     );
 };
 
+const useAuth = () => {
+    const {
+        defaultValue: { userInfos: user, isLoggedIn: isLoggin },
+        logoutHandler,
+    } = useContext(AuthContext);
+    return { user, isLoggin, logoutHandler };
+};
+
 AuthProvider.propTypes = {
     children: propTypes.object,
 };
 
 export default AuthProvider;
+export { useAuth };
