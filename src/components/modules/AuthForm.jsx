@@ -1,14 +1,14 @@
-import { useContext } from "react";
-import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Link, useNavigate } from "react-router-dom";
-import * as yup from "yup";
-import PropTypes from "prop-types";
-import MsgBox from "./ErrorMessage";
-import { TOKEN_ADMIN, authFetch } from "../../services/virgoolApi";
-import { AuthContext } from "../../context/AuthContext";
-import toast from "react-hot-toast";
 import axios from "axios";
+import PropTypes from "prop-types";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
+import * as yup from "yup";
+import { authFetch } from "../../services/virgoolApi";
+import MsgBox from "./ErrorMessage";
+import OtpModal from "./OtpModal";
 
 const phoneRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -17,7 +17,7 @@ const schemaRegister = yup
     .object({
         name: yup.string().min(3, "اسم باید بیشتر از سه حرف باشد").required("اسم ضروری است"),
         username: yup.string().min(3, "نام کاربری باید بیشتر از سه حرف باشد").required("نام کاربری ضروری است"),
-        email: yup.string().email("ایمیل به درستی وارد نشده است").required("ایمیل ضروری است"),
+        identifier: yup.string().email("ایمیل به درستی وارد نشده است").required("ایمیل ضروری است"),
         phone: yup.string().required("شماره تلفن لازم است").matches(phoneRegExp, "شماره تلفن به درستی وارد نشده است"),
         password: yup
             .string()
@@ -29,10 +29,7 @@ const schemaRegister = yup
 
 const schemaLogin = yup
     .object({
-        identifier: yup
-            .string()
-            .required("شماره تلفن لازم است")
-            .matches(phoneRegExp, "شماره تلفن به درستی وارد نشده است"),
+        identifier: yup.string().email("ایمیل به درستی وارد نشده است").required("ایمیل ضروری است"),
         password: yup
             .string()
             .min(8, "رمز عبور باید بین ۸ و ۱۶ کاراکتر باشد")
@@ -41,10 +38,10 @@ const schemaLogin = yup
     .required();
 
 const AuthForm = ({ isRegisterPage = false, title, submitValue, msgHelpLink, msgHelp }) => {
-    const { loginHandler } = useContext(AuthContext);
-    const navigate = useNavigate();
+    const [email, setEmail] = useState("");
+    const [isShowModal, setIsShowModal] = useState(false);
 
-    let status = isRegisterPage ? "register" : "login";
+    let status = isRegisterPage ? "access-register" : "access-login";
     const {
         register,
         handleSubmit,
@@ -52,29 +49,23 @@ const AuthForm = ({ isRegisterPage = false, title, submitValue, msgHelpLink, msg
     } = useForm({ resolver: yupResolver(isRegisterPage ? schemaRegister : schemaLogin) });
 
     const submitHandler = (data) => {
+        setEmail(data.identifier);
         axios
             .post(authFetch() + status, data)
             .then((res) => {
-                if ((res.status == 200) | 201) {
-                    loginHandler(TOKEN_ADMIN);
-                    isRegisterPage ? toast.success("حساب با موفقیت ساخته شد") : toast.success("شما وارد حساب خود شدید");
-                    setTimeout(() => {
-                        navigate("/");
-                    }, 3000);
+                if (res.status == (200 || 201)) {
+                    toast.success(res.data.message);
+                    setIsShowModal(true);
                 }
             })
             .catch((err) => {
-                if (err.response && err.response.status == 500) {
-                    toast.error("رمز عبور نادرست است");
-                } else if (err.response.status == 409) {
-                    toast.error("کاربر وجود دارد");
-                }
+                toast.error(err.response.data.message);
             });
     };
 
     return (
         <>
-            <div className="flex h-3/4 flex-1 flex-col bg-slate-200 px-10 pt-10 text-gray-600 tb:h-screen tb:justify-center">
+            <div className="relative flex h-3/4 flex-1 flex-col bg-slate-200 px-10 pt-10 text-gray-600 tb:h-screen tb:justify-center">
                 <h2 className="text-xl font-semibold text-blue-500">{title}</h2>
                 <form className="mt-5 flex flex-col gap-7" onSubmit={handleSubmit(submitHandler)}>
                     {isRegisterPage && (
@@ -89,21 +80,14 @@ const AuthForm = ({ isRegisterPage = false, title, submitValue, msgHelpLink, msg
                             {errors.username && <MsgBox msg={errors.username.message} />}
                         </label>
                     )}
+                    <label className="relative">
+                        <input type="email" placeholder="ایمیل" className="input" {...register("identifier")} />
+                        {errors.identifier && <MsgBox msg={errors.identifier.message} />}
+                    </label>
                     {isRegisterPage && (
                         <label className="relative">
-                            <input type="email" placeholder="ایمیل" className="input" {...register("email")} />
-                            {errors.email && <MsgBox msg={errors.email.message} />}
-                        </label>
-                    )}
-                    {isRegisterPage ? (
-                        <label className="relative">
-                            <input type="text" placeholder="شماره تلفن" className="input" {...register("phone")} />
+                            <input type="tel" placeholder="شماره تلفن" className="input" dir="rtl" {...register("phone")} />
                             {errors.phone && <MsgBox msg={errors.phone.message} />}
-                        </label>
-                    ) : (
-                        <label className="relative">
-                            <input type="text" placeholder="شماره تلفن" className="input" {...register("identifier")} />
-                            {errors.identifier && <MsgBox msg={errors.identifier.message} />}
                         </label>
                     )}
                     <label className="relative">
@@ -133,6 +117,9 @@ const AuthForm = ({ isRegisterPage = false, title, submitValue, msgHelpLink, msg
                     </p>
                     <Link to={`/auth/${msgHelpLink}`}>{msgHelp}</Link>
                 </div>
+                {isShowModal && (
+                    <OtpModal identifier={email} isRegisterPage={isRegisterPage} setIsShowModal={setIsShowModal} />
+                )}
             </div>
         </>
     );

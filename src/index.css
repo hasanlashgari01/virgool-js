@@ -184,4 +184,8 @@
     .form__btn {
         @apply flex items-center rounded-md px-6 py-1.5  transition-colors;
     }
+
+    .otp__number {
+        @apply h-10 w-10 rounded-md border border-gray-200 text-center outline-none transition-all focus:border-2 focus:border-black;
+    }
 }
