@@ -1,32 +1,21 @@
 import axios from "axios";
 import propTypes from "prop-types";
-import { useEffect, useRef, useState } from "react";
-import { getTokenFromLocalStorage } from "../../services/func";
-import { BASE_URL, getUser } from "../../services/virgoolApi";
+import { useEffect, useRef } from "react";
 import toast from "react-hot-toast";
+import { getTokenFromLocalStorage } from "../../services/func";
+import { BASE_URL } from "../../services/virgoolApi";
 
-const InputRadioWrapper = ({ title, children }) => {
-    const [value, setValue] = useState();
-
+const InputRadioWrapper = ({ value, title, type, children }) => {
     const parentValueRef = useRef();
 
     useEffect(() => {
-        axios
-            .get(getUser(), {
-                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
-            })
-            .then((res) => {
-                // console.log(res.data);
-                setValue(res.data.gender.toLowerCase());
+        if (value) {
+            Array.from(parentValueRef.current.children).forEach((elem) => {
+                if (elem.firstElementChild.id == value) {
+                    elem.firstElementChild.checked = true;
+                }
             });
-    }, []);
-
-    useEffect(() => {
-        Array.from(parentValueRef.current.children).forEach((elem) => {
-            if (elem.firstElementChild.id == value) {
-                elem.firstElementChild.checked = true;
-            }
-        });
+        }
     }, [value]);
 
     const changeHandler = (e) => {
@@ -35,7 +24,7 @@ const InputRadioWrapper = ({ title, children }) => {
         axios
             .put(
                 `${BASE_URL}v1/user/me/settings`,
-                { gender: value },
+                { [type]: value },
                 { headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` } },
             )
             .then((res) => {
@@ -61,6 +50,8 @@ const InputRadioWrapper = ({ title, children }) => {
 InputRadioWrapper.propTypes = {
     title: propTypes.string,
     children: propTypes.array,
+    type: propTypes.string,
+    value: propTypes.string,
 };
 
 export default InputRadioWrapper;

@@ -1,10 +1,9 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import EditInput from "../../components/modules/EditInput";
-import { getTokenFromLocalStorage } from "../../services/func";
-import { BASE_URL, getUser } from "../../services/virgoolApi";
 import toast from "react-hot-toast";
 import MsgBox from "../../components/modules/ErrorMessage";
+import { getTokenFromLocalStorage } from "../../services/func";
+import { BASE_URL, getUser } from "../../services/virgoolApi";
 
 const AccountSection = () => {
     const {
