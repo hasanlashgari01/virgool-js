@@ -20,10 +20,13 @@ const links = [
 const ProfileDropDown = () => {
     const {
         user: { avatar, themeMode, themeStatus, name, username },
-        logoutHandler,
+        logout,
     } = useAuth();
     const [theme, setTheme] = useState({ themeMode });
-    const [imgRef, isOpen, openHandler] = useDropDown();
+    const [imgRef, isOpen, setIsOpen] = useDropDown();
+    const [showModal, setShowModal] = useState(false);
+
+    const openHandler = () => setIsOpen(!isOpen);
 
     // useEffect(() => {}, [theme]);
 
@@ -78,9 +81,8 @@ const ProfileDropDown = () => {
                             {themeMode === "LIGHT" ? <BsMoon /> : <BsSun />}
                         </div>
                     )}
-                    <div onClick={() => logoutHandler()}>
-                        {/* <LinkItem to="/logout" name="خروج" /> */}
-                        <span>خروج</span>
+                    <div className="cursor-pointer" onClick={() => logout()}>
+                        خروج
                     </div>
                 </ul>
             )}

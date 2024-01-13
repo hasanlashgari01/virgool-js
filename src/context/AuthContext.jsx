@@ -20,6 +20,7 @@ const AuthProvider = ({ children }) => {
     };
 
     const logoutHandler = () => {
+        setDefaultValue({ isLoggedIn: false, token: null, userInfos: null });
         localStorage.removeItem("user");
     };
 
@@ -41,16 +42,18 @@ const AuthProvider = ({ children }) => {
     }, []);
 
     return (
-        <AuthContext.Provider value={{ defaultValue, loginHandler, logoutHandler }}>{children}</AuthContext.Provider>
+        <AuthContext.Provider value={{ defaultValue, loginHandler, logout: logoutHandler }}>
+            {children}
+        </AuthContext.Provider>
     );
 };
 
 const useAuth = () => {
     const {
         defaultValue: { userInfos: user, isLoggedIn: isLoggin },
-        logoutHandler,
+        logout,
     } = useContext(AuthContext);
-    return { user, isLoggin, logoutHandler };
+    return { user, isLoggin, logout };
 };
 
 AuthProvider.propTypes = {

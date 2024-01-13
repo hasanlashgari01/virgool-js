@@ -1,11 +1,7 @@
 import HeaderTop from "../../components/templates/HeaderTop";
 
 const Header = () => {
-    return (
-        <>
-            <HeaderTop />
-        </>
-    );
+    return <HeaderTop />;
 };
 
 export default Header;
