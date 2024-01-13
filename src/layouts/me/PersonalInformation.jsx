@@ -5,8 +5,8 @@ import InputRadioWrapper from "../../components/modules/InputRadioWrapper";
 const PersonalInformation = () => {
     return (
         <div className="mt-20 space-y-5">
-            <h1 className="text-xl lg:text-2xl pb-5 border-b border-[#cacaca]">اطلاعات شخصی</h1>
-            <div className="mt-10 mb-28 space-y-8">
+            <h1 className="border-b border-[#cacaca] pb-5 text-xl lg:text-2xl">اطلاعات شخصی</h1>
+            <div className="mb-28 mt-10 space-y-8">
                 <InputRadioWrapper type="gender" title="جنسیت">
                     <InputRadio id="women" name="زن" />
                     <InputRadio id="other" name="سایر" />
