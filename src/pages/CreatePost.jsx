@@ -35,7 +35,7 @@ const NewPost = () => {
 
     return (
         <>
-            <HeaderTop isLogin={true} />
+            <HeaderTop />
             <div className="container flex flex-col mt-5 gap-5">
                 <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-start mt-5 gap-5">
                     <div className="flex justify-between items-center">

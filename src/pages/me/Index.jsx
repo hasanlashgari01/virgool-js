@@ -4,7 +4,7 @@ import HeaderTop from "../../components/templates/HeaderTop";
 const Index = () => {
     return (
         <>
-            <HeaderTop isLogin={true} />
+            <HeaderTop />
             <div className="container mt-5">
                 <Outlet />
             </div>

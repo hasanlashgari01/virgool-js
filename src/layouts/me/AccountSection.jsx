@@ -16,7 +16,7 @@ const AccountSection = () => {
             const {
                 data: { username, email, phone },
             } = await axios.get(getUser(), {
-                headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
+                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
             });
 
             return {
@@ -30,7 +30,7 @@ const AccountSection = () => {
     const updateHandler = (data) => {
         axios
             .put(`${BASE_URL}v1/user/me/settings`, data, {
-                headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
+                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
             })
             .then((res) => {
                 if (res.status == 201) {
