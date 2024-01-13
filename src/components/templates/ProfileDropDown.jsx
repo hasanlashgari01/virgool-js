@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import { BsMoon, BsSun } from "react-icons/bs";
 import { useAuth } from "../../context/AuthContext";
@@ -22,21 +22,22 @@ const ProfileDropDown = () => {
         user: { avatar, themeMode, themeStatus, name, username },
         logout,
     } = useAuth();
-    const [theme, setTheme] = useState({ themeMode });
+    const [theme, setTheme] = useState(themeMode);
     const [imgRef, isOpen, setIsOpen] = useDropDown();
-    const [showModal, setShowModal] = useState(false);
 
     const openHandler = () => setIsOpen(!isOpen);
 
-    // useEffect(() => {}, [theme]);
-
-    /* const themeHandler = () => {
-        setTheme({ themeMode: theme === "LIGHT" ? "DARK" : "LIGHT" });
-        console.log(theme);
+    const themeHandler = () => {
+        setTheme(theme === "LIGHT" ? "DARK" : "LIGHT");
+        console.log(1);
         axios
-            .put(`${BASE_URL}v1/user/me/settings`, theme, {
-                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
-            })
+            .put(
+                `${BASE_URL}v1/user/me/settings`,
+                { themeMode: theme },
+                {
+                    headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
+                },
+            )
             .then((res) => {
                 if (res.status == 201) {
                     toast.success("اطلاعات به روز شد.");
@@ -45,7 +46,7 @@ const ProfileDropDown = () => {
             .catch((err) => {
                 toast.error(err.response.data.message);
             });
-    }; */
+    };
 
     return (
         <div className="relative">
@@ -75,10 +76,10 @@ const ProfileDropDown = () => {
                     {themeStatus == 1 && (
                         <div
                             className="flex cursor-pointer select-none items-center justify-between"
-                            // onClick={() => themeHandler}
+                            onClick={() => themeHandler()}
                         >
-                            <span>حالت {themeMode === "LIGHT" ? "شب" : "روز"}</span>
-                            {themeMode === "LIGHT" ? <BsMoon /> : <BsSun />}
+                            <span>حالت {theme === "LIGHT" ? "شب" : "روز"}</span>
+                            {theme === "LIGHT" ? <BsMoon /> : <BsSun />}
                         </div>
                     )}
                     <div className="cursor-pointer" onClick={() => logout()}>
