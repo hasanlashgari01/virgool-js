@@ -186,6 +186,17 @@
     }
 
     .otp__number {
-        @apply h-10 w-10 rounded-md border border-gray-200 text-center outline-none transition-all focus:border-2 focus:border-black;
+        @apply h-10 w-10 rounded-md border border-gray-400 text-center outline-none transition-all focus:border-2 focus:border-sky-500;
     }
+}
+
+.otp__number::-webkit-outer-spin-button,
+.otp__number::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.otp__number[type=number] {
+  -moz-appearance: textfield;
 }

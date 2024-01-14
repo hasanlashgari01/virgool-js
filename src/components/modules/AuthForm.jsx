@@ -65,7 +65,7 @@ const AuthForm = ({ isRegisterPage = false, title, submitValue, msgHelpLink, msg
 
     return (
         <>
-            <div className="relative flex h-3/4 flex-1 flex-col bg-slate-200 px-10 pt-10 text-gray-600 tb:h-screen tb:justify-center">
+            <div className="flex h-3/4 flex-1 flex-col bg-slate-200 px-10 pt-10 text-gray-600 tb:h-screen tb:justify-center">
                 <h2 className="text-xl font-semibold text-blue-500">{title}</h2>
                 <form className="mt-5 flex flex-col gap-7" onSubmit={handleSubmit(submitHandler)}>
                     {isRegisterPage && (
@@ -86,7 +86,13 @@ const AuthForm = ({ isRegisterPage = false, title, submitValue, msgHelpLink, msg
                     </label>
                     {isRegisterPage && (
                         <label className="relative">
-                            <input type="tel" placeholder="شماره تلفن" className="input" dir="rtl" {...register("phone")} />
+                            <input
+                                type="tel"
+                                placeholder="شماره تلفن"
+                                className="input"
+                                dir="rtl"
+                                {...register("phone")}
+                            />
                             {errors.phone && <MsgBox msg={errors.phone.message} />}
                         </label>
                     )}

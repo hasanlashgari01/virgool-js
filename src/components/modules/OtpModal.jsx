@@ -6,6 +6,7 @@ import { authFetch } from "../../services/virgoolApi";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { RiCloseCircleFill } from "react-icons/ri";
+import OtpInput from "./OtpInput";
 
 const OtpModal = ({ identifier, isRegisterPage, setIsShowModal }) => {
     const { loginHandler } = useContext(AuthContext);
@@ -14,20 +15,6 @@ const OtpModal = ({ identifier, isRegisterPage, setIsShowModal }) => {
     const formRef = useRef();
     let status = isRegisterPage ? "register" : "login";
     let numbers = [];
-
-    const changeHandler = (e) => {
-        let value = e.target.value;
-        let nextElem = e.target.nextElementSibling;
-
-        if (value.length == 1) {
-            // if nextElement exist, focus nextElement
-            nextElem && nextElem.focus();
-        } else if (value.length > 1) {
-            // if element value > 1 clear other numbers and focus nextElement
-            e.target.value = value.slice(0, 1);
-            nextElem && nextElem.focus();
-        }
-    };
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -62,19 +49,28 @@ const OtpModal = ({ identifier, isRegisterPage, setIsShowModal }) => {
     }, [data]);
 
     return (
-        <div className="absolute right-1/2 top-1/2 h-72 w-96 -translate-y-1/2 translate-x-1/2 rounded-lg bg-white p-5 shadow-2xl">
+        <div className="absolute right-4 left-4 sm:right-1/2 top-1/2 -translate-y-1/2 sm:translate-x-1/2 rounded-lg bg-white px-10 pt-5 shadow-2xl sm:w-96 md:w-[450px] lg:w-[600px]">
             <RiCloseCircleFill size={24} onClick={() => setIsShowModal(false)} />
-            <form className="flex flex-col items-center justify-center gap-5 p-10" onSubmit={(e) => submitHandler(e)}>
-                <div className="flex w-full justify-between" dir="ltr" ref={formRef}>
-                    <input type="text" className="otp__number" onChange={(e) => changeHandler(e)} />
-                    <input type="text" className="otp__number" onChange={(e) => changeHandler(e)} />
-                    <input type="text" className="otp__number" onChange={(e) => changeHandler(e)} />
-                    <input type="text" className="otp__number" onChange={(e) => changeHandler(e)} />
-                    <input type="text" className="otp__number" onChange={(e) => changeHandler(e)} />
-                    <input type="text" className="otp__number" onChange={(e) => changeHandler(e)} />
+            <div
+                className="flex flex-col items-center justify-center gap-2 px-5 py-10 sm:gap-5 sm:px-10"
+                onSubmit={(e) => submitHandler(e)}
+            >
+                <div className="text-center">
+                    <h3 className="text-3xl font-semibold text-black">تایید ایمیل</h3>
+                    <h6 className="mt-3 text-xs lg:text-base">
+                        ما یک کد به ایمیل شما ba**@dipainhouse.com ارسال کرده ایم
+                    </h6>
                 </div>
-                <input type="submit" value="تایید" className="btn mt-5" />
-            </form>
+                <form className="mt-10 flex w-full justify-center gap-2 px-5 sm:gap-5 lg:w-1/2" dir="ltr" ref={formRef}>
+                    <OtpInput />
+                    <OtpInput />
+                    <OtpInput />
+                    <OtpInput />
+                    <OtpInput />
+                    <OtpInput />
+                </form>
+                <input type="submit" value="تایید" className="btn mt-10 w-full font-semibold" />
+            </div>
         </div>
     );
 };
