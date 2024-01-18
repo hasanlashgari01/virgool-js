@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { BiTrash } from "react-icons/bi";
 import { Link } from "react-router-dom";
-import { BASE_URL, TOKEN_ADMIN } from "../../services/virgoolApi";
 import DeleteBox from "../../components/modules/DeleteBox";
+import { getTokenFromLocalStorage } from "../../services/func";
+import { BASE_URL } from "../../services/virgoolApi";
 
 const CommentPage = () => {
     const [comments, setComments] = useState([]);
@@ -13,7 +14,9 @@ const CommentPage = () => {
 
     const fetchComments = () => {
         axios
-            .get(`${BASE_URL}v1/admin/comment`, { headers: { Authorization: `Bearer ${TOKEN_ADMIN}` } })
+            .get(`${BASE_URL}v1/admin/comment`, {
+                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
+            })
             .then(({ data }) => setComments(data));
     };
 
@@ -28,7 +31,9 @@ const CommentPage = () => {
 
     const commentHandler = (url, id, msg) => {
         axios
-            .get(`${BASE_URL}v1/admin/comment/${id}/${url}`, { headers: { Authorization: `Bearer ${TOKEN_ADMIN}` } })
+            .get(`${BASE_URL}v1/admin/comment/${id}/${url}`, {
+                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
+            })
             .then((res) => {
                 if (res.status == 200) {
                     fetchComments();
@@ -44,7 +49,7 @@ const CommentPage = () => {
     const deleteHandler = () => {
         axios
             .delete(`${BASE_URL}v1/admin/comment/${itemDetails.id}`, {
-                headers: { Authorization: `Bearer ${TOKEN_ADMIN}` },
+                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
             })
             .then((res) => {
                 setIsShowDeleteBox(false);
@@ -94,6 +99,7 @@ const CommentPage = () => {
                     ))}
                 </tbody>
             </table>
+            {!comments.length && <h1 className="text-center">کامنتی در سایت وجود ندارد</h1>}
             <DeleteBox
                 title={itemDetails.title}
                 category="کامنت"

@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import { FaBan, FaRegUser } from "react-icons/fa";
 import { GrBlog, GrUserAdmin } from "react-icons/gr";
 import Box from "../../components/modules/Box";
-import { TOKEN_ADMIN, getDetails } from "../../services/virgoolApi";
+import { getTokenFromLocalStorage } from "../../services/func";
+import { getDetails } from "../../services/virgoolApi";
 
 const IndexPage = () => {
     const [infos, setInfos] = useState([]);
@@ -11,7 +12,7 @@ const IndexPage = () => {
 
     useEffect(() => {
         axios
-            .get(getDetails(), { headers: { Authorization: `Bearer ${TOKEN_ADMIN}` } })
+            .get(getDetails(), { headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` } })
             .then((res) => setInfos(res.data))
             .catch((err) => err);
     }, []);

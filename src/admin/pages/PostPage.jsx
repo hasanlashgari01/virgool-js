@@ -4,7 +4,8 @@ import toast from "react-hot-toast";
 import { BiTrash } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import DeleteBox from "../../components/modules/DeleteBox";
-import { BASE_URL, TOKEN_ADMIN } from "../../services/virgoolApi";
+import { getTokenFromLocalStorage } from "../../services/func";
+import { BASE_URL } from "../../services/virgoolApi";
 
 const PostPage = () => {
     const [posts, setPosts] = useState([]);
@@ -17,7 +18,9 @@ const PostPage = () => {
 
     const fetchPosts = () => {
         axios
-            .get(`${BASE_URL}v1/admin/post`, { headers: { Authorization: `Bearer ${TOKEN_ADMIN}` } })
+            .get(`${BASE_URL}v1/admin/post`, {
+                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
+            })
             .then(({ data }) => setPosts(data));
     };
 
@@ -29,7 +32,7 @@ const PostPage = () => {
     const deleteHandler = () => {
         axios
             .delete(`${BASE_URL}v1/post/${itemDetails.id}`, {
-                headers: { Authorization: `Bearer ${TOKEN_ADMIN}` },
+                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
             })
             .then((res) => {
                 setIsShowDeleteBox(false);
@@ -43,7 +46,9 @@ const PostPage = () => {
 
     const postHandler = (url, id, msg) => {
         axios
-            .get(`${BASE_URL}v1/admin/post/${url}/${id}`, { headers: { Authorization: `Bearer ${TOKEN_ADMIN}` } })
+            .get(`${BASE_URL}v1/admin/post/${url}/${id}`, {
+                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
+            })
             .then((res) => {
                 if (res.status == 200) {
                     fetchPosts();

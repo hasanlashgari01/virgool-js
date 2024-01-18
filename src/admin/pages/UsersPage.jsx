@@ -1,10 +1,11 @@
 import axios from "axios";
-import { BASE_URL, TOKEN_ADMIN } from "../../services/virgoolApi";
 import { useEffect, useState } from "react";
-import DeleteBox from "../../components/modules/DeleteBox";
-import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import { BiTrash } from "react-icons/bi";
+import { Link } from "react-router-dom";
+import DeleteBox from "../../components/modules/DeleteBox";
+import { getTokenFromLocalStorage } from "../../services/func";
+import { BASE_URL } from "../../services/virgoolApi";
 
 const UsersPage = () => {
     const [users, setUsers] = useState([]);
@@ -13,7 +14,9 @@ const UsersPage = () => {
 
     const fetchUsers = () => {
         axios
-            .get(`${BASE_URL}v2/admin/user`, { headers: { Authorization: `Bearer ${TOKEN_ADMIN}` } })
+            .get(`${BASE_URL}v2/admin/user`, {
+                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
+            })
             .then(({ data: { users } }) => setUsers(users));
     };
 
@@ -25,7 +28,7 @@ const UsersPage = () => {
     const deleteHandler = () => {
         axios
             .get(`${BASE_URL}v1/admin/user/ban/${itemDetails.id}`, {
-                headers: { Authorization: `Bearer ${TOKEN_ADMIN}` },
+                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
             })
             .then((res) => {
                 setIsShowDeleteBox(false);
@@ -39,7 +42,9 @@ const UsersPage = () => {
 
     const changeRoleHandler = (id, role) => {
         axios
-            .get(`${BASE_URL}v1/admin/user/role/${id}`, { headers: { Authorization: `Bearer ${TOKEN_ADMIN}` } })
+            .get(`${BASE_URL}v1/admin/user/role/${id}`, {
+                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
+            })
             .then((res) => {
                 if (res.status == 200) {
                     fetchUsers();
@@ -68,7 +73,7 @@ const UsersPage = () => {
                     {users.map(({ _id, cover, name, username, role }) => (
                         <tr className="child:py-2 child:text-center" key={_id}>
                             <td>
-                                <img src={cover} alt="عنوان عکس" />
+                                <img src={cover} alt={`آواتار ${name}`} />
                             </td>
                             <td>
                                 <Link to={`/post/${_id}`}>{name}</Link>

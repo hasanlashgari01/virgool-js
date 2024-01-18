@@ -1,13 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import DeleteBox from "../../components/modules/DeleteBox";
-import FormBox from "../../components/modules/FormBox";
-import TableAction from "../../components/modules/TableAction";
-import { BASE_URL, TOKEN_ADMIN, getTopics } from "../../services/virgoolApi";
-import { useForm } from "react-hook-form";
-import InputEditBox from "../../components/modules/InputEditBox";
 import EditBoxFooter from "../../components/modules/EditBoxFooter";
+import FormBox from "../../components/modules/FormBox";
+import InputEditBox from "../../components/modules/InputEditBox";
+import TableAction from "../../components/modules/TableAction";
+import { getTokenFromLocalStorage } from "../../services/func";
+import { BASE_URL, getTopics } from "../../services/virgoolApi";
 import CreateTopic from "../layout/CreateTopic";
 
 const TopicPage = () => {
@@ -31,7 +32,7 @@ const TopicPage = () => {
     const deleteHandler = () => {
         axios
             .delete(`${BASE_URL}v1/admin/topic/${itemDetails.id}`, {
-                headers: { Authorization: `Bearer ${TOKEN_ADMIN}` },
+                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
             })
             .then((res) => {
                 setIsShowDeleteBox(false);
@@ -46,7 +47,7 @@ const TopicPage = () => {
     const formSubmitting = (data) => {
         axios
             .patch(`${BASE_URL}v1/admin/topic/${itemDetails.id}`, data, {
-                headers: { Authorization: `Bearer ${TOKEN_ADMIN}` },
+                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
             })
             .then((res) => {
                 setIsShowEditBox(false);

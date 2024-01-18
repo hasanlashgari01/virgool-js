@@ -5,7 +5,7 @@ import BookmarkIcon from "../../assets/bookmark.svg";
 
 let options = { month: "long", day: "numeric" };
 
-const SelectedPost = ({ isTopic = false, _id, title, description, createdAt, author, topicID }) => {
+const SelectedPost = ({ isTopic = false, _id, title, description, cover, createdAt, author, topicID }) => {
     const dt = new Date(createdAt);
 
     return (
