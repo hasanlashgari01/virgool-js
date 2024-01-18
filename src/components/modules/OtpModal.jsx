@@ -2,7 +2,7 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import { useContext, useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
-import { authFetch } from "../../services/virgoolApi";
+import { BASE_URL } from "../../services/virgoolApi";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { RiCloseCircleFill } from "react-icons/ri";
@@ -13,23 +13,23 @@ const OtpModal = ({ identifier, isRegisterPage, setIsShowModal }) => {
     const navigate = useNavigate();
     const [data, setData] = useState({ identifier, code: "" });
     const formRef = useRef();
-    let status = isRegisterPage ? "register" : "login";
+    const [status, setStatus] = useState(isRegisterPage ? "register" : "login");
     let numbers = [];
 
     const submitHandler = (e) => {
         e.preventDefault();
         // get inputs value and pust value to numbers
-        Array.from(formRef.current.children).forEach((input) => {
-            input.value.length == 1 && numbers.push(input.value);
+        Array.from(formRef.current.firstElementChild.children).forEach((input) => {
+            input?.value?.length == 1 && numbers.push(input.value);
         });
 
         setData({ ...data, code: numbers.join("") });
     };
 
     useEffect(() => {
-        if (data.code.length == 6) {
+        if (data?.code?.length == 6) {
             axios
-                .post(authFetch() + status, data)
+                .post(`${BASE_URL}v1/auth/${status}`, data)
                 .then((res) => {
                     if (res.status == (200 || 201)) {
                         loginHandler(res.data?.accessToken, res?.data?.user);
@@ -49,27 +49,31 @@ const OtpModal = ({ identifier, isRegisterPage, setIsShowModal }) => {
     }, [data]);
 
     return (
-        <div className="absolute right-4 left-4 sm:right-1/2 top-1/2 -translate-y-1/2 sm:translate-x-1/2 rounded-lg bg-white px-10 pt-5 shadow-2xl sm:w-96 md:w-[450px] lg:w-[600px]">
+        <div className="absolute left-4 right-4 top-1/2 -translate-y-1/2 rounded-lg bg-white px-10 pt-5 shadow-2xl sm:right-1/2 sm:w-96 sm:translate-x-1/2 md:w-[450px] lg:w-[600px]">
             <RiCloseCircleFill size={24} onClick={() => setIsShowModal(false)} />
-            <div
-                className="flex flex-col items-center justify-center gap-2 px-5 py-10 sm:gap-5 sm:px-10"
-                onSubmit={(e) => submitHandler(e)}
-            >
+            <div className="flex flex-col items-center justify-center gap-2 px-5 py-10 sm:gap-5 sm:px-10">
                 <div className="text-center">
                     <h3 className="text-3xl font-semibold text-black">تایید ایمیل</h3>
                     <h6 className="mt-3 text-xs lg:text-base">
                         ما یک کد به ایمیل شما ba**@dipainhouse.com ارسال کرده ایم
                     </h6>
                 </div>
-                <form className="mt-10 flex w-full justify-center gap-2 px-5 sm:gap-5 lg:w-1/2" dir="ltr" ref={formRef}>
-                    <OtpInput />
-                    <OtpInput />
-                    <OtpInput />
-                    <OtpInput />
-                    <OtpInput />
-                    <OtpInput />
+                <form
+                    className="mt-10 w-full justify-center gap-2 px-5 sm:gap-5 lg:w-1/2"
+                    dir="ltr"
+                    ref={formRef}
+                    onSubmit={(e) => submitHandler(e)}
+                >
+                    <div className="flex">
+                        <OtpInput />
+                        <OtpInput />
+                        <OtpInput />
+                        <OtpInput />
+                        <OtpInput />
+                        <OtpInput />
+                    </div>
+                    <input type="submit" value="تایید" className="btn mt-10 w-full font-semibold" />
                 </form>
-                <input type="submit" value="تایید" className="btn mt-10 w-full font-semibold" />
             </div>
         </div>
     );
