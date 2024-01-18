@@ -39,7 +39,8 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         fetchData();
-    }, []);
+        console.log(1)
+    }, [getTokenFromLocalStorage()?.isLoggedIn]);
 
     return (
         <AuthContext.Provider value={{ defaultValue, loginHandler, logout: logoutHandler }}>

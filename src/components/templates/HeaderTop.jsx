@@ -5,6 +5,7 @@ import HeaderNotifications from "./HeaderNotifications";
 import HeaderSearch from "./HeaderSearch";
 import NewPost from "./NewPost";
 import ProfileDropDown from "./ProfileDropDown";
+import { useEffect, useState } from "react";
 
 const HeaderTop = () => {
     const { isLoggin } = useAuth();
