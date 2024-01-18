@@ -39,7 +39,6 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         fetchData();
-        console.log(1)
     }, [getTokenFromLocalStorage()?.isLoggedIn]);
 
     return (

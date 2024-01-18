@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import { BsMoon, BsSun } from "react-icons/bs";
 import { useAuth } from "../../context/AuthContext";

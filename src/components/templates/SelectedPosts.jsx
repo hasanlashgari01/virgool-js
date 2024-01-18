@@ -1,5 +1,6 @@
 import propTypes from "prop-types";
 import useGetAxios from "../../hooks/useGetAxios";
+import ErrorMsg from "../modules/ErrorMsg";
 import SelectedPost from "./SelectedPost";
 import Title from "./Title";
 
@@ -12,9 +13,11 @@ const SelectedPosts = ({ isSelected, title, className }) => {
         <>
             <Title text={title} />
             <div className={`mb-10 grid grid-cols-1 ${className}`}>
-                {(isSelected ? shuffledData : data).map((post) => (
-                    <SelectedPost key={post._id} {...post} />
-                ))}
+                {data.length >= 1 ? (
+                    (isSelected ? shuffledData : data).map((post) => <SelectedPost key={post._id} {...post} />)
+                ) : (
+                    <ErrorMsg msg="پستی وجود ندارد" />
+                )}
             </div>
         </>
     );

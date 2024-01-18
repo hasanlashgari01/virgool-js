@@ -5,10 +5,10 @@ import HeaderNotifications from "./HeaderNotifications";
 import HeaderSearch from "./HeaderSearch";
 import NewPost from "./NewPost";
 import ProfileDropDown from "./ProfileDropDown";
-import { useEffect, useState } from "react";
+import { GrUserAdmin } from "react-icons/gr";
 
 const HeaderTop = () => {
-    const { isLoggin } = useAuth();
+    const { isLoggin, user } = useAuth();
 
     return (
         <div className="container flex items-center justify-between py-6">
@@ -23,6 +23,14 @@ const HeaderTop = () => {
                 {isLoggin ? (
                     <>
                         <HeaderNotifications />
+                        {user?.role === "ADMIN" && (
+                            <Link
+                                to="/admin"
+                                className="relative inline-flex aspect-square w-8 cursor-pointer items-center justify-center"
+                            >
+                                <GrUserAdmin size={20} />
+                            </Link>
+                        )}
                         <ProfileDropDown />
                     </>
                 ) : (

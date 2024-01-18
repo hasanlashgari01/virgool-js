@@ -1,15 +1,16 @@
 import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import EditBoxFooter from "../../components/modules/EditBoxFooter";
 import FormBox from "../../components/modules/FormBox";
 import InputEditBox from "../../components/modules/InputEditBox";
-import { BASE_URL, TOKEN_ADMIN } from "../../services/virgoolApi";
-import toast from "react-hot-toast";
+import { getTokenFromLocalStorage } from "../../services/func";
+import { BASE_URL } from "../../services/virgoolApi";
 
 const CreateTopic = ({ fetchTopics }) => {
-    const { register, handleSubmit } = useForm({
+    const { register, resetField, handleSubmit } = useForm({
         defaultValues: { name: "", href: "" },
     });
 
@@ -18,13 +19,15 @@ const CreateTopic = ({ fetchTopics }) => {
     const formSubmitting = (data) => {
         axios
             .post(`${BASE_URL}v1/admin/topic`, data, {
-                headers: { Authorization: `Bearer ${TOKEN_ADMIN}` },
+                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
             })
             .then((res) => {
                 setIsShow(false);
                 if (res.status == 201) {
                     fetchTopics();
                     toast.success(`موضوع ${data.name} با موفقیت ایجاد شد.`);
+                    resetField("name");
+                    resetField("href");
                 }
             })
             .catch((err) => err && toast.error(err.response.res.data.message));
