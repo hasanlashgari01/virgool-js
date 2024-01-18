@@ -59,7 +59,7 @@ const ProfileDropDown = () => {
                 <ul className="child:dropdown-border absolute left-0 top-14 w-72 rounded-md bg-white px-3 shadow-drop">
                     <div>
                         <h4>{user?.name}</h4>
-                        <LinkItem to={`/me/@${user?.username}`} name="مشاهده پروفایل" classN="text-gray-700" />
+                        <LinkItem to={`/@${user?.username}`} name="مشاهده پروفایل" classN="text-gray-700" />
                     </div>
                     <div className="child:py-1">
                         <NewPost />

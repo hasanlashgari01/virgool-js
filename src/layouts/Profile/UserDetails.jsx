@@ -1,27 +1,20 @@
 import propTypes from "prop-types";
-import { FaInstagram, FaTelegram } from "react-icons/fa";
+import { FaLinkedin, FaTelegram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
-const UserDetails = ({
-    isYourProfile = false,
-    name,
-    biography,
-    telegram,
-    instagram = "hasan_lshgri",
-    x = "HasanLashgari01",
-}) => {
+const UserDetails = ({ isYourProfile, name, biography, telegram, linkedin, x }) => {
     return (
-        <div className="flex justify-center items-center flex-col gap-5">
-            <img src="/public/images/Ana-de-Armas-300x400.jpg" alt="" className="w-20 h-20 object-cover rounded-full" />
+        <div className="flex flex-col items-center justify-center gap-5">
+            <img src="/public/images/Ana-de-Armas-300x400.jpg" alt="" className="h-20 w-20 rounded-full object-cover" />
             <h1 className="text-2xl">{name}</h1>
-            <p className="w-full text-center">{biography}</p>
+            {biography && <p className="w-full text-center">{biography}</p>}
             {isYourProfile ? (
-                <Link to="/" className="profile__btn hover:bg-black hover:text-white border-black">
+                <Link to="/me/settings" className="profile__btn border-black hover:bg-black hover:text-white">
                     تنظیمات حساب کاربری
                 </Link>
             ) : (
-                <button className="profile__btn bg-blue-500 hover:bg-blue-600 text-white border-blue-500">
+                <button className="profile__btn border-blue-500 bg-blue-500 text-white hover:bg-blue-600">
                     دنبال کنید
                 </button>
             )}
@@ -31,9 +24,9 @@ const UserDetails = ({
                         <FaTelegram size={24} />
                     </Link>
                 )}
-                {instagram && (
-                    <Link to={`https://www.instagram.com/${instagram}`} target="_blank">
-                        <FaInstagram size={24} />
+                {linkedin && (
+                    <Link to={`https://www.instagram.com/${linkedin}`} target="_blank">
+                        <FaLinkedin size={24} />
                     </Link>
                 )}
                 {x && (
