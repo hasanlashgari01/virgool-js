@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { apiGetMe, apiRequestsAccess } from "../services/axios/config";
+import { apiRequestsAccess } from "../services/axios/config";
 import { getTokenFromLocalStorage } from "../services/func";
 
 export const ProfileContext = createContext();
@@ -22,14 +22,12 @@ const ProfileProvider = ({ children }) => {
 
     useEffect(() => {
         if (getTokenFromLocalStorage()) {
-            apiGetMe()
+            apiRequestsAccess("v1/auth/getMe")
                 .then((res) => {
                     if (res.status == 200) {
                         username.slice(1) === res.data.username
                             ? setData({ ...data, isYourProfile: true })
                             : setData({ ...data, isYourProfile: false });
-
-                        location.pathname.split("/").splice(1).length === 1 && navigate("posts");
                     }
                 })
                 .catch((err) => err);
@@ -53,6 +51,10 @@ const ProfileProvider = ({ children }) => {
             });
         }
     }, []);
+
+    useEffect(() => {
+        location.pathname.split("/").splice(1).length === 1 && navigate("posts");
+    });
 
     return <ProfileContext.Provider value={data}>{children}</ProfileContext.Provider>;
 };

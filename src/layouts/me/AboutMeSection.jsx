@@ -1,10 +1,8 @@
-import axios from "axios";
 import propTypes from "prop-types";
 import { useForm } from "react-hook-form";
-import MsgBox from "../../components/modules/ErrorMessage";
-import { getTokenFromLocalStorage } from "../../services/func";
-import { BASE_URL, getUser, putUser } from "../../services/virgoolApi";
 import toast from "react-hot-toast";
+import MsgBox from "../../components/modules/ErrorMessage";
+import { apiRequestsAccess } from "../../services/axios/config";
 
 const AboutMeSection = () => {
     const {
@@ -15,9 +13,7 @@ const AboutMeSection = () => {
         defaultValues: async () => {
             const {
                 data: { name, biography },
-            } = await axios.get(getUser(), {
-                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
-            });
+            } = await apiRequestsAccess("v1/user/me/settings");
 
             return {
                 name,
@@ -27,10 +23,8 @@ const AboutMeSection = () => {
     });
 
     const updateHandler = (data) => {
-        axios
-            .put(`${BASE_URL}v1/user/me/settings`, data, {
-                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
-            })
+        apiRequestsAccess
+            .put("v1/user/me/settings", data)
             .then((res) => {
                 if (res.status == 201) {
                     toast.success("اطلاعات به روز شد.");

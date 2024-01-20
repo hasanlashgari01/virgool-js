@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -6,8 +5,7 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 import EditBoxFooter from "../../components/modules/EditBoxFooter";
 import FormBox from "../../components/modules/FormBox";
 import InputEditBox from "../../components/modules/InputEditBox";
-import { getTokenFromLocalStorage } from "../../services/func";
-import { BASE_URL } from "../../services/virgoolApi";
+import { apiRequestsAccess } from "../../services/axios/config";
 
 const CreateTopic = ({ fetchTopics }) => {
     const { register, resetField, handleSubmit } = useForm({
@@ -17,10 +15,8 @@ const CreateTopic = ({ fetchTopics }) => {
     const [isShow, setIsShow] = useState(false);
 
     const formSubmitting = (data) => {
-        axios
-            .post(`${BASE_URL}v1/admin/topic`, data, {
-                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
-            })
+        apiRequestsAccess
+            .post(`v1/admin/topic`, data)
             .then((res) => {
                 setIsShow(false);
                 if (res.status == 201) {

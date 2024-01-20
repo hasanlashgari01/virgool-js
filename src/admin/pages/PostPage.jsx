@@ -1,11 +1,9 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { BiTrash } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import DeleteBox from "../../components/modules/DeleteBox";
-import { getTokenFromLocalStorage } from "../../services/func";
-import { BASE_URL } from "../../services/virgoolApi";
+import { apiRequestsAccess } from "../../services/axios/config";
 
 const PostPage = () => {
     const [posts, setPosts] = useState([]);
@@ -17,11 +15,7 @@ const PostPage = () => {
     }, []);
 
     const fetchPosts = () => {
-        axios
-            .get(`${BASE_URL}v1/admin/post`, {
-                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
-            })
-            .then(({ data }) => setPosts(data));
+        apiRequestsAccess("v1/admin/post").then(({ data }) => setPosts(data));
     };
 
     const showModal = (id, title) => {
@@ -30,10 +24,8 @@ const PostPage = () => {
     };
 
     const deleteHandler = () => {
-        axios
-            .delete(`${BASE_URL}v1/post/${itemDetails.id}`, {
-                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
-            })
+        apiRequestsAccess
+            .delete(`v1/post/${itemDetails.id}`)
             .then((res) => {
                 setIsShowDeleteBox(false);
                 if (res.status == 200) {
@@ -45,10 +37,7 @@ const PostPage = () => {
     };
 
     const postHandler = (url, id, msg) => {
-        axios
-            .get(`${BASE_URL}v1/admin/post/${url}/${id}`, {
-                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
-            })
+        apiRequestsAccess(`v1/admin/post/${url}/${id}`)
             .then((res) => {
                 if (res.status == 200) {
                     fetchPosts();

@@ -1,12 +1,11 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import axios from "axios";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
-import { authFetch } from "../../services/virgoolApi";
+import { apiRequests } from "../../services/axios/config";
 import MsgBox from "./ErrorMessage";
 import OtpModal from "./OtpModal";
 
@@ -50,8 +49,8 @@ const AuthForm = ({ isRegisterPage = false, title, submitValue, msgHelpLink, msg
 
     const submitHandler = (data) => {
         setEmail(data.identifier);
-        axios
-            .post(authFetch() + status, data)
+        apiRequests
+            .post(`v1/auth/${status}`, data)
             .then((res) => {
                 if (res.status == (200 || 201)) {
                     toast.success(res.data.message);

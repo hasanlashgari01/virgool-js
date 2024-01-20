@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -7,8 +6,7 @@ import EditBoxFooter from "../../components/modules/EditBoxFooter";
 import FormBox from "../../components/modules/FormBox";
 import InputEditBox from "../../components/modules/InputEditBox";
 import TableAction from "../../components/modules/TableAction";
-import { getTokenFromLocalStorage } from "../../services/func";
-import { BASE_URL, getTopics } from "../../services/virgoolApi";
+import { apiRequests, apiRequestsAccess } from "../../services/axios/config";
 import CreateTopic from "../layout/CreateTopic";
 
 const TopicPage = () => {
@@ -26,14 +24,12 @@ const TopicPage = () => {
     }, []);
 
     const fetchTopics = () => {
-        axios.get(getTopics()).then(({ data }) => setTopics(data));
+        apiRequests("v1/topic").then(({ data }) => setTopics(data));
     };
 
     const deleteHandler = () => {
-        axios
-            .delete(`${BASE_URL}v1/admin/topic/${itemDetails.id}`, {
-                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
-            })
+        apiRequestsAccess
+            .delete(`v1/admin/topic/${itemDetails.id}`)
             .then((res) => {
                 setIsShowDeleteBox(false);
                 if (res.status == 200) {
@@ -45,10 +41,8 @@ const TopicPage = () => {
     };
 
     const formSubmitting = (data) => {
-        axios
-            .patch(`${BASE_URL}v1/admin/topic/${itemDetails.id}`, data, {
-                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
-            })
+        apiRequestsAccess
+            .patch(`v1/admin/topic/${itemDetails.id}`, data)
             .then((res) => {
                 setIsShowEditBox(false);
                 if (res.status == 201) {

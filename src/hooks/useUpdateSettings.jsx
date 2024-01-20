@@ -1,25 +1,26 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { BASE_URL, getUser, putUser } from "../services/virgoolApi";
-import { getTokenFromLocalStorage } from "../services/func";
+import { apiRequestsAccess } from "../services/axios/config";
+import toast from "react-hot-toast";
 
 const useUpdateSettings = () => {
     const [data, setData] = useState({});
 
     const fetchInfo = async () => {
-        const { data } = await axios.get(getUser(), {
-            headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
-        });
+        const { data } = await apiRequestsAccess.get("v1/user/me/settings");
         setData(data);
     };
 
-    const updateHandler = (updateData) => {
-        console.log(updateData);
-        axios
-            .put(`${BASE_URL}v1/user/me/settings`, updateData, {
-                headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
+    const updateHandler = (data) => {
+        apiRequestsAccess
+            .put("v1/user/me/settings", data)
+            .then((res) => {
+                if (res.status == 201) {
+                    toast.success("اطلاعات به روز شد.");
+                }
             })
-            .catch((err) => console.log(err));
+            .catch((err) => {
+                toast.error(err.response.data.message);
+            });
     };
 
     useEffect(() => {

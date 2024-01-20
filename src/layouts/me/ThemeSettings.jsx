@@ -1,23 +1,17 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import InputRadio from "../../components/modules/InputRadio";
 import InputRadioWrapper from "../../components/modules/InputRadioWrapper";
-import { getTokenFromLocalStorage } from "../../services/func";
-import { getUser } from "../../services/virgoolApi";
+import { apiRequestsAccess } from "../../services/axios/config";
 
 const ThemeSettings = () => {
     const [themeMode, setThemeMode] = useState();
     const [themeStatus, setThemeStatus] = useState();
 
     useEffect(() => {
-        axios
-            .get(getUser(), {
-                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
-            })
-            .then((res) => {
-                setThemeMode(res.data.themeMode.toLowerCase());
-                setThemeStatus(res.data.themeStatus);
-            });
+        apiRequestsAccess("v1/user/me/settings").then((res) => {
+            setThemeMode(res.data.themeMode.toLowerCase());
+            setThemeStatus(res.data.themeStatus);
+        });
     }, []);
 
     return (

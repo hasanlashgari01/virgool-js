@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import axios from "axios";
-import { BASE_URL, TOKEN_ADMIN } from "../services/virgoolApi";
 import toast from "react-hot-toast";
-import PostDetails from "../components/templates/PostDetails";
+import { useParams } from "react-router-dom";
+import ErrorMsg from "../components/modules/ErrorMsg";
 import Comment from "../components/templates/Comment";
 import HeaderTop from "../components/templates/HeaderTop";
-import ErrorMsg from "../components/modules/ErrorMsg";
+import PostDetails from "../components/templates/PostDetails";
+import { apiRequests, apiRequestsAccess } from "../services/axios/config";
 
 const PostPage = () => {
     const { postId } = useParams();
@@ -17,7 +16,7 @@ const PostPage = () => {
     const { register, handleSubmit } = useForm({ defaultValues: { body: "", post: "" } });
 
     useEffect(() => {
-        axios.get(`${BASE_URL}v1/post/${postId}`).then(({ data }) => {
+        apiRequests.get(`v1/post/${postId}`).then(({ data }) => {
             setPost(data.post);
             setComments(data.comments);
         });
@@ -26,8 +25,8 @@ const PostPage = () => {
     const onSubmit = (data) => {
         const info = { ...data, post: postId };
 
-        axios
-            .post(`${BASE_URL}v1/comment`, info, { headers: { Authorization: `Bearer ${TOKEN_ADMIN}` } })
+        apiRequestsAccess
+            .post("v1/comment", info)
             .then((res) => {
                 res && toast.success("نظر شما با موفقیت ثبت شد");
             })

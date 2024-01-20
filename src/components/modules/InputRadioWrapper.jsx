@@ -1,9 +1,7 @@
-import axios from "axios";
 import propTypes from "prop-types";
 import { useEffect, useRef } from "react";
 import toast from "react-hot-toast";
-import { getTokenFromLocalStorage } from "../../services/func";
-import { BASE_URL } from "../../services/virgoolApi";
+import { apiRequestsAccess } from "../../services/axios/config";
 
 const InputRadioWrapper = ({ value, title, type, children }) => {
     const parentValueRef = useRef();
@@ -21,12 +19,8 @@ const InputRadioWrapper = ({ value, title, type, children }) => {
     const changeHandler = (e) => {
         let value = e.target.id.toUpperCase();
 
-        axios
-            .put(
-                `${BASE_URL}v1/user/me/settings`,
-                { [type]: value },
-                { headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` } },
-            )
+        apiRequestsAccess
+            .put("v1/user/me/settings", { [type]: value })
             .then((res) => {
                 if (res.status == 201) {
                     toast.success("اطلاعات به روز شد.");

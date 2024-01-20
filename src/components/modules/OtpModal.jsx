@@ -1,11 +1,10 @@
-import axios from "axios";
 import PropTypes from "prop-types";
 import { useContext, useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
-import { BASE_URL } from "../../services/virgoolApi";
-import { AuthContext } from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
 import { RiCloseCircleFill } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import { apiRequests } from "../../services/axios/config";
 import OtpInput from "./OtpInput";
 
 const OtpModal = ({ identifier, isRegisterPage, setIsShowModal }) => {
@@ -28,8 +27,8 @@ const OtpModal = ({ identifier, isRegisterPage, setIsShowModal }) => {
 
     useEffect(() => {
         if (data?.code?.length == 6) {
-            axios
-                .post(`${BASE_URL}v1/auth/${status}`, data)
+            apiRequests
+                .post(`v1/auth/${status}`, data)
                 .then((res) => {
                     if (res.status == (200 || 201)) {
                         loginHandler(res.data?.accessToken, res?.data?.user);

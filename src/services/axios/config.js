@@ -10,15 +10,8 @@ const apiRequests = axios.create({
 const apiRequestsAccess = axios.create({
     baseURL: BASE_URL,
     headers: {
-        Authorization: `Bearer ${getTokenFromLocalStorage().token}`,
-    },
-});
-
-const apiGetMe = axios.create({
-    baseURL: `${BASE_URL}v1/auth/getMe`,
-    headers: {
         Authorization: `Bearer ${getTokenFromLocalStorage()?.token}`,
     },
 });
 
-export { apiGetMe, apiRequests, apiRequestsAccess };
+export { apiRequests, apiRequestsAccess };

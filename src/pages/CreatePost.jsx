@@ -1,12 +1,10 @@
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import HeaderTop from "../components/templates/HeaderTop";
-import { getTokenFromLocalStorage } from "../services/func";
-import { BASE_URL, getTopics } from "../services/virgoolApi";
+import { apiRequests, apiRequestsAccess } from "../services/axios/config";
 
 const NewPost = () => {
     const { register, handleSubmit } = useForm({
@@ -23,16 +21,14 @@ const NewPost = () => {
     const [topics, setTopics] = useState([]);
 
     useEffect(() => {
-        axios.get(getTopics()).then((data) => setTopics(data.data));
+        apiRequests("v1/topic").then((data) => setTopics(data.data));
     }, []);
 
     const onSubmit = (data) => {
         const info = { ...data, cover: data.cover[0].name, body };
 
-        axios
-            .post(`${BASE_URL}v1/post`, info, {
-                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
-            })
+        apiRequestsAccess
+            .post("v1/post", info)
             .then((res) => {
                 if (res.status === 201) {
                     toast.success(`پست ${data.title} با موفقیت ایجاد شد.`);

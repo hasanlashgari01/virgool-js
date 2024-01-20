@@ -1,13 +1,10 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import EditInput from "../../components/modules/EditInput";
-import InputRadio from "../../components/modules/InputRadio";
-import InputRadioWrapper from "../../components/modules/InputRadioWrapper";
-import { getTokenFromLocalStorage } from "../../services/func";
-import { BASE_URL, getUser } from "../../services/virgoolApi";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import MsgBox from "../../components/modules/ErrorMessage";
+import InputRadio from "../../components/modules/InputRadio";
+import InputRadioWrapper from "../../components/modules/InputRadioWrapper";
+import { apiRequestsAccess } from "../../services/axios/config";
 
 const PersonalInformation = () => {
     const [value, setValue] = useState();
@@ -19,9 +16,7 @@ const PersonalInformation = () => {
         defaultValues: async () => {
             const {
                 data: { twitter, linkedin, telegram },
-            } = await axios.get(getUser(), {
-                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
-            });
+            } = await apiRequestsAccess.get("v1/user/me/settings");
 
             return {
                 twitter,
@@ -32,20 +27,12 @@ const PersonalInformation = () => {
     });
 
     useEffect(() => {
-        axios
-            .get(getUser(), {
-                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
-            })
-            .then((res) => {
-                setValue(res.data.gender.toLowerCase());
-            });
+        apiRequestsAccess.get("v1/user/me/settings").then((res) => setValue(res.data.gender.toLowerCase()));
     }, []);
 
     const updateHandler = (data) => {
-        axios
-            .put(`${BASE_URL}v1/user/me/settings`, data, {
-                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
-            })
+        apiRequestsAccess
+            .put("v1/user/me/settings", data)
             .then((res) => {
                 if (res.status == 201) {
                     toast.success("اطلاعات به روز شد.");

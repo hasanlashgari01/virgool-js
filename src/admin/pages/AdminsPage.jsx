@@ -1,11 +1,9 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { BiTrash } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import DeleteBox from "../../components/modules/DeleteBox";
-import { getTokenFromLocalStorage } from "../../services/func";
-import { BASE_URL } from "../../services/virgoolApi";
+import { apiRequestsAccess } from "../../services/axios/config";
 
 const AdminsPage = () => {
     const [admins, setAdmins] = useState([]);
@@ -13,11 +11,7 @@ const AdminsPage = () => {
     const [isShowDeleteBox, setIsShowDeleteBox] = useState(false);
 
     const fetchAdmins = () => {
-        axios
-            .get(`${BASE_URL}v2/admin/user/admins`, {
-                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
-            })
-            .then(({ data: { admins } }) => setAdmins(admins));
+        apiRequestsAccess(`v2/admin/user/admins`).then(({ data: { admins } }) => setAdmins(admins));
     };
 
     const showModal = (id, title) => {
@@ -26,10 +20,7 @@ const AdminsPage = () => {
     };
 
     const deleteHandler = () => {
-        axios
-            .get(`${BASE_URL}v1/admin/user/ban/${itemDetails.id}`, {
-                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
-            })
+        apiRequestsAccess(`v1/admin/user/ban/${itemDetails.id}`)
             .then((res) => {
                 setIsShowDeleteBox(false);
                 if (res.status == 200) {
@@ -41,10 +32,7 @@ const AdminsPage = () => {
     };
 
     const changeRoleHandler = (id, role) => {
-        axios
-            .get(`${BASE_URL}v1/admin/user/role/${id}`, {
-                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
-            })
+        apiRequestsAccess(`v1/admin/user/role/${id}`)
             .then((res) => {
                 if (res.status == 200) {
                     fetchAdmins();

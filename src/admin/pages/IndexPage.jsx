@@ -1,18 +1,15 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaBan, FaRegUser } from "react-icons/fa";
 import { GrBlog, GrUserAdmin } from "react-icons/gr";
 import Box from "../../components/modules/Box";
-import { getTokenFromLocalStorage } from "../../services/func";
-import { getDetails } from "../../services/virgoolApi";
+import { apiRequestsAccess } from "../../services/axios/config";
 
 const IndexPage = () => {
     const [infos, setInfos] = useState([]);
     const { users, admins, posts, usersBanned } = infos;
 
     useEffect(() => {
-        axios
-            .get(getDetails(), { headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` } })
+        apiRequestsAccess("v2/admin/index")
             .then((res) => setInfos(res.data))
             .catch((err) => err);
     }, []);

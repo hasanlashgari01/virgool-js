@@ -1,11 +1,8 @@
-import { useState } from "react";
-import { useParams } from "react-router-dom";
-import Post from "../../layouts/Profile/Post";
 import ErrorMsg from "../../components/modules/ErrorMsg";
+import Post from "../../layouts/Profile/Post";
 
 const Lists = () => {
-    const { username } = useParams();
-    const [lists, setLists] = useState([]);
+    const lists = [];
 
     return (
         <>

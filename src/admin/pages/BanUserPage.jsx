@@ -1,8 +1,7 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { BiTrash } from "react-icons/bi";
 import DeleteBox from "../../components/modules/DeleteBox";
-import { BASE_URL, TOKEN_ADMIN } from "../../services/virgoolApi";
+import { apiRequestsAccess } from "../../services/axios/config";
 
 const BanUserPage = () => {
     const [bannedUsers, setBannedUsers] = useState([]);
@@ -10,9 +9,7 @@ const BanUserPage = () => {
     const [isShowDeleteBox, setIsShowDeleteBox] = useState(false);
 
     const fetchBannedUsers = () => {
-        axios
-            .get(`${BASE_URL}v2/admin/user/banned`, { headers: { Authorization: `Bearer ${TOKEN_ADMIN}` } })
-            .then(({ data: { users } }) => setBannedUsers(users));
+        apiRequestsAccess(`v2/admin/user/banned`).then(({ data: { users } }) => setBannedUsers(users));
     };
 
     useEffect(() => {

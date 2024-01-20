@@ -1,11 +1,9 @@
-import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { BsMoon, BsSun } from "react-icons/bs";
 import { useAuth } from "../../context/AuthContext";
 import useDropDown from "../../hooks/useDropDown";
-import { getTokenFromLocalStorage } from "../../services/func";
-import { BASE_URL } from "../../services/virgoolApi";
+import { apiRequestsAccess } from "../../services/axios/config";
 import LinkItem from "./LinkItem";
 import NewPost from "./NewPost";
 
@@ -26,15 +24,8 @@ const ProfileDropDown = () => {
 
     const themeHandler = () => {
         setTheme(theme === "LIGHT" ? "DARK" : "LIGHT");
-        console.log(1);
-        axios
-            .put(
-                `${BASE_URL}v1/user/me/settings`,
-                { themeMode: theme },
-                {
-                    headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
-                },
-            )
+        apiRequestsAccess
+            .put("v1/user/me/settings", { themeMode: theme })
             .then((res) => {
                 if (res.status == 201) {
                     toast.success("اطلاعات به روز شد.");

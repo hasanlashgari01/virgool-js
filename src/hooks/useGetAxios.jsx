@@ -1,21 +1,20 @@
-import { useEffect, useState } from "react";
 import axios from "axios";
-import { BASE_URL } from "../services/virgoolApi";
+import { useEffect, useState } from "react";
 
 const useGetAxios = ({ url }) => {
-	const [data, setData] = useState([]);
+    const [data, setData] = useState([]);
 
-	useEffect(() => {
-		getData();
-	}, []);
+    useEffect(() => {
+        getData();
+    }, []);
 
-	const getData = async () => {
-		const response = await axios.get(`${BASE_URL}${url}`);
+    const getData = async () => {
+        const response = await axios(`${url}`);
 
-		setData(response.data);
-	};
+        setData(response.data);
+    };
 
-	return [data, setData];
+    return [data, setData];
 };
 
 export default useGetAxios;

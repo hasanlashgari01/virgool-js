@@ -1,11 +1,9 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { BiTrash } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import DeleteBox from "../../components/modules/DeleteBox";
-import { getTokenFromLocalStorage } from "../../services/func";
-import { BASE_URL } from "../../services/virgoolApi";
+import { apiRequestsAccess } from "../../services/axios/config";
 
 const CommentPage = () => {
     const [comments, setComments] = useState([]);
@@ -13,11 +11,7 @@ const CommentPage = () => {
     const [isShowDeleteBox, setIsShowDeleteBox] = useState(false);
 
     const fetchComments = () => {
-        axios
-            .get(`${BASE_URL}v1/admin/comment`, {
-                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
-            })
-            .then(({ data }) => setComments(data));
+        apiRequestsAccess(`v1/admin/comment`).then(({ data }) => setComments(data));
     };
 
     useEffect(() => {
@@ -30,10 +24,7 @@ const CommentPage = () => {
     };
 
     const commentHandler = (url, id, msg) => {
-        axios
-            .get(`${BASE_URL}v1/admin/comment/${id}/${url}`, {
-                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
-            })
+        apiRequestsAccess(`v1/admin/comment/${id}/${url}`)
             .then((res) => {
                 if (res.status == 200) {
                     fetchComments();
@@ -47,10 +38,8 @@ const CommentPage = () => {
     const rejectHandler = (id) => commentHandler("reject", id, "کامنت به دسته رجکت ها منتقل شد.");
 
     const deleteHandler = () => {
-        axios
-            .delete(`${BASE_URL}v1/admin/comment/${itemDetails.id}`, {
-                headers: { Authorization: `Bearer ${getTokenFromLocalStorage().token}` },
-            })
+        apiRequestsAccess
+            .delete(`v1/admin/comment/${itemDetails.id}`)
             .then((res) => {
                 setIsShowDeleteBox(false);
                 if (res.status == 200) {
