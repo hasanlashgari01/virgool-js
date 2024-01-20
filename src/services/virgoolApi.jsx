@@ -8,7 +8,7 @@ const adminRouteV2 = `${BASE_URL}v2/admin/`;
 const authFetch = () => `${BASE_URL}v1/auth/`;
 const getTopics = () => `${BASE_URL}v1/topic`;
 const getTopic = (href) => `${BASE_URL}v1/topic/${href}`;
-const getUserProfile = (username) => `${BASE_URL}v1/user/profile/${username}`;
+const getUserProfile = (username) => `${BASE_URL}v2/user/profile/${username}`;
 const getUser = () => `${BASE_URL}v1/user/me/settings`;
 const putUser = () => `${BASE_URL}v1/user/me/settings`;
 const getDetails = () => `${BASE_URL}v2/admin/index`;

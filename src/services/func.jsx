@@ -9,4 +9,4 @@ const getTokenFromLocalStorage = () => {
     return JSON.parse(localStorage.getItem("user"));
 };
 
-export { toDate, getTokenFromLocalStorage };
+export { getTokenFromLocalStorage, toDate };

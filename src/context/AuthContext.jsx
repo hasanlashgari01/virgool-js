@@ -1,8 +1,7 @@
-import axios from "axios";
 import propTypes from "prop-types";
 import { createContext, useContext, useEffect, useState } from "react";
+import { apiRequestsAccess } from "../services/axios/config";
 import { getTokenFromLocalStorage } from "../services/func";
-import { getMe } from "../services/virgoolApi";
 
 export const AuthContext = createContext();
 
@@ -26,13 +25,8 @@ const AuthProvider = ({ children }) => {
 
     const fetchData = () => {
         if (getTokenFromLocalStorage()) {
-            axios
-                .get(getMe(), { headers: { Authorization: `Bearer ${getTokenFromLocalStorage()?.token}` } })
-                .then((res) => {
-                    if (res.status == 200) {
-                        setDefaultValue({ isLoggedIn: true, userInfos: res.data });
-                    }
-                })
+            apiRequestsAccess("v1/auth/getMe")
+                .then((res) => res.status == 200 && setDefaultValue({ isLoggedIn: true, userInfos: res.data }))
                 .catch((err) => err.response);
         }
     };
