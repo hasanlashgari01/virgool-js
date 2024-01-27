@@ -1,5 +1,5 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
+import { apiRequests } from "../services/axios/config";
 
 const useGetAxios = ({ url }) => {
     const [data, setData] = useState([]);
@@ -9,7 +9,7 @@ const useGetAxios = ({ url }) => {
     }, []);
 
     const getData = async () => {
-        const response = await axios(`${url}`);
+        const response = await apiRequests(url);
 
         setData(response.data);
     };

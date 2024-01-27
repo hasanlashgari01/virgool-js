@@ -1,3 +1,4 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -7,13 +8,18 @@ import Comment from "../components/templates/Comment";
 import HeaderTop from "../components/templates/HeaderTop";
 import PostDetails from "../components/templates/PostDetails";
 import { apiRequests, apiRequestsAccess } from "../services/axios/config";
+import { schemaComment } from "../validation/AddComment";
 
 const PostPage = () => {
     const { postId } = useParams();
     const [post, setPost] = useState([]);
     const [comments, setComments] = useState([]);
 
-    const { register, handleSubmit } = useForm({ defaultValues: { body: "", post: "" } });
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({ resolver: yupResolver(schemaComment) });
 
     useEffect(() => {
         apiRequests.get(`v1/post/${postId}`).then(({ data }) => {
@@ -22,7 +28,8 @@ const PostPage = () => {
         });
     }, []);
 
-    const onSubmit = (data) => {
+    const submitHandler = (data) => {
+        console.log(data);
         const info = { ...data, post: postId };
 
         apiRequestsAccess
@@ -40,7 +47,7 @@ const PostPage = () => {
                 <PostDetails post={post} id="post" />
                 <div className="mt-10" id="comments">
                     <h1 className="mb-10 font-DanaDemiBold text-3xl">نظرات</h1>
-                    <form className="flex flex-col items-start gap-5" onSubmit={handleSubmit(onSubmit)}>
+                    <form className="flex flex-col items-start gap-5" onSubmit={handleSubmit(submitHandler)}>
                         <textarea
                             name=""
                             id=""
@@ -50,6 +57,7 @@ const PostPage = () => {
                             className="h-32 w-full rounded-lg bg-gray-200/50 px-5 py-2.5 outline-none tb:w-2/3"
                             {...register("body", { required: true, minLength: 20, maxLength: 1000 })}
                         ></textarea>
+                        {errors.body && <span className="text-sm text-red-500">{errors.body.message}</span>}
                         <input type="submit" value="ثبت نظر" className="btn" />
                     </form>
                 </div>

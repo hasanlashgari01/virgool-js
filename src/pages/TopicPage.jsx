@@ -7,12 +7,11 @@ import { apiRequests } from "../services/axios/config";
 
 const TopicPage = () => {
     const { href } = useParams();
-
-    const [topic, setTopic] = useState();
-    const [posts, setPosts] = useState();
+    const [topic, setTopic] = useState([]);
+    const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        apiRequests(`v1/topic${href}`).then(({ data }) => {
+        apiRequests(`v1/topic/${href}`).then(({ data }) => {
             setTopic(data.topic);
             setPosts(data.posts);
         });

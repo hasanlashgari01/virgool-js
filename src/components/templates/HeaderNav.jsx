@@ -1,13 +1,14 @@
 import PropTypes from "prop-types";
 import { useContext, useEffect } from "react";
+import { AuthContext } from "../../context/AuthContext";
 import useGetAxios from "../../hooks/useGetAxios";
 import LinkItem from "./LinkItem";
-import { AuthContext } from "../../context/AuthContext";
 
 const HeaderNav = () => {
     const {
         defaultValue: { isLoggedIn },
     } = useContext(AuthContext);
+
     const [data, setData] = useGetAxios({ url: "v1/topic" });
     const shuffledTopics = data.sort((a, b) => 0.5 - Math.random());
 

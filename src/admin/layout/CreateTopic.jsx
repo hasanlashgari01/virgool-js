@@ -6,12 +6,16 @@ import EditBoxFooter from "../../components/modules/EditBoxFooter";
 import FormBox from "../../components/modules/FormBox";
 import InputEditBox from "../../components/modules/InputEditBox";
 import { apiRequestsAccess } from "../../services/axios/config";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { schemaTopic } from "../../validation/AdminValidations";
 
 const CreateTopic = ({ fetchTopics }) => {
-    const { register, resetField, handleSubmit } = useForm({
-        defaultValues: { name: "", href: "" },
-    });
-
+    const {
+        register,
+        resetField,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({ resolver: yupResolver(schemaTopic) });
     const [isShow, setIsShow] = useState(false);
 
     const formSubmitting = (data) => {
@@ -41,12 +45,12 @@ const CreateTopic = ({ fetchTopics }) => {
 
             <FormBox isShow={isShow}>
                 <form
-                    className="mt-20 inline-flex flex-col rounded-lg bg-white px-16 py-8 shadow-xl"
+                    className="mt-20 inline-flex w-2/3 flex-col rounded-lg bg-white px-16 py-8 shadow-xl lg:w-1/2"
                     onSubmit={handleSubmit(formSubmitting)}
                 >
                     <div className="space-y-5">
-                        <InputEditBox title="اسم" register={{ ...register("name", { minLength: 3 }) }} />
-                        <InputEditBox title="آدرس" register={{ ...register("href", { minLength: 3 }) }} />
+                        <InputEditBox title="اسم" register={{ ...register("name") }} errors={errors.name} />
+                        <InputEditBox title="آدرس" register={{ ...register("href") }} errors={errors.href} />
                     </div>
                     <EditBoxFooter setIsShow={setIsShow} />
                 </form>
